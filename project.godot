@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "Main",
+"language": "GDScript",
+"path": "res://scenes/main.gd"
+} ]
+_global_script_class_icons={
+"Main": ""
+}
+
+[application]
+
+config/name="godot-template"
+run/main_scene="res://scenes/main.tscn"
+config/icon="res://assets/sprites/icon.png"
+
+[autoload]
+
+Game="*res://autoload/game.gd"
