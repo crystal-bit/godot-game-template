@@ -21,7 +21,6 @@ func pause_game():
 	pause_screen.show()
 
 
-
 func _on_Resume_pressed():
 	resume()
 
