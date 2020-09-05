@@ -3,11 +3,11 @@
 [ext_resource path="res://assets/fonts/squarebit/Squarebit.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/menu/button.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 1 )
 
@@ -35,7 +35,7 @@ margin_left = -51.0
 margin_top = -23.0
 margin_right = 51.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "START"
 script = ExtResource( 2 )
 
@@ -52,7 +52,7 @@ margin_left = 338.0
 margin_top = 98.0
 margin_right = 686.0
 margin_bottom = 162.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "VIDEOGAME TITLE"
 __meta__ = {
 "_edit_use_anchors_": false

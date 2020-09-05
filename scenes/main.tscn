@@ -1,7 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/menu.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=4]
+resource_name = "black"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0862745, 0.0862745, 0.0862745, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade-from-black"
@@ -68,11 +84,12 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transitions"]
-playback_speed = 0.4
+playback_speed = 0.1
+anims/black = SubResource( 4 )
 anims/fade-from-black = SubResource( 1 )
 anims/fade-to-black = SubResource( 2 )
 anims/flash = SubResource( 3 )
 
-[node name="ActiveScene" type="Node" parent="."]
+[node name="ActiveSceneContainer" type="Node" parent="."]
 
-[node name="Menu" parent="ActiveScene" instance=ExtResource( 2 )]
+[node name="Menu" parent="ActiveSceneContainer" instance=ExtResource( 2 )]
