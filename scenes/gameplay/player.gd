@@ -10,6 +10,7 @@ var velocity = Vector2()
 var input_vec = Vector2()
 var powerup = false
 
+
 func _ready():
 	pass
 

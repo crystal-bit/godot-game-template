@@ -5,11 +5,15 @@ const scenes_denylist = [
 	"res://scenes/main.tscn"
 ]
 
-var main
+var main: Main
 
 
 func _init():
 	pass
+
+
+func init(main_scene):
+	main = main_scene
 
 
 func _ready():
@@ -35,34 +39,30 @@ func _force_load():
 	played_scene.owner = main
 
 
-func init(main_scene):
-	main = main_scene
-
-
 func change_scene(new_scene, params= {}):
+	var current_scene = main.active_scene_container.get_child(0)
+	var transitions: Transitions = main.transitions
+
+	# prevent inputs  during scene change
+	get_tree().paused = true
+		
 	if new_scene in scenes_denylist:
 		print_debug("WARNING: ", new_scene, " is in the denylist. Loading a default scene")
 		new_scene = "res://scenes/menu/menu.tscn"
 
-	var current_scene = main.active_scene_container.get_child(0)
 	var scn = load(new_scene)
-	# pause current scene and prevent processing new inputs (avoid bugs)
-	get_tree().paused = true
-	main.anims.play("fade-to-black")
-	yield(main.anims, "animation_finished")
+	transitions.fade_in()
+	yield(transitions.anim, "animation_finished")
 	current_scene.queue_free()
 	var instanced_scn = scn.instance()
 	main.active_scene_container.add_child(instanced_scn)
 	# artificially wait some time in order to have a gentle game transition
+	# TODO: do this only if load time < 0.5s
 	yield(get_tree().create_timer(0.5), "timeout")
-	main.anims.play("fade-from-black")
+	transitions.fade_out()
 	if instanced_scn.has_method("pre_start"):
 		instanced_scn.pre_start(params)
-	yield(main.anims, "animation_finished")
+	yield(transitions.anim, "animation_finished")
 	get_tree().paused = false
 	if instanced_scn.has_method("start"):
 		instanced_scn.start()
-
-
-func flash():
-	main.anims.play("flash")

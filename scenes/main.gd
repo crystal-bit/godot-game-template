@@ -1,7 +1,7 @@
 class_name Main
 extends Node
 
-onready var anims: AnimationPlayer = $Transitions/AnimationPlayer
+onready var transitions = $Transitions
 onready var active_scene_container = $ActiveSceneContainer
 
 var initial_fade_active = true
@@ -17,9 +17,9 @@ func _ready():
 	active_scene.set_process_unhandled_input(false)
 
 	if initial_fade_active:
-		anims.play("black")
+		transitions.set_black()
 		yield(get_tree().create_timer(1), "timeout")
-		anims.play("fade-from-black")
+		transitions.fade_out()
 
 
 func get_active_scene():
@@ -27,8 +27,6 @@ func get_active_scene():
 
 
 func _input(event):
-	# if there is a transition playing
-	if anims.is_playing():
+	if transitions.playing():
 		# prevent  all input events
 		get_tree().set_input_as_handled()
-

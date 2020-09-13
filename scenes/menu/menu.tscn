@@ -21,7 +21,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.568627, 0.721569, 0.6, 1 )
+color = Color( 0.176471, 0.682353, 0.647059, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -31,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -51.0
-margin_top = -23.0
-margin_right = 51.0
-margin_bottom = 23.0
+margin_left = -84.0
+margin_top = -36.5
+margin_right = 84.0
+margin_bottom = 36.5
 custom_fonts/font = SubResource( 1 )
 text = "START"
 script = ExtResource( 2 )

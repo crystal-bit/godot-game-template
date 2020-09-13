@@ -26,6 +26,9 @@ func _on_Resume_pressed():
 
 
 func _on_Main_Menu_pressed():
+	""" Note: this should be connected as one-shot to avoid bugs on
+	multiple click during animations.
+	For other parts of the game the pause state takes care of this."""
 	Game.change_scene("res://scenes/menu/menu.tscn")
 	# if, by accident, you try to load the main scene (the container
 	# for this template) it prevents to load it because

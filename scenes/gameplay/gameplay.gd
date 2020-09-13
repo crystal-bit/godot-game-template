@@ -2,12 +2,11 @@ extends Node2D
 
 
 func pre_start(params):
-	print_debug("Gameplay started with params = ")
-
+	print("\npre_start called with params = ")
 	for key in params:
 		var val = params[key]
-		print(key, ": ", val)
+		printt("", key, val)
 
 
 func start():
-	print("Start game logic!")
+	print("\nStart game logic!")
