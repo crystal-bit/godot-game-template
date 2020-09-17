@@ -1,7 +1,7 @@
 class_name Transitions
 extends CanvasLayer
 
-onready var anim = $AnimationPlayer
+onready var anim := $AnimationPlayer
 
 
 func playing() -> bool:
@@ -14,7 +14,7 @@ func set_black():
 
 func fade_in():
 	anim.play("fade-to-black")
-	
+
 
 func fade_out():
 	anim.play("fade-from-black")

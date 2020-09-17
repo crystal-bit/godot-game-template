@@ -1,7 +1,7 @@
 class_name Main
 extends Node
 
-onready var transitions = $Transitions
+onready var transitions: Transitions = $Transitions
 onready var active_scene_container = $ActiveSceneContainer
 
 var initial_fade_active = true
@@ -26,7 +26,7 @@ func get_active_scene():
 	return active_scene_container.get_child(0)
 
 
-func _input(event):
+func _input(event: InputEvent):
 	if transitions.playing():
 		# prevent  all input events
 		get_tree().set_input_as_handled()

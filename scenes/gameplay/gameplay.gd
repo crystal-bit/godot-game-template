@@ -8,6 +8,5 @@ func pre_start(params):
 		printt("", key, val)
 
 
-
 func start():
 	print("\nStart game logic!")
