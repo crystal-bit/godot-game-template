@@ -49,7 +49,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.2
+resource_name = "transparent"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -57,10 +58,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0228121, 0.141764 ),
-"transitions": PoolRealArray( 1, 0.31864, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 0.0862745, 0.0862745, 0.0862745, 0 ) ]
 }
 
 [node name="Transitions" type="CanvasLayer"]
@@ -72,15 +73,14 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+color = Color( 0.0862745, 0.0862745, 0.0862745, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "black"
-playback_speed = 0.7
+autoplay = "transparent"
 anims/black = SubResource( 1 )
 anims/fade-from-black = SubResource( 2 )
 anims/fade-to-black = SubResource( 3 )
-anims/flash = SubResource( 4 )
+anims/transparent = SubResource( 4 )
