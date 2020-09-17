@@ -34,4 +34,5 @@ config/icon="res://assets/sprites/icon.png"
 
 [autoload]
 
+Scenes="*res://autoload/scenes.gd"
 Game="*res://autoload/game.gd"

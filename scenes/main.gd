@@ -8,7 +8,7 @@ var initial_fade_active = true
 
 
 func _init():
-	Game.init(self)
+	Game.set_main_node(self)
 
 
 func _ready():
@@ -18,7 +18,7 @@ func _ready():
 
 	if initial_fade_active:
 		transitions.set_black()
-		yield(get_tree().create_timer(1), "timeout")
+		yield(get_tree().create_timer(0.3), "timeout")
 		transitions.fade_out()
 
 
