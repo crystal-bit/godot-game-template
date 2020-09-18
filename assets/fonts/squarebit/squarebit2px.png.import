@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1920x1080-transparent.png-974bb7d82995ccc05adddcfc6487e0b5.stex"
+path="res://.import/squarebit2px.png-b192e52cbe0516b0b63622dd9998452e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/1920x1080-transparent.png"
-dest_files=[ "res://.import/1920x1080-transparent.png-974bb7d82995ccc05adddcfc6487e0b5.stex" ]
+source_file="res://assets/fonts/squarebit/squarebit2px.png"
+dest_files=[ "res://.import/squarebit2px.png-b192e52cbe0516b0b63622dd9998452e.stex" ]
 
 [params]
 
