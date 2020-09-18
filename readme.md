@@ -10,7 +10,10 @@ Opinionated game template for quick development.
 - `change_scene(scene, params)` function to handle transitions with fade-in/out and input prevention
 - project structure: lowercase letters only for file system paths
   - `scenes/`, `entities`
-- Automatic build for each commit
+- Continuos Integration:
+  - Automatic desktop build (linux, windows, osx, HTML5) for each commit
+  - Automatic HTML5 publish to Github pages for each commit
+- `.gitignore`
 
 ## Lower case letters only
 
@@ -24,3 +27,7 @@ This is not true for case-sensitive file systems like ext4.
 
 - https://en.wikipedia.org/wiki/Filename#Letter_case_preservation
 - https://en.wikipedia.org/wiki/Filename#Comparison_of_filename_limitations 
+
+## Thanks
+
+- https://github.com/aBARICHELLO/godot-ci

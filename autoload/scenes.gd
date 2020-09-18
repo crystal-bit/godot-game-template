@@ -6,7 +6,7 @@ const scenes_denylist = [
 ]
 # scene which is loaded instead of a denied scene
 const fallback_scene = "res://scenes/menu/menu.tscn" 
-const minimum_load_time = 0.3
+const minimum_load_time = 300 #ms
 
 var main: Main
 
@@ -38,7 +38,7 @@ func _force_load():
 	played_scene.owner = main
 
 
-func _change_scene(new_scene, params= {}):
+func _change_scene(new_scene: String, params= {}):
 	var current_scene = main.active_scene_container.get_child(0)
 	var transitions: Transitions = main.transitions
 
@@ -52,15 +52,15 @@ func _change_scene(new_scene, params= {}):
 	var scn = load(new_scene)
 	transitions.fade_in()
 	yield(transitions.anim, "animation_finished")
-	var loading_start_time = OS.get_unix_time()
+	var loading_start_time = OS.get_ticks_msec()
 	current_scene.queue_free()
 	var instanced_scn = scn.instance()
 	main.active_scene_container.add_child(instanced_scn)
-	var load_time = OS.get_unix_time() - loading_start_time # seconds
-	print("Scene loaded in ", load_time, "s")
+	var load_time = OS.get_ticks_msec() - loading_start_time # ms
+	print("🕑🕑🕑🕑🕑🕑{scn} loaded in {elapsed}ms".format({ 'scn': new_scene, 'elapsed': load_time }))
 	# artificially wait some time in order to have a gentle game transition
 	if load_time < minimum_load_time:
-		yield(get_tree().create_timer(minimum_load_time - load_time), "timeout")
+		yield(get_tree().create_timer((minimum_load_time - load_time) / 1000.0), "timeout")
 	transitions.fade_out()
 	if instanced_scn.has_method("pre_start"):
 		instanced_scn.pre_start(params)
