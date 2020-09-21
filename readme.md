@@ -1,5 +1,7 @@
 # Godot Game Template
 
+WARNING: currently Work in Progress and not ready to be used. 
+
 Opinionated game template for quick development.
 
 ## Features
