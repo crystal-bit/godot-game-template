@@ -35,6 +35,8 @@ func _force_load():
 	# reparent played scene under main_node
 	main.active_scene_container.get_child(0).queue_free()
 	main.active_scene_container.add_child(played_scene)
+	if played_scene.has_method("start"):
+		played_scene.start()
 	played_scene.owner = main
 
 
