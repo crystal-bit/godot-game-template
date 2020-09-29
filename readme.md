@@ -22,6 +22,7 @@ Opinionated game template for quick development.
 To avoid issues when multiple contributors are working on the same project across various
 file systems and operating systems.
 
+
 **Explanation**  
 Usually on Windows `player.png` and `PLAYER.png` represents the same file.
 
@@ -29,6 +30,7 @@ This is not true for case-sensitive file systems like ext4.
 
 - https://en.wikipedia.org/wiki/Filename#Letter_case_preservation
 - https://en.wikipedia.org/wiki/Filename#Comparison_of_filename_limitations 
+- https://docs.godotengine.org/en/stable/getting_started/step_by_step/filesystem.html#drawbacks
 
 ## Thanks
 
