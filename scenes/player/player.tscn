@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/icon.png" type="Texture" id=2]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35.0303, 37.1385 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 508.226, 285.278 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+h_speed = 400.0
+jump_speed = 700.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

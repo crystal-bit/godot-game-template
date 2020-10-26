@@ -1,11 +1,11 @@
 extends Node
 
-# scenes which are prevented to be loaded
+# scenes which are prevented to be loaded.
+# `fallback_scene` will be loaded instead.
 const scenes_denylist = [
 	"res://scenes/main.tscn"
 ]
-# scene which is loaded instead of a denied scene
-const fallback_scene = "res://scenes/menu/menu.tscn" 
+const fallback_scene = "res://scenes/menu/menu.tscn"
 const minimum_load_time = 300 #ms
 
 var main: Main
@@ -26,11 +26,9 @@ func _force_load():
 	var played_scene = get_tree().current_scene
 	var root = get_node("/root")
 	main = load("res://scenes/main.tscn").instance()
-	# when playing a specific scene (F6) you want to access your game as fast as possible
 	main.initial_fade_active = false
 	root.remove_child(played_scene)
 	root.add_child(main)
-	# reparent played scene under main_node
 	main.active_scene_container.get_child(0).queue_free()
 	main.active_scene_container.add_child(played_scene)
 	if played_scene.has_method("pre_start"):
@@ -41,16 +39,13 @@ func _force_load():
 
 
 func _change_scene(new_scene: String, params= {}):
-	var current_scene = main.active_scene_container.get_child(0)
+	var current_scene = get_current_scene_node()
 	var transitions: Transitions = main.transitions
-
 	# prevent inputs during scene change
 	get_tree().paused = true
-		
 	if new_scene in scenes_denylist:
 		print_debug("WARNING: ", new_scene, " is in the denylist. Loading a default scene")
 		new_scene = fallback_scene
-
 	transitions.fade_in()
 	yield(transitions.anim, "animation_finished")
 	var loading_start_time = OS.get_ticks_msec()
@@ -70,3 +65,7 @@ func _change_scene(new_scene: String, params= {}):
 	get_tree().paused = false
 	if instanced_scn.has_method("start"):
 		instanced_scn.start()
+
+
+func get_current_scene_node() -> Node:
+	return main.active_scene_container.get_child(0)

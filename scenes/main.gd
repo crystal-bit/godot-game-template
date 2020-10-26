@@ -8,7 +8,7 @@ var initial_fade_active = true
 
 
 func _init():
-	Game.set_main_node(self)
+	Game._set_main_node(self)
 
 
 func _ready():
