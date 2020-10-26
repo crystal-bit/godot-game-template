@@ -23,7 +23,8 @@ func _register_size():
 
 
 func change_scene(new_scene, params= {}):
-	Scenes._change_scene(new_scene, params)
+#	Scenes._change_scene(new_scene, params)
+	Scenes._change_scene_multithread(new_scene, params)
 
 
 func reparent_node(node: Node2D, new_parent, update_transform = true):
