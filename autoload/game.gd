@@ -1,10 +1,12 @@
 extends Node
 
 
-var size := Vector2.ZERO
+var size := Vector2()
 
 
 func _ready() -> void:
+	Scenes.connect("change_finished", self, "_on_Scenes_change_finished")
+	Scenes.connect("change_started", self, "_on_Scenes_change_started")
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
 	_register_size()
 
@@ -24,7 +26,15 @@ func _register_size():
 
 func change_scene(new_scene, params= {}):
 #	Scenes._change_scene(new_scene, params)
-	Scenes._change_scene_multithread(new_scene, params)
+	Scenes._change_scene_background_loading(new_scene, params)
+
+
+func _on_Scenes_change_started():
+	get_tree().paused = true
+
+
+func _on_Scenes_change_finished():
+	get_tree().paused = false
 
 
 func reparent_node(node: Node2D, new_parent, update_transform = true):

@@ -1,23 +1,27 @@
 extends Node
 
+signal change_started
+signal change_finished
+
 # scenes which are prevented to be loaded.
 # `fallback_scene` will be loaded instead.
 const scenes_denylist = [
 	"res://scenes/main.tscn"
 ]
 const fallback_scene = "res://scenes/menu/menu.tscn"
-const minimum_load_time = 300 #ms
+const minimum_transition_duration = 300 #ms
 
 var main: Main
-var loader
-var wait_frames := 0
-var time_max = 100 # msec
+var loader: ResourceInteractiveLoader
+var time_max = 400 # msec
 var loading_start_time = 0
 var _params = {}
+
 
 func _ready():
 	if main == null:
 		call_deferred("_force_load")
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 
 func _set_main_node(node: Main):
@@ -42,55 +46,52 @@ func _force_load():
 	played_scene.owner = main
 
 
-func _change_scene_multithread(new_scene: String, params = {}):
-	_params = params
-	loading_start_time = OS.get_ticks_msec()
-	var transitions: Transitions = main.transitions
+func _change_scene_background_loading(new_scene: String, params = {}):
 	loader = ResourceLoader.load_interactive(new_scene)
 	if loader == null: # Check for errors.
 		print("Error while initializing ResourceLoader")
 		return
-	get_tree().paused = true
-	pause_mode = Node.PAUSE_MODE_PROCESS
-	set_process(true)
+	emit_signal("change_started")
+	_params = params
+	loading_start_time = OS.get_ticks_msec()
+	var transitions: Transitions = main.transitions
 	transitions.fade_in()
-	wait_frames = 1
+	yield(transitions.anim, "animation_finished")
+	set_process(true)
 
 
 func _process(delta: float) -> void:
 	if loader == null:
 		set_process(false)
 		return
-	# let the "loading" animation show up.
-	if wait_frames > 0:
-		wait_frames -= 1
-		return
 	var t = OS.get_ticks_msec()
 	# Use "time_max" to control for how long we block this thread.
 	while OS.get_ticks_msec() < t + time_max:
 		var err = loader.poll()
 		if err == ERR_FILE_EOF:
-			_on_multithread_loading_completed()
-			break
+			_on_background_loading_completed()
+			return
 		elif err == OK:
-			# update_progress()
-			pass
+			update_progress()
 		else: # Error during loading.
 			print("Error while loading new scene.")
 			loader = null
-			break
+			return
 
 
-func _on_multithread_loading_completed():
+func update_progress():
+	# use load_ratio to update your Loading screen
+	var load_ratio = float(loader.get_stage()) / float(loader.get_stage_count())
+
+
+func _on_background_loading_completed():
 	var resource = loader.get_resource()
 	loader = null
-	if main.transitions.playing():
-		yield(main.transitions.anim, "animation_finished")
 	var load_time = OS.get_ticks_msec() - loading_start_time # ms
-	print("{scn} loaded in {elapsed}ms".format({ 'scn': resource, 'elapsed': load_time }))
+	print("{scn} loaded in {elapsed}ms".format({ 'scn': resource.resource_path, 'elapsed': load_time }))
 	# artificially wait some time in order to have a gentle scene transition
-	if load_time < minimum_load_time:
-		yield(get_tree().create_timer((minimum_load_time - load_time) / 1000.0), "timeout")
+	if load_time < minimum_transition_duration:
+		yield(get_tree().create_timer((minimum_transition_duration - load_time) / 1000.0), "timeout")
 	_set_new_scene(resource)
 
 
@@ -105,12 +106,13 @@ func _set_new_scene(resource: PackedScene):
 	if instanced_scn.has_method("pre_start"):
 		instanced_scn.pre_start(_params)
 	yield(transitions.anim, "animation_finished")
-	get_tree().paused = false
 	if instanced_scn.has_method("start"):
 		instanced_scn.start()
+	emit_signal("change_finished")
 
 
 func _change_scene(new_scene: String, params= {}):
+	emit_signal("change_started")
 	var current_scene = get_current_scene_node()
 	var transitions: Transitions = main.transitions
 	# prevent inputs during scene change
@@ -128,8 +130,8 @@ func _change_scene(new_scene: String, params= {}):
 	var load_time = OS.get_ticks_msec() - loading_start_time # ms
 	print("{scn} loaded in {elapsed}ms".format({ 'scn': new_scene, 'elapsed': load_time }))
 	# artificially wait some time in order to have a gentle game transition
-	if load_time < minimum_load_time:
-		yield(get_tree().create_timer((minimum_load_time - load_time) / 1000.0), "timeout")
+	if load_time < minimum_transition_duration:
+		yield(get_tree().create_timer((minimum_transition_duration - load_time) / 1000.0), "timeout")
 	transitions.fade_out()
 	if instanced_scn.has_method("pre_start"):
 		instanced_scn.pre_start(params)
@@ -137,6 +139,7 @@ func _change_scene(new_scene: String, params= {}):
 	get_tree().paused = false
 	if instanced_scn.has_method("start"):
 		instanced_scn.start()
+	emit_signal("change_finished")
 
 
 func get_current_scene_node() -> Node:

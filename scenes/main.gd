@@ -22,7 +22,7 @@ func _ready():
 		transitions.fade_out()
 
 
-func get_active_scene():
+func get_active_scene() -> Node:
 	return active_scene_container.get_child(0)
 
 

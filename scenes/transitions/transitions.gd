@@ -1,11 +1,13 @@
 class_name Transitions
 extends CanvasLayer
 
+
 onready var anim := $AnimationPlayer
 
 
 func playing() -> bool:
-	return anim.is_playing() or $ColorRect.color.a != 0
+	var is_screen_black = $ColorRect.color.a == 1
+	return anim.is_playing() or is_screen_black
 
 
 func set_black():
