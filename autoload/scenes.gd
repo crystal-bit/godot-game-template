@@ -9,7 +9,7 @@ const scenes_denylist = [
 	"res://scenes/main.tscn"
 ]
 const fallback_scene = "res://scenes/menu/menu.tscn"
-const minimum_transition_duration = 300 #ms
+const minimum_transition_duration = 500 #ms
 
 var main: Main
 var loader: ResourceInteractiveLoader
@@ -17,8 +17,13 @@ var time_max = 400 # msec
 var loading_start_time = 0
 var _params = {}
 
+onready var resource_multithread_loader = preload("res://autoload/scenes/resource_multithread_loader.gd").new()
+var scene_to_load
+
 
 func _ready():
+	add_child(resource_multithread_loader)
+
 	if main == null:
 		call_deferred("_force_load")
 	pause_mode = Node.PAUSE_MODE_PROCESS
@@ -144,3 +149,26 @@ func _change_scene(new_scene: String, params= {}):
 
 func get_current_scene_node() -> Node:
 	return main.active_scene_container.get_child(0)
+
+
+# --- MULTITHREAD STUFF
+
+func _change_scene_multithread(new_scene: String, params = {}):
+	emit_signal("change_started")
+	_params = params
+	loading_start_time = OS.get_ticks_msec()
+	var transitions: Transitions = main.transitions
+	transitions.fade_in()
+#	yield(transitions.anim, "animation_finished")
+	scene_to_load = new_scene
+	resource_multithread_loader.connect("resource_loaded", self, "_on_resource_loaded", [], CONNECT_ONESHOT)
+	resource_multithread_loader.load_scene(new_scene)
+
+
+func _on_resource_loaded(resource):
+	var load_time = OS.get_ticks_msec() - loading_start_time # ms
+	print("{scn} loaded in {elapsed}ms".format({ 'scn': resource.resource_path, 'elapsed': load_time }))
+	# artificially wait some time in order to have a gentle scene transition
+	if load_time < minimum_transition_duration:
+		yield(get_tree().create_timer((minimum_transition_duration - load_time) / 1000.0), "timeout")
+	_set_new_scene(resource)
