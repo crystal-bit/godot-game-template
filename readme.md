@@ -1,37 +1,57 @@
-# Godot Game Template
+![game-template-overview](https://user-images.githubusercontent.com/6860637/101258258-a2389e00-3721-11eb-8a7d-f2196691f755.png)
 
-WARNING: currently Work in Progress and not ready to be used. 
+> 🌟 You make games, the template handles the boring stuff.
 
-Opinionated game template for quick development.
+# Features
 
-## Features
-
-- Mouse, keyboard and joypad support for the GUI elements
-- Game pause / unpause handling
-- Main menu
-- `change_scene(scene, params)` function to handle transitions with fade-in/out and input prevention
-- project structure: lowercase letters only for file system paths
-  - `scenes/`, `entities`
-- Continuos Integration:
+- **Continuos Integration** (thanks to [aBARICHELLO](https://github.com/aBARICHELLO/godot-ci)):
   - Automatic desktop build (linux, windows, osx, HTML5) for each commit
-  - Automatic HTML5 publish to Github pages for each commit
+  - Automatic HTML5 deploy to Github pages for each commit
+  - Automatic Android builds (upcoming...)
+- **Scenes loading** with graphic transitions (fade-in/out)
+  - You can still play individual scenes for quick development
+  - Input prevention during scene changes
+  - Singlethread & Multithread
+- **Game pause** handling
 - `.gitignore`
+- Compatible with other Godot addons
 
-## Lower case letters only
+# Status
 
-To avoid issues when multiple contributors are working on the same project across various
-file systems and operating systems.
+**Current version**: in development (usable, but undocumented)  
+**Supported Godot Version**: v3.2.3
 
+# Start a project with Godot Game Template
 
-**Explanation**  
-Usually on Windows `player.png` and `PLAYER.png` represents the same file.
+1. 💻 [Click here](https://github.com/crystal-bit/godot-game-template/generate)
+   to create a repo using this template
+2. Clone the new repository on your PC
+3. Create your game
 
-This is not true for case-sensitive file systems like ext4.
+Read the documentation to learn more about the template. Eg: how to use
+automatic HTML5 deploy.
 
-- https://en.wikipedia.org/wiki/Filename#Letter_case_preservation
-- https://en.wikipedia.org/wiki/Filename#Comparison_of_filename_limitations 
-- https://docs.godotengine.org/en/stable/getting_started/step_by_step/filesystem.html#drawbacks
+# Disclaimer
 
-## Thanks
+This is not an official Godot template.  
+
+It's an opinionated project that I built to ease my game development workflow.
+
+# Contributing
+
+If you want to help the project, create games and feel free to report any issue.
+
+If you want to add more features, please open an issue before and let's discuss. 
+I want to keep this template small, focused and easy to use.
+
+# Used by
+
+- [defending-todot](https://github.com/crystal-bit/defending-todot)
+
+# Thanks
 
 - https://github.com/aBARICHELLO/godot-ci
+- The amazing communities of:
+  - Godot Engine community
+  - Godot Engine Italia community
+  - GameLoop.it
