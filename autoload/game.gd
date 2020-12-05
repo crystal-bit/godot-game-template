@@ -30,7 +30,6 @@ func change_scene(new_scene, params= {}):
 	Scenes._change_scene_multithread(new_scene, params)
 
 
-
 func _on_Scenes_change_started():
 	get_tree().paused = true
 
