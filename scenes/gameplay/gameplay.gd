@@ -10,5 +10,6 @@ func pre_start(params):
 
 
 func start():
+	# Tree is un-paused when this function is called
 	print("")
 	print("Start game logic!")

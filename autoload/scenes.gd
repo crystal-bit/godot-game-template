@@ -159,7 +159,8 @@ func _change_scene_multithread(new_scene: String, params = {}):
 	loading_start_time = OS.get_ticks_msec()
 	var transitions: Transitions = main.transitions
 	transitions.fade_in()
-#	yield(transitions.anim, "animation_finished")
+	# TODO: start loading resources while starting the transition
+	yield(transitions.anim, "animation_finished")
 	scene_to_load = new_scene
 	resource_multithread_loader.connect("resource_loaded", self, "_on_resource_loaded", [], CONNECT_ONESHOT)
 	resource_multithread_loader.load_scene(new_scene)

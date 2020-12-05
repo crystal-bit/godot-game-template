@@ -13,8 +13,6 @@ func _init():
 
 func _ready():
 	var active_scene: Node = get_active_scene()
-	active_scene.set_process_input(false)
-	active_scene.set_process_unhandled_input(false)
 
 	if initial_fade_active:
 		transitions.set_black()
