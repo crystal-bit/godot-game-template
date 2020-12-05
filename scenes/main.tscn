@@ -9,6 +9,7 @@ pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="Transitions" parent="." instance=ExtResource( 3 )]
+layer = 128
 
 [node name="ActiveSceneContainer" type="Node" parent="."]
 pause_mode = 1
