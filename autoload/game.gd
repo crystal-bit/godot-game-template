@@ -24,18 +24,18 @@ func _register_size():
 	size = get_viewport().get_visible_rect().size
 
 
-func change_scene(new_scene, params= {}):
-#	Scenes._change_scene(new_scene, params)
-#	Scenes._change_scene_background_loading(new_scene, params)
-	Scenes._change_scene_multithread(new_scene, params)
-
-
 func _on_Scenes_change_started():
 	get_tree().paused = true
 
 
 func _on_Scenes_change_finished():
 	get_tree().paused = false
+
+
+func change_scene(new_scene, params= {}):
+#	Scenes._change_scene(new_scene, params)
+#	Scenes._change_scene_background_loading(new_scene, params)
+	Scenes._change_scene_multithread(new_scene, params)
 
 
 func reparent_node(node: Node2D, new_parent, update_transform = true):
