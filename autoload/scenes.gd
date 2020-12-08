@@ -1,4 +1,5 @@
 extends Node
+class_name Scenes
 
 signal change_started
 signal change_finished
@@ -11,7 +12,7 @@ const scenes_denylist = [
 const fallback_scene = "res://scenes/menu/menu.tscn"
 const minimum_transition_duration = 500 #ms
 
-var main: Main
+var main
 var loader: ResourceInteractiveLoader
 var time_max = 400 # msec
 var loading_start_time = 0
@@ -22,33 +23,13 @@ var scene_to_load
 
 
 func _ready():
+	resource_multithread_loader.name = "ResourceLoaderMultithread"
 	add_child(resource_multithread_loader)
-
-	if main == null:
-		call_deferred("_force_load")
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
 
-func _set_main_node(node: Main):
+func _set_main_node(node):
 	main = node
-
-
-func _force_load():
-	""" Needed when starting a specific scene with Play Scene with F6,
-	instead of starting the game from main.tscn"""
-	var played_scene = get_tree().current_scene
-	var root = get_node("/root")
-	main = load("res://scenes/main.tscn").instance()
-	main.initial_fade_active = false
-	root.remove_child(played_scene)
-	root.add_child(main)
-	main.active_scene_container.get_child(0).queue_free()
-	main.active_scene_container.add_child(played_scene)
-	if played_scene.has_method("pre_start"):
-		played_scene.pre_start({})
-	if played_scene.has_method("start"):
-		played_scene.start()
-	played_scene.owner = main
 
 
 func _change_scene_background_loading(new_scene: String, params = {}):
