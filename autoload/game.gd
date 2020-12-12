@@ -1,3 +1,5 @@
+# Game autoload, used to setup the main game template architecture.
+# It's used also as a shortcut to access some features such as Game.change_scene
 extends Node
 
 
@@ -31,3 +33,7 @@ func _force_main_scene_load():
 
 func change_scene(new_scene, params= {}):
 	main.change_scene(new_scene, params)
+
+
+func reparent_node(node: Node2D, new_parent, update_transform = true):
+	main.reparent_node(node, new_parent, update_transform)

@@ -1,3 +1,4 @@
+# Handles scene transitions and other utilities such as input locking.
 class_name Main
 extends Node
 
@@ -6,13 +7,13 @@ onready var active_scene_container = $ActiveSceneContainer
 
 var initial_fade_active = true
 var size := Vector2()
-var scenes
+var scenes: Scenes
 
 
 func _ready() -> void:
 	scenes = preload("res://autoload/scenes.gd").new()
-	scenes.main = self
 	scenes.name = "Scenes"
+	scenes.main = self
 	get_node("/root/").call_deferred("add_child", scenes)
 	var active_scene: Node = get_active_scene()
 	if initial_fade_active:
@@ -48,11 +49,13 @@ func change_scene(new_scene, params= {}):
 	scenes._change_scene_multithread(new_scene, params)
 
 
+# Reparent a node
 func reparent_node(node: Node2D, new_parent, update_transform = true):
 	var previous_xform = node.global_transform
 	node.get_parent().remove_child(node)
 	new_parent.add_child(node)
-	node.global_transform = previous_xform
+	if update_transform:
+		node.global_transform = previous_xform
 
 
 func get_active_scene() -> Node:
