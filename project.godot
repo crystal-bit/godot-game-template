@@ -25,7 +25,7 @@ _global_script_classes=[ {
 "path": "res://autoload/scenes.gd"
 }, {
 "base": "CanvasLayer",
-"class": "Transitions",
+"class": "Transition",
 "language": "GDScript",
 "path": "res://scenes/transitions/transitions.gd"
 } ]
@@ -33,7 +33,7 @@ _global_script_class_icons={
 "Main": "",
 "Player": "",
 "Scenes": "",
-"Transitions": ""
+"Transition": ""
 }
 
 [application]
