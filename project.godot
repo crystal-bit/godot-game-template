@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Main",
 "language": "GDScript",
-"path": "res://scenes/main.gd"
+"path": "res://scenes/main/main.gd"
 }, {
 "base": "Node2D",
 "class": "Player",
@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Scenes",
 "language": "GDScript",
-"path": "res://autoload/scenes.gd"
+"path": "res://scenes/main/scenes.gd"
 }, {
 "base": "CanvasLayer",
 "class": "Transitions",
 "language": "GDScript",
-"path": "res://scenes/transitions/transitions.gd"
+"path": "res://scenes/main/transitions/transitions.gd"
 } ]
 _global_script_class_icons={
 "Main": "",
@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="godot-template"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main/main.tscn"
 boot_splash/image="res://assets/splash.png"
 boot_splash/bg_color=Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 config/icon="res://assets/sprites/icon.png"

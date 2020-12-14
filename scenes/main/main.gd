@@ -11,18 +11,19 @@ var scenes: Scenes
 
 
 func _ready() -> void:
-	scenes = preload("res://autoload/scenes.gd").new()
+	# setup Scenes node
+	scenes = preload("res://scenes/main/scenes.gd").new()
 	scenes.name = "Scenes"
 	scenes.main = self
+	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
+	scenes.connect("change_started", self, "_on_Scenes_change_started")
 	get_node("/root/").call_deferred("add_child", scenes)
-	var active_scene: Node = get_active_scene()
+	# setup
 	if initial_fade_active:
 		transitions.set_black()
 		yield(get_tree().create_timer(0.3), "timeout")
 		transitions.fade_out()
-
-	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
-	scenes.connect("change_started", self, "_on_Scenes_change_started")
+	# size property
 	_register_size()
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
 
@@ -48,9 +49,10 @@ func change_scene(new_scene, params= {}):
 #	scenes._change_scene_background_loading(new_scene, params)
 	scenes._change_scene_multithread(new_scene, params)
 
-
-# Reparent a node
-func reparent_node(node: Node2D, new_parent, update_transform = true):
+# Reparent a node under a new parent.
+# Optionally updates the transform to mantain the current
+# position, scale and rotation values.
+func reparent_node(node: Node2D, new_parent, update_transform = false):
 	var previous_xform = node.global_transform
 	node.get_parent().remove_child(node)
 	new_parent.add_child(node)

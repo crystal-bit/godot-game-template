@@ -1,5 +1,8 @@
-# Game autoload, used to setup the main game template architecture.
-# It's used also as a shortcut to access some features such as Game.change_scene
+# Game autoload. Use `Game` global variable as a shortcut to access
+# features.
+# Eg: `Game.change_scene("res://scenes/gameplay/gameplay.tscn)`
+# Handles also the main game architecture when playing
+# a specific scene.
 extends Node
 
 
@@ -37,3 +40,7 @@ func change_scene(new_scene, params= {}):
 
 func reparent_node(node: Node2D, new_parent, update_transform = true):
 	main.reparent_node(node, new_parent, update_transform)
+
+
+func get_active_scene() -> Node:
+	return main.get_active_scene()

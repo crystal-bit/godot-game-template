@@ -30,7 +30,7 @@ var _loader: ResourceInteractiveLoader
 var _loading_start_time = 0
 var _time_max = 400 # msec
 
-onready var _resource_multithread_loader = preload("res://autoload/scenes/resource_multithread_loader.gd").new()
+onready var _resource_multithread_loader = preload("res://scenes/main/scenes/resource_multithread_loader.gd").new()
 
 
 func _ready():
@@ -39,8 +39,8 @@ func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
 
-func get_current_scene_node() -> Node:
-	return main.active_scene_container.get_child(0)
+func _get_current_scene_node() -> Node:
+	return main.get_active_scene()
 
 
 func _change_scene_background_loading(new_scene: String, params = {}):
@@ -93,7 +93,7 @@ func _on_background_loading_completed():
 
 
 func _set_new_scene(resource: PackedScene):
-	var current_scene = get_current_scene_node()
+	var current_scene = _get_current_scene_node()
 	current_scene.queue_free()
 	var instanced_scn = resource.instance() # triggers _init
 	main.active_scene_container.add_child(instanced_scn) # triggers _ready
@@ -110,7 +110,7 @@ func _set_new_scene(resource: PackedScene):
 
 func _change_scene(new_scene: String, params= {}):
 	emit_signal("change_started")
-	var current_scene = get_current_scene_node()
+	var current_scene = _get_current_scene_node()
 	var transitions: Transitions = main.transitions
 	# prevent inputs during scene change
 	get_tree().paused = true
