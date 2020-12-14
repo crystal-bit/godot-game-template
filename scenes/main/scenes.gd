@@ -51,7 +51,7 @@ func _change_scene_background_loading(new_scene: String, params = {}):
 	emit_signal("change_started")
 	_params = params
 	_loading_start_time = OS.get_ticks_msec()
-	var transitions: Transitions = main.transitions
+	var transitions: Transition = main.transitions
 	transitions.fade_in()
 	yield(transitions.anim, "animation_finished")
 	set_process(true)
@@ -98,7 +98,7 @@ func _set_new_scene(resource: PackedScene):
 	var instanced_scn = resource.instance() # triggers _init
 	main.active_scene_container.add_child(instanced_scn) # triggers _ready
 
-	var transitions: Transitions = main.transitions
+	var transitions: Transition = main.transitions
 	transitions.fade_out()
 	if instanced_scn.has_method("pre_start"):
 		instanced_scn.pre_start(_params)
@@ -110,8 +110,10 @@ func _set_new_scene(resource: PackedScene):
 
 func _change_scene(new_scene: String, params= {}):
 	emit_signal("change_started")
+
 	var current_scene = _get_current_scene_node()
-	var transitions: Transitions = main.transitions
+	var transitions: Transition = main.transition
+
 	# prevent inputs during scene change
 	get_tree().paused = true
 	if new_scene in scenes_denylist:
@@ -145,7 +147,7 @@ func _change_scene_multithread(new_scene: String, params = {}):
 	emit_signal("change_started")
 	_params = params
 	_loading_start_time = OS.get_ticks_msec()
-	var transitions: Transitions = main.transitions
+	var transitions: Transition = main.transitions
 	transitions.fade_in()
 	# TODO: start loading resources while starting the transition
 	yield(transitions.anim, "animation_finished")
