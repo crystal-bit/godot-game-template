@@ -1,6 +1,6 @@
 # Transitions fade-in and fade-out.
 # You can tweak transition speed and appearance.
-# Just make sure to update the `is_playing` method.
+# Just make sure to update the `is_playing` method accordingly.
 class_name Transition
 extends CanvasLayer
 

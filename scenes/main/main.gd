@@ -36,18 +36,11 @@ func _register_size():
 	size = get_viewport().get_visible_rect().size
 
 
-func _on_Scenes_change_started():
-	get_tree().paused = true
-
-
-func _on_Scenes_change_finished():
-	get_tree().paused = false
-
-
 func change_scene(new_scene, params= {}):
 #	scenes._change_scene(new_scene, params)
 #	scenes._change_scene_background_loading(new_scene, params)
 	scenes._change_scene_multithread(new_scene, params)
+
 
 # Reparent a node under a new parent.
 # Optionally updates the transform to mantain the current
@@ -64,7 +57,18 @@ func get_active_scene() -> Node:
 	return active_scene_container.get_child(0)
 
 
+# Prevents all inputs while a graphic transition is playing.
 func _input(event: InputEvent):
 	if transitions.is_playing():
 		# prevent all input events
 		get_tree().set_input_as_handled()
+		
+
+# Pause the game during graphic transitions
+func _on_Scenes_change_started():
+	get_tree().paused = true
+
+
+# Unpause the game when the transition finishes.
+func _on_Scenes_change_finished():
+	get_tree().paused = false

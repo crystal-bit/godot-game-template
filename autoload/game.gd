@@ -21,7 +21,7 @@ func _force_main_scene_load():
 	# scenes/main.tscn (eg:with Play Scene with F6)
 	var played_scene = get_tree().current_scene
 	var root = get_node("/root")
-	main = load("res://scenes/main.tscn").instance()
+	main = load("res://scenes/main/main.tscn").instance()
 	main.initial_fade_active = false
 	root.remove_child(played_scene)
 	root.add_child(main)
