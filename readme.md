@@ -2,6 +2,10 @@
 
 > 🌟 You make games, the template handles the boring stuff.
 
+![](https://img.shields.io/badge/godot-3.2.3-blue)
+![](https://img.shields.io/github/v/release/crystal-bit/godot-game-template)
+![](https://img.shields.io/github/workflow/status/crystal-bit/godot-game-template/godot-ci%20export?label=game-export)
+
 # Features
 
 - **Continuos Integration** (thanks to [aBARICHELLO](https://github.com/aBARICHELLO/godot-ci)):
@@ -15,11 +19,6 @@
 - **Game pause** handling
 - `.gitignore`
 - Compatible with other Godot addons
-
-# Status
-
-**Current version**: in development (usable, but undocumented)  
-**Supported Godot Version**: v3.2.3
 
 # Start a project with Godot Game Template
 
@@ -52,6 +51,9 @@ I want to keep this template small, focused and easy to use.
 
 - https://github.com/aBARICHELLO/godot-ci
 - The amazing communities of:
-  - Godot Engine community
-  - Godot Engine Italia community
+  - Crystal Bit
   - GameLoop.it
+  - Godot Engine Italia
+  - Godot Engine
+
+
