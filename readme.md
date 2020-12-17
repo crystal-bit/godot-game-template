@@ -25,7 +25,7 @@
 1. 💻 [Click here](https://github.com/crystal-bit/godot-game-template/generate)
    to create a repo using this template
 2. Clone the new repository on your PC
-3. Create your game
+3. Open the project in [Godot Engine](https://godotengine.org/download/) (GDScript) and create your game!
 
 Read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki) to learn more about the template. Eg: how to use
 automatic HTML5 deploy.
