@@ -112,7 +112,7 @@ func _change_scene(new_scene: String, params= {}):
 	emit_signal("change_started")
 
 	var current_scene = _get_current_scene_node()
-	var transitions: Transition = main.transition
+	var transitions: Transition = main.transitions
 
 	# prevent inputs during scene change
 	get_tree().paused = true
