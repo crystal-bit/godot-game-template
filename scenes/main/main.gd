@@ -37,9 +37,11 @@ func _register_size():
 
 
 func change_scene(new_scene, params= {}):
-#	scenes._change_scene(new_scene, params)
-#	scenes._change_scene_background_loading(new_scene, params)
-	scenes._change_scene_multithread(new_scene, params)
+	if OS.has_feature('HTML5'):
+		scenes._change_scene(new_scene, params)
+	else :
+		# scenes._change_scene_background_loading(new_scene, params)
+		scenes._change_scene_multithread(new_scene, params)
 
 
 # Reparent a node under a new parent.
@@ -62,7 +64,7 @@ func _input(event: InputEvent):
 	if transitions.is_playing():
 		# prevent all input events
 		get_tree().set_input_as_handled()
-		
+
 
 # Pause the game during graphic transitions
 func _on_Scenes_change_started():
