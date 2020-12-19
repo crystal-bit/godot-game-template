@@ -2,9 +2,17 @@
 
 > 🌟 You make games, the template handles the boring stuff.
 
-![](https://img.shields.io/badge/godot-3.2.3-blue)
-![](https://img.shields.io/github/v/release/crystal-bit/godot-game-template)
-![](https://img.shields.io/github/workflow/status/crystal-bit/godot-game-template/godot-ci%20export?label=game-export)
+<a href="https://godotengine.org/download">
+  <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-3.2.3-blue">
+</a>
+
+<a href="https://github.com/crystal-bit/godot-game-template/releases">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/crystal-bit/godot-game-template">
+</a>  
+
+<a href="https://github.com/crystal-bit/godot-game-template/actions?query=workflow%3A%22godot-ci+export%22">
+  <img alt="GitHub workflow status" src="https://img.shields.io/github/workflow/status/crystal-bit/godot-game-template/godot-ci%20export?label=game-export">
+</a>
 
 # Features
 
