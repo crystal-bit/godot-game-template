@@ -18,10 +18,14 @@ Inspired by [keepachngelog.com](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- 
+
+## v2020.12.1
+
 - 🟢 Added changelog.md
 - ⚪ Fixed error when loading a new scene
 - ⚪ Fixed HTML5: crash on multithread loading [#15](https://github.com/crystal-bit/godot-game-template/issues/15) 
 
-## v2020.12.00
+## v2020.12.0
 
 Initial version.
