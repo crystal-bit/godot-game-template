@@ -31,12 +31,12 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="CenterContainer"]
-margin_left = 228.0
+margin_left = 152.0
 margin_top = 86.0
-margin_right = 795.0
+margin_right = 871.0
 margin_bottom = 174.0
 custom_fonts/font = ExtResource( 1 )
-text = "VIDEOGAME TITLE"
+text = "Godot Game Template"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,8 +57,8 @@ __meta__ = {
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 margin_right = 200.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 200, 80 )
+margin_bottom = 70.0
+rect_min_size = Vector2( 200, 70 )
 custom_fonts/font = ExtResource( 4 )
 text = "START"
 script = ExtResource( 2 )
@@ -67,10 +67,10 @@ __meta__ = {
 }
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
-margin_top = 96.0
+margin_top = 86.0
 margin_right = 200.0
-margin_bottom = 176.0
-rect_min_size = Vector2( 200, 80 )
+margin_bottom = 156.0
+rect_min_size = Vector2( 200, 70 )
 custom_fonts/font = ExtResource( 4 )
 text = "EXIT"
 script = ExtResource( 3 )
@@ -94,16 +94,16 @@ __meta__ = {
 }
 
 [node name="MadeByLabel" type="Label" parent="Credits"]
-margin_right = 157.0
-margin_bottom = 39.0
+margin_right = 131.0
+margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.792157, 0.792157, 0.792157, 1 )
 text = "made by:"
 
 [node name="Developer1" type="Label" parent="Credits"]
-margin_top = 43.0
-margin_right = 157.0
-margin_bottom = 82.0
+margin_top = 38.0
+margin_right = 131.0
+margin_bottom = 72.0
 grow_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
