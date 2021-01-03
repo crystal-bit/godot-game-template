@@ -5,7 +5,7 @@ extends Node
 onready var transitions: Transition = $Transitions
 onready var active_scene_container = $ActiveSceneContainer
 
-var initial_fade_active = true
+var initial_fade_active = false
 var size := Vector2()
 var scenes: Scenes
 
@@ -37,11 +37,10 @@ func _register_size():
 
 
 func change_scene(new_scene, params= {}):
-	if OS.has_feature('HTML5'):
-		scenes._change_scene(new_scene, params)
-	else :
-		# scenes._change_scene_background_loading(new_scene, params)
-		scenes._change_scene_multithread(new_scene, params)
+	if OS.has_feature('HTML5'): # Godot 3.2.3 HTML5 export template does not support multithreading 
+		scenes._change_scene_background_loading(new_scene, params) # single-thread
+	else:
+		scenes._change_scene_multithread(new_scene, params) # multi-thread
 
 
 # Reparent a node under a new parent.

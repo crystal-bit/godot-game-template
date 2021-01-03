@@ -1,7 +1,7 @@
 extends Node
 
 signal resource_loaded(res)
-
+signal resource_stage_loaded(current_stage, total_stages)
 
 var thread: Thread = null
 
@@ -11,19 +11,16 @@ func _ready() -> void:
 
 
 func load_scene(path):
-	thread.start( self, "_thread_load", path)
+	thread.start(self, "_thread_load", path)
 
-
+var stages_amount
 func _thread_load(path):
 	var ril = ResourceLoader.load_interactive(path)
-	assert(ril)
-#	var total = ril.get_stage_count()
-	# Call deferred to configure max load steps.
-#	progress.call_deferred("set_max", total)
-
+	stages_amount = float(ril.get_stage_count())
 	var res = null
 
 	while true:
+		emit_signal("resource_stage_loaded", ril.get_stage(), stages_amount)
 		var SIMULATED_DELAY_MS = 20
 		OS.delay_msec(SIMULATED_DELAY_MS) # TODO: not sure if this is the correct way
 		var err = ril.poll()
@@ -40,6 +37,7 @@ func _thread_done(resource):
 	assert(resource)
 	# Always wait for threads to finish, this is required on Windows.
 	thread.wait_to_finish()
+	emit_signal("resource_stage_loaded", stages_amount, stages_amount)
 	# Instantiate new scene.
 	emit_signal("resource_loaded", resource)
 

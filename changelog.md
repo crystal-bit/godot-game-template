@@ -14,11 +14,20 @@ Inspired by [keepachngelog.com](https://keepachangelog.com/en/1.0.0/).
 🟠 Removed  
 🔴 Deprecated  
 
+PS: remember to add 2 trailing spaces at the end of each line. This is needed
+to trigger new line rendering for markdown.
+
 ---
 
 ## [Unreleased]
 
-⚪ open sans font filename is now lowercase  
+🟢 Game.change_scene(): added support for 'show_progress_bar'. Usage example:
+```
+Game.change_scene("res://myscene.tscn", {
+    'show_progress_bar': true
+})
+```
+⚪ Open Sans font filename is now lowercase  
 🟠 Removed squarebit pixel art font
 
 ## v2020.12.1

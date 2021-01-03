@@ -48,6 +48,11 @@ config/icon="res://assets/sprites/icon.png"
 
 Game="*res://autoload/game.gd"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [input]
 
 pause={
