@@ -27,6 +27,7 @@ Game.change_scene("res://myscene.tscn", {
     'show_progress_bar': true
 })
 ```
+🔵 Changed default renderer to GLES2 (better HTML5 compatibility)
 ⚪ Open Sans font filename is now lowercase  
 🟠 Removed squarebit pixel art font
 
