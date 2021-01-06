@@ -2,6 +2,7 @@
 
 > 🌟 You make games, the template handles the boring stuff.
 
+<p>
 <a href="https://godotengine.org/download">
   <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-3.2.3-blue">
 </a>
@@ -13,6 +14,11 @@
 <a href="https://github.com/crystal-bit/godot-game-template/actions?query=workflow%3A%22godot-ci+export%22">
   <img alt="GitHub workflow status" src="https://img.shields.io/github/workflow/status/crystal-bit/godot-game-template/godot-ci%20export?label=game-export">
 </a>
+
+<a href="https://github.com/crystal-bit/godot-game-template/wiki">
+  <img alt="GitHub wiki" src="https://img.shields.io/badge/%F0%9F%93%96-wiki-blueviolet">
+</a>
+</p>
 
 # Features
 
@@ -26,6 +32,7 @@
   - Singlethread & Multithread
 - **Game pause** handling
 - `.gitignore`
+- Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
 - Compatible with other Godot addons
 
 # Start a project with Godot Game Template
@@ -51,17 +58,22 @@ If you want to help the project, create games and feel free to report any issue.
 If you want to add more features, please open an issue before and let's discuss. 
 I want to keep this template small, focused and easy to use.
 
+# Changelog
+
+See [changelog.md](./changelog.md)
+
 # Used by
 
 - [defending-todot](https://github.com/crystal-bit/defending-todot)
 
 # Thanks
 
-- https://github.com/aBARICHELLO/godot-ci
-- The amazing communities of:
+- For support & inspiration:
   - Crystal Bit
   - GameLoop.it
   - Godot Engine Italia
   - Godot Engine
-
-
+- For their work on FOSS tools:
+  - aBARICHELLO
+  - GDQuest
+  - Scony
