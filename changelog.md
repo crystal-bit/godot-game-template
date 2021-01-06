@@ -21,6 +21,10 @@ to trigger new line rendering for markdown.
 
 ## [Unreleased]
 
+...
+
+## v2021.01.1
+
 🟢 Added `Game.size` to get current viewport game size  
 🟢 `Game.change_scene()`: added support for `show_progress_bar`. Usage example:
 ```gd
