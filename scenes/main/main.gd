@@ -11,7 +11,11 @@ const SCENES_DENYLIST = [
 # Fallback scene loaded if you try to load a scene contained in `SCENES_DENYLIST`.
 const FALLBACK_SCENE = "res://scenes/menu/menu.tscn"
 
-var initial_fade_active = false
+# Toggles initial graphic transition when starting the game.
+# Scenes run with "Play Scene" never use transitions (to speed up development).
+# Note: this may be replaced with custom splash screens in the future
+export var splash_transition_on_start = false
+
 var size := Vector2()
 var scenes: Scenes
 
@@ -20,15 +24,14 @@ onready var active_scene_container = $ActiveSceneContainer
 
 
 func _ready() -> void:
-	# setup Scenes node
 	scenes = preload("res://scenes/main/scenes.gd").new()
 	scenes.name = "Scenes"
 	scenes.main = self
 	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
 	scenes.connect("change_started", self, "_on_Scenes_change_started")
 	get_node("/root/").call_deferred("add_child", scenes)
-	# setup
-	if initial_fade_active:
+	if splash_transition_on_start:
+		transitions.progress.visible = false
 		transitions.set_black()
 		yield(get_tree().create_timer(0.3), "timeout")
 		transitions.fade_out()

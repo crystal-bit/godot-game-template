@@ -7,8 +7,7 @@ extends CanvasLayer
 signal progress_bar_filled()
 
 onready var anim := $AnimationPlayer
-onready var progress_bar: ProgressBar = $ColorRect/ProgressBar
-onready var tween := $ColorRect/ProgressBar/Tween
+onready var progress = $ColorRect/Progress
 
 
 # is_displayed
@@ -24,40 +23,35 @@ func set_black():
 
 # appear
 func fade_in(params = {}):
-	progress_bar.show()
-	$ColorRect/TextureRect.show()
+	progress.show()
 	if params and params.get('show_progress_bar') != null:
 		if params.get('show_progress_bar') == false:
-			progress_bar.hide()
-			$ColorRect/TextureRect.hide()
+			progress.hide()
 	anim.play("fade-to-black")
 
 
 # disappear
 func fade_out():
-	if progress_bar.visible and not is_progress_bar_completed():
+	if progress.visible and not progress.is_completed():
 		yield(self, "progress_bar_filled")
 	anim.connect("animation_finished", self, "_on_fade_out_finished", [], CONNECT_ONESHOT)
 	anim.play("fade-from-black")
 
 
-func is_progress_bar_completed():
-	return progress_bar.value == progress_bar.max_value
-
-
 func _on_fade_out_finished(cur_anim):
 	if cur_anim == "fade-from-black":
-		progress_bar.value = 0
+		progress.bar.value = 0
 
 
 # progress_ratio: value between 0 and 1
 func _update_progress_bar(progress_ratio):
+	var tween = progress.tween
 	if tween.is_active():
 		tween.stop_all() # stop previous animation
 	tween.interpolate_property(
-		progress_bar,
+		progress.bar,
 		"value",
-		progress_bar.value,
+		progress.bar.value,
 		progress_ratio,
 		1,
 		Tween.TRANS_QUAD,
@@ -72,7 +66,7 @@ func _update_progress_bar(progress_ratio):
 
 # called by the scene loader
 func _on_resource_stage_loaded(stage: int, stages_amount: int):
-	if progress_bar.visible:
+	if progress.visible:
 		var percentage = float(stage) / float(stages_amount)
 		_update_progress_bar(percentage)
 	else:
