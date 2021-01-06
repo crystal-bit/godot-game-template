@@ -21,13 +21,17 @@ to trigger new line rendering for markdown.
 
 ## [Unreleased]
 
-🟢 Game.change_scene(): added support for 'show_progress_bar'. Usage example:
-```
+🟢 Added `Game.size` to get current viewport game size  
+🟢 `Game.change_scene()`: added support for `show_progress_bar`. Usage example:
+```gd
 Game.change_scene("res://myscene.tscn", {
     'show_progress_bar': true
 })
 ```
-🔵 Changed default renderer to GLES2 (better HTML5 compatibility)
+🔵 Changed default renderer to GLES2 (better HTML5 compatibility)  
+🔵 Changed `initial_fade_active` to `splash_transition_on_start`  
+⚪ Fixed many `gdlint` errors (all scripts now follow official GDScript 
+code style)  
 ⚪ Open Sans font filename is now lowercase  
 🟠 Removed squarebit pixel art font
 
