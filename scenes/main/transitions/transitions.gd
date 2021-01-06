@@ -4,10 +4,11 @@
 class_name Transition
 extends CanvasLayer
 
+signal progress_bar_filled()
+
 onready var anim := $AnimationPlayer
 onready var progress_bar: ProgressBar = $ColorRect/ProgressBar
 onready var tween := $ColorRect/ProgressBar/Tween
-signal _progress_bar_filled()
 
 
 # is_displayed
@@ -35,7 +36,7 @@ func fade_in(params = {}):
 # disappear
 func fade_out():
 	if progress_bar.visible and not is_progress_bar_completed():
-		yield(self, "_progress_bar_filled")
+		yield(self, "progress_bar_filled")
 	anim.connect("animation_finished", self, "_on_fade_out_finished", [], CONNECT_ONESHOT)
 	anim.play("fade-from-black")
 
@@ -44,8 +45,8 @@ func is_progress_bar_completed():
 	return progress_bar.value == progress_bar.max_value
 
 
-func _on_fade_out_finished(anim):
-	if anim == "fade-from-black":
+func _on_fade_out_finished(cur_anim):
+	if cur_anim == "fade-from-black":
 		progress_bar.value = 0
 
 
@@ -53,11 +54,20 @@ func _on_fade_out_finished(anim):
 func _update_progress_bar(progress_ratio):
 	if tween.is_active():
 		tween.stop_all() # stop previous animation
-	tween.interpolate_property(progress_bar, "value", progress_bar.value, progress_ratio, 1, Tween.TRANS_QUAD, Tween.EASE_IN_OUT, 0)
+	tween.interpolate_property(
+		progress_bar,
+		"value",
+		progress_bar.value,
+		progress_ratio,
+		1,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN_OUT,
+		0
+	)
 	tween.start()
 	if progress_ratio == 1:
 		yield(tween, "tween_completed")
-		emit_signal("_progress_bar_filled")
+		emit_signal("progress_bar_filled")
 
 
 # called by the scene loader

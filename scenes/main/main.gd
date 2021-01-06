@@ -2,12 +2,21 @@
 class_name Main
 extends Node
 
-onready var transitions: Transition = $Transitions
-onready var active_scene_container = $ActiveSceneContainer
+# Scenes which are prevented to be loaded.
+# Eg: if you try to call Game.change_scene("res://scenes/main.tscn")
+# the scene manager will load `fallback_scene` instead.
+const SCENES_DENYLIST = [
+	"res://scenes/main/main.tscn"
+]
+# Fallback scene loaded if you try to load a scene contained in `SCENES_DENYLIST`.
+const FALLBACK_SCENE = "res://scenes/menu/menu.tscn"
 
 var initial_fade_active = false
 var size := Vector2()
 var scenes: Scenes
+
+onready var transitions: Transition = $Transitions
+onready var active_scene_container = $ActiveSceneContainer
 
 
 func _ready() -> void:
@@ -37,10 +46,11 @@ func _register_size():
 
 
 func change_scene(new_scene, params= {}):
+	var scene_to_load = new_scene if not(new_scene in SCENES_DENYLIST) else FALLBACK_SCENE
 	if OS.has_feature('HTML5'): # Godot 3.2.3 HTML5 export template does not support multithreading
-		scenes._change_scene_background_loading(new_scene, params) # single-thread
+		scenes.change_scene_background_loading(scene_to_load, params) # single-thread
 	else:
-		scenes._change_scene_multithread(new_scene, params) # multi-thread
+		scenes.change_scene_multithread(scene_to_load, params) # multi-thread
 
 
 # Reparent a node under a new parent.
@@ -59,7 +69,7 @@ func get_active_scene() -> Node:
 
 
 # Prevents all inputs while a graphic transition is playing.
-func _input(event: InputEvent):
+func _input(_event: InputEvent):
 	if transitions.is_playing():
 		# prevent all input events
 		get_tree().set_input_as_handled()

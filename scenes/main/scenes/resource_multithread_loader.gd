@@ -3,7 +3,10 @@ extends Node
 signal resource_loaded(res)
 signal resource_stage_loaded(current_stage, total_stages)
 
+const SIMULATED_DELAY_MS = 32 # ms
+
 var thread: Thread = null
+var stages_amount: int
 
 
 func _ready() -> void:
@@ -13,16 +16,15 @@ func _ready() -> void:
 func load_scene(path):
 	thread.start(self, "_thread_load", path)
 
-var stages_amount
+
 func _thread_load(path):
 	var ril = ResourceLoader.load_interactive(path)
-	stages_amount = float(ril.get_stage_count())
+	stages_amount = ril.get_stage_count()
 	var res = null
 
 	while true:
 		emit_signal("resource_stage_loaded", ril.get_stage(), stages_amount)
-		var SIMULATED_DELAY_MS = 20
-		OS.delay_msec(SIMULATED_DELAY_MS) # TODO: not sure if this is the correct way
+		OS.delay_msec(SIMULATED_DELAY_MS)
 		var err = ril.poll()
 		if err == ERR_FILE_EOF:
 			res = ril.get_resource()
