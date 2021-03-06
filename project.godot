@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/main/main.gd"
 }, {
-"base": "Node2D",
-"class": "Player",
-"language": "GDScript",
-"path": "res://scenes/player/player.gd"
-}, {
 "base": "Node",
 "class": "Scenes",
 "language": "GDScript",
@@ -31,7 +26,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Main": "",
-"Player": "",
 "Scenes": "",
 "Transition": ""
 }

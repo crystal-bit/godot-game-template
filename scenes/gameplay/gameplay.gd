@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # `pre_start()` is called when a scene is totally loaded.
 # Use this function to receive params from the scene which
 # called `Game.change_scene(params)` and to init your
@@ -20,3 +19,10 @@ func start():
 	var active_scene: Node = Game.get_active_scene()
 	print("\nCurrent active scene is: ",
 		active_scene.name, " (", active_scene.filename, ")")
+	$Sprite.position = Game.size / 2
+
+
+func _process(_delta):
+	var elapsed = OS.get_ticks_msec() / 500.0
+	$Sprite.position.x = Game.size.x / 2 + 100 * sin(elapsed)
+
