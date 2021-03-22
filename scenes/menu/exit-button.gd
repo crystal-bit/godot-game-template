@@ -1,6 +1,11 @@
 extends Button
 
 
+func _ready() -> void:
+	if OS.has_feature('HTML5'):
+		queue_free()
+
+
 func _on_ExitButton_pressed():
 	# gently shutdown the game
 	var main = Game.main
