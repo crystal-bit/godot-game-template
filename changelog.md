@@ -21,9 +21,15 @@ to trigger new line rendering for markdown.
 
 ## [Unreleased]
 
-⚪ `Game.size` correctly initialized also in `_ready` functions\
+🔵 `Game.change_scene` hides the progress bar by default. If you want to show
+loading progress, pass the `show_progress_bar: true` as param\
+⚪ Fixed issue [#35][i35]: optimized single thread loading\
 ⚪ Fixed issue [#32][i32]: crash when playing a specific scene\
-🟠 `Gameplay.tscn`: Removed Player class and scene\
+⚪ `Game.size` correctly initialized also in `_ready` functions\
+🟠 `Gameplay.tscn`: Removed Player class and scene
+
+[i35]: https://github.com/crystal-bit/godot-game-template/issues/35
+[i32]: https://github.com/crystal-bit/godot-game-template/issues/32
 
 ## v2021.01.1
 
@@ -39,7 +45,7 @@ Game.change_scene("res://myscene.tscn", {
 ⚪ Fixed many `gdlint` errors (all scripts now follow official GDScript\
 code style)
 ⚪ Open Sans font filename is now lowercase\
-🟠 Removed squarebit pixel art font\
+🟠 Removed squarebit pixel art font
 
 ## v2020.12.1
 
