@@ -12,7 +12,7 @@ extends Node
 signal change_started
 signal change_finished
 
-const MINIMUM_TRANSITION_DURATION = 50 #ms
+const MINIMUM_TRANSITION_DURATION = 250 #ms
 
 # Reference to the Main node, set by main.tscn
 var main

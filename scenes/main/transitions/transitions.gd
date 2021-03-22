@@ -23,10 +23,10 @@ func set_black():
 
 # appear
 func fade_in(params = {}):
-	progress.show()
+	progress.hide()
 	if params and params.get('show_progress_bar') != null:
-		if params.get('show_progress_bar') == false:
-			progress.hide()
+		if params.get('show_progress_bar') == true:
+			progress.show()
 	anim.play("fade-to-black")
 
 
