@@ -21,8 +21,9 @@ to trigger new line rendering for markdown.
 
 ## [Unreleased]
 
-⚪ Fixed issue [#32][i32]: crash when playing a specific scene
-🟠 Removed Player class and scene
+⚪ `Game.size` correctly initialized also in `_ready` functions\
+⚪ Fixed issue [#32][i32]: crash when playing a specific scene\
+🟠 `Gameplay.tscn`: Removed Player class and scene\
 
 ## v2021.01.1
 

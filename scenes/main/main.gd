@@ -23,6 +23,11 @@ onready var transitions: Transition = $Transitions
 onready var active_scene_container = $ActiveSceneContainer
 
 
+func _enter_tree() -> void:
+	_register_size()
+	get_tree().connect("screen_resized", self, "_on_screen_resized")
+
+
 func _ready() -> void:
 	scenes = preload("res://scenes/main/scenes.gd").new()
 	scenes.name = "Scenes"
@@ -35,9 +40,6 @@ func _ready() -> void:
 		transitions.set_black()
 		yield(get_tree().create_timer(0.3), "timeout")
 		transitions.fade_out()
-	# size property
-	_register_size()
-	get_tree().connect("screen_resized", self, "_on_screen_resized")
 
 
 func _on_screen_resized():
