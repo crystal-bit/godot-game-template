@@ -33,7 +33,6 @@ func _ready() -> void:
 	scenes.name = "Scenes"
 	scenes.main = self
 	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
-	scenes.connect("change_started", self, "_on_Scenes_change_started")
 	get_node("/root/").call_deferred("add_child", scenes)
 	if splash_transition_on_start:
 		transitions.progress.visible = false
@@ -78,11 +77,6 @@ func _input(_event: InputEvent):
 	if transitions.is_playing():
 		# prevent all input events
 		get_tree().set_input_as_handled()
-
-
-# Pause the game during graphic transitions
-func _on_Scenes_change_started():
-	get_tree().paused = true
 
 
 # Unpause the game when the transition finishes.

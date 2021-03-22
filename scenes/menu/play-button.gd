@@ -8,6 +8,7 @@ func _ready():
 
 func _on_Button_pressed():
 	var params = {
+		show_progress_bar = false,
 		"a_number": 10,
 		"a_string": "Ciao mamma!",
 		"an_array": [1, 2, 3, 4],
