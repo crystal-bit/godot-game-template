@@ -6,7 +6,7 @@ extends CanvasLayer
 
 signal progress_bar_filled()
 
-onready var anim := $AnimationPlayer
+onready var anim: AnimationPlayer = $AnimationPlayer
 onready var progress = $ColorRect/Progress
 
 
@@ -19,6 +19,10 @@ func is_playing() -> bool:
 # cover immediately the screen, without transitions
 func set_black():
 	anim.play("black")
+
+
+func is_fading_in():
+	return anim.is_playing() and anim.current_animation == 'fade-to-black'
 
 
 # appear

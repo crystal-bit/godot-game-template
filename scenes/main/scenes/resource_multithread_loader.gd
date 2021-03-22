@@ -14,7 +14,9 @@ func _ready() -> void:
 
 
 func load_scene(path):
-	thread.start(self, "_thread_load", path)
+	var state = thread.start(self, "_thread_load", path)
+	if state != OK:
+		print("Error while starting thread: " + str(state))
 
 
 func _thread_load(path):

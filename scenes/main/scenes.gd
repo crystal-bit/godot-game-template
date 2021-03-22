@@ -77,8 +77,6 @@ func change_scene_multithread(new_scene: String, params = {}):
 	_params = params
 	_loading_start_time = OS.get_ticks_msec()
 	_transition_appear(params)
-	# TODO: start loading resources while starting the transition
-	yield(transitions.anim, "animation_finished")
 	_loader_mt.connect(
 		"resource_loaded",
 		self,
@@ -107,6 +105,8 @@ func change_scene_background_loading(new_scene: String, params = {}):
 
 
 func _on_resource_loaded(resource):
+	if main.transitions.is_fading_in():
+		yield(transitions.anim, "animation_finished")
 	var load_time = OS.get_ticks_msec() - _loading_start_time # ms
 	print("{scn} loaded in {elapsed}ms".format({
 		'scn': resource.resource_path,
