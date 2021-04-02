@@ -107,23 +107,25 @@ jobs:
           path: build/mac
           
   export-android:
-    name: Android Debug Export
+    name: Android Export
     runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:3.2.3
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Android Build
-        run: |
-          mkdir -v -p build/android
-          godot -v --export "Android" ./build/android/$EXPORT_NAME-debug.apk
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: android-debug
-          path: build/android          
+    - uses: actions/checkout@v2
+    - uses: croconut/godot-multi-builder@v1
+      with:
+      #comma separated export presets
+        names: "Android"
+        # if path is in the top level of your directory, skip
+        # defaults to true, Android currently only exports to debug
+        debug-mode: "true"
+        # outputs to path-to-game/builds/builds.zip
+        # if run multiple times, you can use the step's output variable
+        # to retrieve the separate builds.zip files
+        # if any zip files are too big for your purposes, unzipping is
+        # likely your best bet
+    - run: |
+          unzip ./builds/builds.zip -d build/android
+    - uses: actions/upload-artifact@v1
+      with:
+        name: android
+        path: build/android/*
