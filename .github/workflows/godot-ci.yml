@@ -115,7 +115,6 @@ jobs:
       with:
       #comma separated export presets
         names: "Android"
-        # if path is in the top level of your directory, skip
         # defaults to true, Android currently only exports to debug
         debug-mode: "true"
         # outputs to path-to-game/builds/builds.zip
@@ -124,7 +123,7 @@ jobs:
         # if any zip files are too big for your purposes, unzipping is
         # likely your best bet
     - run: |
-        unzip ./builds/builds.zip -d ./builds
+        unzip ./builds/builds.zip
         rm -rf ./builds/builds.zip
     - uses: actions/upload-artifact@v1
       with:
