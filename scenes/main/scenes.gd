@@ -66,9 +66,7 @@ func _set_new_scene(resource: PackedScene):
 
 
 func _transition_appear(params):
-	transitions.fade_in({
-		'show_progress_bar': params.get('show_progress_bar')
-	})
+	transitions.fade_in(params)
 
 
 # Multithread interactive loading
