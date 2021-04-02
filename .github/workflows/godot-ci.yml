@@ -123,7 +123,7 @@ jobs:
         # if any zip files are too big for your purposes, unzipping is
         # likely your best bet
     - run: |
-        sudo mv builds/builds.zip builds/builds.apk
+        sudo mv builds/builds.zip builds/$EXPORT_NAME.apk
     - uses: actions/upload-artifact@v1
       with:
         name: android
