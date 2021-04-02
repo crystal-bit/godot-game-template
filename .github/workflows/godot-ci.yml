@@ -105,3 +105,25 @@ jobs:
         with:
           name: mac
           path: build/mac
+          
+  export-android:
+    name: Android Debug Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Android Build
+        run: |
+          mkdir -v -p build/android
+          godot -v --export "Android" ./build/android/$EXPORT_NAME-debug.apk
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: android-debug
+          path: build/android          
