@@ -129,4 +129,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: android
-        path: build/android/*
+        path: build/android
