@@ -127,4 +127,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: android
-        path: builds/builds.apk
+        path: builds
