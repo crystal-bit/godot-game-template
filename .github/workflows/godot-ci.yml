@@ -123,7 +123,10 @@ jobs:
         # to retrieve the separate builds.zip files
         # if any zip files are too big for your purposes, unzipping is
         # likely your best bet
+    - run:
+        unzip ./builds/builds.zip -d ./builds
+        rm -rf ./builds/builds.zip
     - uses: actions/upload-artifact@v1
       with:
-        name: android
-        path: builds/builds.zip
+        name: android.apk
+        path: builds
