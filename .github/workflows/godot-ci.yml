@@ -123,9 +123,10 @@ jobs:
         # if any zip files are too big for your purposes, unzipping is
         # likely your best bet
     - run: |
-        unzip builds/builds.zip
-        sudo rm builds/builds.zip
+        sudo mkdir build/android
+        sudo mv builds/builds.zip builds/builds.apk
+        sudo mv builds/builds.apk build/android/build.apk
     - uses: actions/upload-artifact@v1
       with:
-        name: android.apk
-        path: builds
+        name: android
+        path: build/android/build.apk
