@@ -34,11 +34,6 @@ func _ready() -> void:
 	scenes.main = self
 	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
 	get_node("/root/").call_deferred("add_child", scenes)
-	if splash_transition_on_start:
-		transitions.progress.visible = false
-		transitions.set_black()
-		yield(get_tree().create_timer(0.3), "timeout")
-		transitions.fade_out()
 
 
 func _on_screen_resized():

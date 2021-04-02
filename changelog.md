@@ -21,8 +21,10 @@ This is needed to trigger new line rendering for markdown.
 
 ## [dev branch / Unreleased]
 
-🔵 `Transitions` renamed to `Transition`
-🔵 `Transition`: `is_playing` renamed to `is_displayed`
+🟠 `Main.tscn`: Removed `splash_transition_on_start` property\
+🔵 `Transitions` renamed to `Transition`\
+🔵 `Transition`: `is_playing` renamed to `is_displayed`\
+🔵 `Transition`: refactor animations name
 
 ## v2021.04.0
 

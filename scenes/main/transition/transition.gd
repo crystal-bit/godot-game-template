@@ -1,5 +1,6 @@
-# Transitions fade-in and fade-out.
-# You can tweak transition speed and appearance.
+# Transitions.
+# You can tweak transition speed and appearance, just make sure to
+# update `is_displayed`.
 class_name Transition
 extends CanvasLayer
 
@@ -15,13 +16,8 @@ func is_displayed() -> bool:
 	return anim.is_playing() or is_screen_black
 
 
-# cover immediately the screen, without transitions
-func set_black():
-	anim.play("black")
-
-
-func is_fading_in():
-	return anim.is_playing() and anim.current_animation == 'fade-to-black'
+func is_transition_in_playing():
+	return anim.is_playing() and anim.current_animation == 'transition-in'
 
 
 # appear
@@ -30,7 +26,7 @@ func fade_in(params = {}):
 	if params and params.get('show_progress_bar') != null:
 		if params.get('show_progress_bar') == true:
 			progress.show()
-	anim.play("fade-to-black")
+	anim.play("transition-in")
 
 
 # disappear
@@ -38,11 +34,11 @@ func fade_out():
 	if progress.visible and not progress.is_completed():
 		yield(self, "progress_bar_filled")
 	anim.connect("animation_finished", self, "_on_fade_out_finished", [], CONNECT_ONESHOT)
-	anim.play("fade-from-black")
+	anim.play("transition-out")
 
 
 func _on_fade_out_finished(cur_anim):
-	if cur_anim == "fade-from-black":
+	if cur_anim == "transition-out":
 		progress.bar.value = 0
 
 
