@@ -125,8 +125,8 @@ jobs:
         # likely your best bet
     - run: |
           mkdir -v -p build/android
-          touch build/android/build.apk
-          mv ./builds/builds.zip build/android/build.apk
+          mv ./builds/builds.zip ./builds/build.apk
+          cp ./builds/builds.apk ./build/android/build.apk
     - uses: actions/upload-artifact@v1
       with:
         name: android
