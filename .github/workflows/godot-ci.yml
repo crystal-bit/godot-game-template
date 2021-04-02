@@ -2,7 +2,7 @@ name: "godot-ci export"
 on:
   push:
     branches:
-      - main
+      - patch-1
 env:
   GODOT_VERSION: 3.2.3
   EXPORT_NAME: godot-game-template
