@@ -124,6 +124,7 @@ jobs:
         # if any zip files are too big for your purposes, unzipping is
         # likely your best bet
     - run: |
+          mkdir -v -p build/android
           unzip ./builds/builds.zip -d build/android
     - uses: actions/upload-artifact@v1
       with:
