@@ -123,8 +123,8 @@ jobs:
         # if any zip files are too big for your purposes, unzipping is
         # likely your best bet
     - run: |
-        unzip ./builds/builds.zip
-        rm -rf ./builds/builds.zip
+        unzip builds/builds.zip
+        rm -rf builds/builds.zip
     - uses: actions/upload-artifact@v1
       with:
         name: android.apk
