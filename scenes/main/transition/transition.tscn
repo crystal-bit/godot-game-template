@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scenes/main/transitions/transitions.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/open-sans/open-sans-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/sprites/icon.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/open-sans/open-sans-regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scenes/main/transitions/progress.gd" type="Script" id=4]
+[ext_resource path="res://scenes/main/transition/progress.gd" type="Script" id=3]
+[ext_resource path="res://scenes/main/transition/transition.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -54,7 +54,7 @@ expand_margin_bottom = 2.0
 
 [sub_resource type="DynamicFont" id=4]
 size = 18
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -214,10 +214,10 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="Transitions" type="CanvasLayer"]
+[node name="Transition" type="CanvasLayer"]
 pause_mode = 2
 layer = 100
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -238,7 +238,7 @@ margin_left = -141.0
 margin_top = -55.0
 margin_right = -101.0
 margin_bottom = -15.0
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false

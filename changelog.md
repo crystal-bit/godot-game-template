@@ -21,7 +21,8 @@ This is needed to trigger new line rendering for markdown.
 
 ## [dev branch / Unreleased]
 
-...
+🔵 `Transitions` renamed to `Transition`
+🔵 `Transition`: `is_playing` renamed to `is_displayed`
 
 ## v2021.04.0
 

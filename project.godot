@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "Transition",
 "language": "GDScript",
-"path": "res://scenes/main/transitions/transitions.gd"
+"path": "res://scenes/main/transition/transition.gd"
 } ]
 _global_script_class_icons={
 "Main": "",

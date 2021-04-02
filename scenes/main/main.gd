@@ -49,7 +49,7 @@ func _register_size():
 	size = get_viewport().get_visible_rect().size
 
 
-func change_scene(new_scene, params= {}):
+func change_scene(new_scene, params = {}):
 	var scene_to_load = new_scene if not(new_scene in SCENES_DENYLIST) else FALLBACK_SCENE
 	if OS.has_feature('HTML5'): # Godot 3.2.3 HTML5 export template does not support multithreading
 		scenes.change_scene_background_loading(scene_to_load, params) # single-thread
@@ -74,7 +74,7 @@ func get_active_scene() -> Node:
 
 # Prevents all inputs while a graphic transition is playing.
 func _input(_event: InputEvent):
-	if transitions.is_playing():
+	if transitions.is_displayed():
 		# prevent all input events
 		get_tree().set_input_as_handled()
 

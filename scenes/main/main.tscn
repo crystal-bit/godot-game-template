@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/main/transitions/transitions.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/main/transition/transition.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/menu/menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/main/main.gd" type="Script" id=3]
 
