@@ -124,7 +124,7 @@ jobs:
         # likely your best bet
     - run: |
         unzip builds/builds.zip
-        rm -rf builds/builds.zip
+        sudo rm builds/builds.zip
     - uses: actions/upload-artifact@v1
       with:
         name: android.apk
