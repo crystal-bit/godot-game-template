@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - dev
 env:
   GODOT_VERSION: 3.2.3
   EXPORT_NAME: godot-game-template
@@ -105,3 +106,26 @@ jobs:
         with:
           name: mac
           path: build/mac
+          
+  export-android:
+    name: Android Export
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: croconut/godot-multi-builder@v1
+      with:
+      #comma separated export presets
+        names: "Android"
+        # defaults to true, Android currently only exports to debug
+        debug-mode: "true"
+        # outputs to path-to-game/builds/builds.zip
+        # if run multiple times, you can use the step's output variable
+        # to retrieve the separate builds.zip files
+        # if any zip files are too big for your purposes, unzipping is
+        # likely your best bet
+    - run: |
+        sudo mv builds/builds.zip builds/$EXPORT_NAME.apk
+    - uses: actions/upload-artifact@v1
+      with:
+        name: android
+        path: builds

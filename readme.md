@@ -22,10 +22,10 @@
 
 # Features
 
-- **Continuos Integration** (thanks to [aBARICHELLO](https://github.com/aBARICHELLO/godot-ci)):
+- **Continuos Integration** (thanks to [aBARICHELLO](https://github.com/aBARICHELLO/godot-ci) and to [croconut](https://github.com/croconut/godot-multi-builder)):
   - Automatic desktop build (linux, windows, osx, HTML5) for each commit
   - Automatic HTML5 deploy to Github pages for each commit
-  - Automatic Android builds (upcoming...)
+  - Automatic Android builds (thanks to [croconut](https://github.com/croconut/godot-multi-builder) and [Andrea-Miele](https://github.com/Andrea-Miele))
 - **Scenes loading** with graphic transitions (fade-in/out)
   - You can still play individual scenes for quick development
   - Input prevention during scene changes
@@ -77,5 +77,7 @@ See [changelog.md](./changelog.md)
   - Godot Engine
 - For their work on FOSS tools:
   - aBARICHELLO
+  - croconut
+  - Andrea-Miele
   - GDQuest
   - Scony
