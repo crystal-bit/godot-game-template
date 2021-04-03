@@ -19,8 +19,13 @@ This is needed to trigger new line rendering for markdown.
 
 ---
 
-## [main branch / Unreleased]
+## [dev branch / Unreleased]
 
+...
+
+## v2021.04.0
+
+🟢 Added version number in main menu
 🔵 `Game.change_scene` hides the progress bar by default. If you want to show
 loading progress, pass `{show_progress_bar = true}` as param\
 🔵 Scene tree not automatically paused anymore on scene change (input will still be captured to prevent messing with scenes during transitions)\

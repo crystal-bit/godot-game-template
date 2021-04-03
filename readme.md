@@ -53,6 +53,8 @@ It's an opinionated project that I built to ease my game development workflow.
 
 # Contributing
 
+Development of new versions is made on the [`dev`](https://github.com/crystal-bit/godot-game-template/tree/dev) branch.
+
 If you want to help the project, create games and feel free to report any issue.
 
 If you want to add more features, please open an issue before and let's discuss. 
