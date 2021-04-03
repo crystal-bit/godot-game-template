@@ -14,14 +14,17 @@ Inspired by [keepachngelog.com](https://keepachangelog.com/en/1.0.0/).
 🟠 Removed\
 🔴 Deprecated
 
-PS: remember to add 2 trailing spaces at the end of each line (or a single `/` symbol).\
+PS: remember to add 2 trailing spaces at the end of each line (or a single `\` symbol).\
 This is needed to trigger new line rendering for markdown.
 
 ---
 
 ## [dev branch / Unreleased]
 
-🟢 CI: support for automatic Android debug build. Thanks to Andrea-Miele https://github.com/crystal-bit/godot-game-template/pull/39 \
+...
+## v2021.04.1
+
+🟢 CI: support for automatic Android debug build. Thanks to Andrea-Miele https://github.com/crystal-bit/godot-game-template/pull/39\
 🟠 `Main.tscn`: Removed `splash_transition_on_start` property\
 🔵 `Transitions` renamed to `Transition`\
 🔵 `Transition`: `is_playing` renamed to `is_displayed`\
