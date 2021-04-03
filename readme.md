@@ -66,8 +66,8 @@ See [changelog.md](./changelog.md)
 
 # Contributors
 
-- Andrea-Miele
-- Fahien
+- [Andrea-Miele](https://github.com/Andrea-Miele)
+- [Fahien](https://github.com/Fahien)
 
 # Used by
 
