@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - itch.io
 env:
   GODOT_VERSION: 3.2.3
   EXPORT_NAME: godot-game-template
