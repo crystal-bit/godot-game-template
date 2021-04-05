@@ -75,7 +75,7 @@ See [changelog.md](./changelog.md)
   - GameLoop.it
   - Godot Engine Italia
   - Godot Engine
-- For their work on FOSS tools :
+- For their work on FOSS tools:
   - aBARICHELLO
   - croconut
   - Andrea-Miele
