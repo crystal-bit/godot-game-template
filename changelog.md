@@ -14,13 +14,17 @@ Inspired by [keepachngelog.com](https://keepachangelog.com/en/1.0.0/).
 🟠 Removed\
 🔴 Deprecated
 
-PS: remember to add 2 trailing spaces at the end of each line (or a single `/` symbol).\
+PS: remember to add 2 trailing spaces at the end of each line (or a single `\` symbol).\
 This is needed to trigger new line rendering for markdown.
 
 ---
 
 ## [dev branch / Unreleased]
 
+...
+## v2021.04.1
+
+🟢 CI: support for automatic Android debug build. Thanks to Andrea-Miele https://github.com/crystal-bit/godot-game-template/pull/39 \
 🟠 `Main.tscn`: Removed `splash_transition_on_start` property\
 🔵 `Transitions` renamed to `Transition`\
 🔵 `Transition`: `is_playing` renamed to `is_displayed`\
@@ -28,7 +32,7 @@ This is needed to trigger new line rendering for markdown.
 
 ## v2021.04.0
 
-🟢 Added version number in main menu
+🟢 Added version number in main menu. Thanks to Fahien https://github.com/crystal-bit/godot-game-template/pull/37
 🔵 `Game.change_scene` hides the progress bar by default. If you want to show
 loading progress, pass `{show_progress_bar = true}` as param\
 🔵 Scene tree not automatically paused anymore on scene change (input will still be captured to prevent messing with scenes during transitions)\

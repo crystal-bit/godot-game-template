@@ -64,6 +64,11 @@ I want to keep this template small, focused and easy to use.
 
 See [changelog.md](./changelog.md)
 
+# Contributors
+
+- [Andrea-Miele](https://github.com/Andrea-Miele)
+- [Fahien](https://github.com/Fahien)
+
 # Used by
 
 - [defending-todot](https://github.com/crystal-bit/defending-todot)
