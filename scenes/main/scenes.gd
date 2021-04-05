@@ -66,9 +66,7 @@ func _set_new_scene(resource: PackedScene):
 
 
 func _transition_appear(params):
-	transitions.fade_in({
-		'show_progress_bar': params.get('show_progress_bar')
-	})
+	transitions.fade_in(params)
 
 
 # Multithread interactive loading
@@ -105,7 +103,7 @@ func change_scene_background_loading(new_scene: String, params = {}):
 
 
 func _on_resource_loaded(resource):
-	if main.transitions.is_fading_in():
+	if main.transitions.is_transition_in_playing():
 		yield(transitions.anim, "animation_finished")
 	var load_time = OS.get_ticks_msec() - _loading_start_time # ms
 	print("{scn} loaded in {elapsed}ms".format({
