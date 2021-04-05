@@ -78,7 +78,6 @@ See [changelog.md](./changelog.md)
 - For their work on FOSS tools:
   - aBARICHELLO
   - croconut
-  - Andrea-Miele
   - GDQuest
   - Scony
 
