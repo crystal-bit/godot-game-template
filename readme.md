@@ -25,6 +25,7 @@
 - **Continuos Integration** (thanks to [aBARICHELLO](https://github.com/aBARICHELLO/godot-ci) and to [croconut](https://github.com/croconut/godot-multi-builder)):
   - Automatic desktop build (linux, windows, osx, HTML5) for each commit
   - Automatic HTML5 deploy to Github pages for each commit
+  - Automatic HTML5 deploy to itch.io for each commit (thanks to [josephbmanley](https://github.com/josephbmanley/butler-publish-itchio-action) and to [Andrea-Miele](https://github.com/Andrea-Miele))
   - Automatic Android builds (thanks to [croconut](https://github.com/croconut/godot-multi-builder) and [Andrea-Miele](https://github.com/Andrea-Miele))
 - **Scenes loading** with graphic transitions (fade-in/out)
   - You can still play individual scenes for quick development
@@ -83,5 +84,7 @@ See [changelog.md](./changelog.md)
 - For their work on FOSS tools:
   - aBARICHELLO
   - croconut
+  - josephbmanley
   - GDQuest
   - Scony
+
