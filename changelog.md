@@ -22,6 +22,13 @@ This is needed to trigger new line rendering for markdown.
 ## [dev branch / Unreleased]
 
 ...
+
+## v2021.04.2
+
+🟢 CI: support for automatic itch.io deploys. Thanks to Andrea-Miele [#41][pr41]
+
+[pr41]: https://github.com/crystal-bit/godot-game-template/pull/41
+
 ## v2021.04.1
 
 🟢 CI: support for automatic Android debug build. Thanks to Andrea-Miele https://github.com/crystal-bit/godot-game-template/pull/39 \
@@ -32,7 +39,7 @@ This is needed to trigger new line rendering for markdown.
 
 ## v2021.04.0
 
-🟢 Added version number in main menu. Thanks to Fahien https://github.com/crystal-bit/godot-game-template/pull/37
+🟢 Added version number in main menu. Thanks to Fahien https://github.com/crystal-bit/godot-game-template/pull/37 \
 🔵 `Game.change_scene` hides the progress bar by default. If you want to show
 loading progress, pass `{show_progress_bar = true}` as param\
 🔵 Scene tree not automatically paused anymore on scene change (input will still be captured to prevent messing with scenes during transitions)\
@@ -52,11 +59,13 @@ loading progress, pass `{show_progress_bar = true}` as param\
 
 🟢 Added `Game.size` to get current viewport game size\
 🟢 `Game.change_scene()`: added support for `show_progress_bar`. Usage example:
+
 ```gd
 Game.change_scene("res://myscene.tscn", {
     'show_progress_bar': true
 })
 ```
+
 🔵 Changed default renderer to GLES2 (better HTML5 compatibility)\
 🔵 Changed `initial_fade_active` to `splash_transition_on_start`\
 ⚪ Fixed many `gdlint` errors (all scripts now follow official GDScript\
