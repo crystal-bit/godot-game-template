@@ -146,6 +146,5 @@ margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 text = "x.y.z"
 script = ExtResource( 6 )
-
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="VBoxContainer/ExitButton" method="_on_ExitButton_pressed"]
