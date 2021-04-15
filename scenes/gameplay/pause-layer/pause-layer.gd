@@ -40,6 +40,4 @@ func _on_Main_Menu_pressed():
 
 
 func _on_PauseButton_pressed():
-	resume_option.grab_focus()
-	get_tree().paused = true
-	pause.show()
+	pause_game()
