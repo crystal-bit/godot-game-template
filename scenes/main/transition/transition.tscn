@@ -83,7 +83,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "transition-in"
 length = 0.3
 step = 0.05
@@ -136,8 +136,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "transition-out"
+[sub_resource type="Animation" id=7]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -290,6 +289,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "transparent"
 anims/black = SubResource( 5 )
-anims/transition-in = SubResource( 7 )
-anims/transition-out = SubResource( 6 )
+anims/transition-in = SubResource( 6 )
+anims/transition-out = SubResource( 7 )
 anims/transparent = SubResource( 8 )

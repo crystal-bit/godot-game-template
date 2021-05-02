@@ -59,7 +59,6 @@ margin_right = 161.0
 margin_bottom = 39.0
 focus_mode = 2
 custom_fonts/font = ExtResource( 1 )
-enabled_focus_mode = 2
 text = "RESUME"
 
 [node name="Main Menu" type="LinkButton" parent="Pause/VBoxOptions"]
@@ -68,7 +67,7 @@ margin_right = 161.0
 margin_bottom = 98.0
 focus_mode = 2
 custom_fonts/font = ExtResource( 1 )
-enabled_focus_mode = 2
 text = "MAIN MENU"
+
 [connection signal="pressed" from="Pause/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="Pause/VBoxOptions/Main Menu" to="." method="_on_Main_Menu_pressed"]
