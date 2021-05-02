@@ -1,7 +1,5 @@
-# Additional files that you can ignore:
+# Additional files that you can ignore: 
 # - https://github.com/github/gitignore/blob/master/Godot.gitignore
-
-build/
 
 # Godot-specific ignores
 .import/
