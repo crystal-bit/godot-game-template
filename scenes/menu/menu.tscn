@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/menu/title_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/menu/play-button.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://resources/fonts/credits-font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/menu/version.gd" type="Script" id=6]
 [ext_resource path="res://assets/sprites/icon.png" type="Texture" id=7]
+[ext_resource path="res://scenes/menu/godot-version.gd" type="Script" id=8]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -85,13 +86,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Version" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -90.0
+margin_right = 198.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameVersion" type="Label" parent="Version"]
+margin_right = 182.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 5 )
+text = "<x.y.z>"
+script = ExtResource( 6 )
+
+[node name="GodotVersion" type="Label" parent="Version"]
+margin_top = 38.0
+margin_right = 182.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+text = "<GodotVersion>"
+script = ExtResource( 8 )
+
 [node name="Credits" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -147.0
-margin_top = -98.0
+margin_top = -90.0
 margin_right = -16.0
 margin_bottom = -16.0
 grow_horizontal = 0
@@ -104,7 +132,7 @@ __meta__ = {
 margin_right = 243.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
-custom_colors/font_color = Color( 0.792157, 0.792157, 0.792157, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "made by:"
 
 [node name="Developer1" type="Label" parent="Credits"]
@@ -113,7 +141,7 @@ margin_right = 243.0
 margin_bottom = 72.0
 grow_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
-custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "Crystal Bit community"
 
 [node name="Developer2" type="Label" parent="Credits"]
@@ -135,23 +163,6 @@ grow_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
 text = "Developer 3"
-
-[node name="Version" type="VBoxContainer" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = -48.0
-margin_bottom = -16.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="xyz" type="Label" parent="Version"]
-margin_right = 48.0
-margin_bottom = 34.0
-custom_fonts/font = ExtResource( 5 )
-text = "x.y.z"
-script = ExtResource( 6 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 margin_left = 104.589
