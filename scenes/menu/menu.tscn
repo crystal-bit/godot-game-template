@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/menu/title_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/menu/play-button.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://resources/fonts/normal.tres" type="DynamicFont" id=4]
 [ext_resource path="res://resources/fonts/credits-font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/menu/version.gd" type="Script" id=6]
-[ext_resource path="res://assets/sprites/icon.png" type="Texture" id=7]
 [ext_resource path="res://scenes/menu/godot-version.gd" type="Script" id=8]
 
 [node name="Menu" type="Control"]
@@ -163,26 +162,6 @@ grow_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
 text = "Developer 3"
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-margin_left = 104.589
-margin_top = 292.319
-margin_right = 324.589
-margin_bottom = 400.319
-ratio = 2.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
-margin_left = 2.0
-margin_right = 218.0
-margin_bottom = 108.0
-texture = ExtResource( 7 )
-expand = true
-__meta__ = {
-"_edit_lock_": true
-}
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="VBoxContainer/ExitButton" method="_on_ExitButton_pressed"]

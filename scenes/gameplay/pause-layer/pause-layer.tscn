@@ -28,13 +28,11 @@ __meta__ = {
 }
 
 [node name="PauseButton" type="TextureButton" parent="."]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 234.0
-margin_bottom = 234.0
-rect_scale = Vector2( 0.25, 0.25 )
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 62.0
+margin_bottom = 62.0
 texture_normal = ExtResource( 4 )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
