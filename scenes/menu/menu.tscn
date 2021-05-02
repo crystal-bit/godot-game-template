@@ -32,12 +32,13 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="CenterContainer"]
-margin_left = 152.0
+margin_left = 123.0
 margin_top = 86.0
-margin_right = 871.0
+margin_right = 901.0
 margin_bottom = 174.0
 custom_fonts/font = ExtResource( 1 )
 text = "Godot Game Template"
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,7 +100,7 @@ __meta__ = {
 }
 
 [node name="MadeByLabel" type="Label" parent="Credits"]
-margin_right = 131.0
+margin_right = 243.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.792157, 0.792157, 0.792157, 1 )
@@ -107,12 +108,12 @@ text = "made by:"
 
 [node name="Developer1" type="Label" parent="Credits"]
 margin_top = 38.0
-margin_right = 131.0
+margin_right = 243.0
 margin_bottom = 72.0
 grow_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
-text = "Crystal Bit"
+text = "Crystal Bit community"
 
 [node name="Developer2" type="Label" parent="Credits"]
 visible = false
@@ -150,5 +151,6 @@ margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 text = "x.y.z"
 script = ExtResource( 6 )
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="VBoxContainer/ExitButton" method="_on_ExitButton_pressed"]
