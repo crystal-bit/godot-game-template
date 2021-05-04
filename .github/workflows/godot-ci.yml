@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - dev
 env:
   GODOT_VERSION: 3.3
   EXPORT_NAME: godot-game-template
@@ -153,13 +154,13 @@ jobs:
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: itch.zip
 
-  
   export-android:
     name: Android Export
     runs-on: ubuntu-latest
     container:
       image: myood/godot-ci-android-export:godot-3.3
     steps:
+
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
@@ -201,3 +202,4 @@ jobs:
           ITCH_GAME: ${{ secrets.ITCH_GAME }}
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: itch.zip
+
