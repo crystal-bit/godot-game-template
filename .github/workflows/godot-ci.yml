@@ -4,15 +4,17 @@ on:
     branches:
       - main
 env:
-  GODOT_VERSION: 3.2.3
+  GODOT_VERSION: 3.3
   EXPORT_NAME: godot-game-template
+  ITCH_IO: ${{ false }} #set to true if you want to enable automatic itch.io deploy
+  RELEASE_ANDROID: ${{ true }} #set to  true if you want to enable automatic android release export
 
 jobs:
   export-windows:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -29,12 +31,23 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Zip Folder
+        run: zip -r itch.zip build/windows
+      - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO }}
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: windows
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: itch.zip
 
   export-linux:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -51,12 +64,24 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Zip Folder
+        run: zip -r itch.zip build/linux
+      - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO }}
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: linux
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: itch.zip
+
 
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -86,8 +111,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/web
       - name: Deploy to itch.io
-        #Comment if you want to enable itch.io automatic deploy
-        if: ${{ false }}
+        if: ${{ env.ITCH_IO }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -100,7 +124,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -117,26 +141,63 @@ jobs:
         with:
           name: mac
           path: build/mac
-          
+      - name: Zip Folder
+        run: zip -r itch.zip build/mac
+      - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO }}
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: mac
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: itch.zip
+
+  
   export-android:
     name: Android Export
     runs-on: ubuntu-latest
+    container:
+      image: myood/godot-ci-android-export:godot-3.3
     steps:
-    - uses: actions/checkout@v2
-    - uses: croconut/godot-multi-builder@v1
-      with:
-      #comma separated export presets
-        names: "Android"
-        # defaults to true, Android currently only exports to debug
-        debug-mode: "true"
-        # outputs to path-to-game/builds/builds.zip
-        # if run multiple times, you can use the step's output variable
-        # to retrieve the separate builds.zip files
-        # if any zip files are too big for your purposes, unzipping is
-        # likely your best bet
-    - run: |
-        sudo mv builds/builds.zip builds/$EXPORT_NAME.apk
-    - uses: actions/upload-artifact@v1
-      with:
-        name: android
-        path: builds
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -v -p ~/.config/godot/
+          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
+          echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
+          echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+      - name: Android Debug Build
+        run: |
+          mkdir -v -p build/android
+          godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+      - name: Android Release Build
+        if: ${{ env.RELEASE_ANDROID }}
+        env:
+            K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+            K8S_SECRET_RELEASE_KEYSTORE_USER : ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
+            K8S_SECRET_RELEASE_KEYSTORE_PASSWORD : ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD  }}
+        run: |
+          echo $K8S_SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore
+          sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg
+          sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'$K8S_SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
+          sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'$K8S_SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
+          godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk          
+      - uses: actions/upload-artifact@v1
+        with:
+          name: android
+          path: build/android
+      - name: Zip Folder
+        run: zip -r itch.zip build/android
+      - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO }}
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: android
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: itch.zip
