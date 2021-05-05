@@ -8,7 +8,7 @@ env:
   GODOT_VERSION: 3.3
   EXPORT_NAME: godot-game-template
   ITCH_IO: ${{ false }} #set to true if you want to enable automatic itch.io deploy
-  RELEASE_ANDROID: ${{ true }} #set to  true if you want to enable automatic android release export
+  RELEASE_ANDROID: ${{ false }} #set to  true if you want to enable automatic android release export
 
 jobs:
   export-windows:
@@ -35,7 +35,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/windows
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO }}
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -68,7 +68,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/linux
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO }}
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -112,7 +112,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/web
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO }}
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -145,7 +145,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/mac
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO }}
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -176,7 +176,7 @@ jobs:
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
-        if: ${{ env.RELEASE_ANDROID }}
+        if: ${{ env.RELEASE_ANDROID==true }}
         env:
             K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
             K8S_SECRET_RELEASE_KEYSTORE_USER : ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
@@ -194,7 +194,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/android
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO }}
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
