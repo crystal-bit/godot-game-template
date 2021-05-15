@@ -21,10 +21,18 @@ This is needed to trigger new line rendering for markdown.
 
 ## [dev branch / Unreleased]
 
-🟢 Added pause button for mobile in `gameplay.tscn`. Thanks to Andrea1141 [#44][pr44]
+...
+
+## v2021.05.0
+
+🟢 **Godot 3.3** support!\
+🟢 CI scripts updated. Thanks to Andrea-Miele! [#47][pr47] [#48][pr48] \
+🟢 Added pause button for mobile in `gameplay.tscn`. Thanks to Andrea1141 [#44][pr44] \
+🟢 `menu.tscn`: added Godot version label
 
 [pr44]: https://github.com/crystal-bit/godot-game-template/pull/44
-
+[pr47]: https://github.com/crystal-bit/godot-game-template/pull/47
+[pr48]: https://github.com/crystal-bit/godot-game-template/pull/48
 
 ## v2021.04.2
 
