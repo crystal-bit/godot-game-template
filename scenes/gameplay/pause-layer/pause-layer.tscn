@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://resources/fonts/credits-font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/menu/credits-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/open-sans/open-sans-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/pause_button.png" type="Texture" id=4]
