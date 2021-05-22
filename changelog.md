@@ -21,9 +21,11 @@ This is needed to trigger new line rendering for markdown.
 
 ## [dev branch / Unreleased]
 
-⚪ Fix blurred render on HiDPI devices
-🔵 Remove `resources/` top level folder, closes [#12][i12]
+🟢 Added dispatch export. Thanks to vini-guerrero! [#50][pr50] \
+⚪ Fix blurred render on HiDPI devices\
+🔵 Remove `resources/` top level folder, closes [#12][i12]\
 
+[pr50]: https://github.com/crystal-bit/godot-game-template/pull/50
 [i12]: https://github.com/crystal-bit/godot-game-template/issues/12
 
 ## v2021.05.0
