@@ -44,13 +44,23 @@ func _register_size():
 	size = get_viewport().get_visible_rect().size
 
 
-func change_scene(new_scene, params = {}):
+func change_scene(new_scene: String, params = {}):
 	var scene_to_load = new_scene if not(new_scene in SCENES_DENYLIST) else FALLBACK_SCENE
+
+	if not is_scene_valid(new_scene):
+		printerr("Scene file not found: ", new_scene)
+		return
+	
 	if OS.has_feature('HTML5'): # Godot 3.2.3 HTML5 export template does not support multithreading
 		scenes.change_scene_background_loading(scene_to_load, params) # single-thread
 	else:
 		scenes.change_scene_multithread(scene_to_load, params) # multi-thread
 
+
+func is_scene_valid(path) -> bool:
+	var f = File.new()
+	return f.file_exists(path)
+	
 
 # Reparent a node under a new parent.
 # Optionally updates the transform to mantain the current
