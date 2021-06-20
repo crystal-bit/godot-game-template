@@ -25,8 +25,8 @@
 - **Continuos Integration**:
   - Automatic desktop build (linux, windows, osx, HTML5)
   - Automatic HTML5 deploy to Github pages
-  - Automatic HTML5 deploy to itch.io (thanks to [josephbmanley](https://github.com/josephbmanley/butler-publish-itchio-action) and to [Andrea-Miele](https://github.com/Andrea-Miele))
-  - Automatic Android builds (thanks to [croconut](https://github.com/croconut/godot-multi-builder) and [Andrea-Miele](https://github.com/Andrea-Miele))
+  - Automatic HTML5 deploy to itch.io
+  - Automatic Android builds
 - **Scenes loading** with graphic transitions (fade-in/out)
   - You can still play individual scenes for quick development
   - Input prevention during scene changes
@@ -43,6 +43,7 @@ Many features were implemented only thanks to the help of:
 - [Andrea-Miele](https://github.com/Andrea-Miele)
 - [Fahien](https://github.com/Fahien)
 - [Andrea1141](https://github.com/Andrea1141)
+- [vini-guerrero](https://github.com/vini-guerrero)
 
 Also many tools were already available in the open source community, see the [Thanks](#thanks) section.
 

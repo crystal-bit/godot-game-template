@@ -3,8 +3,8 @@
 [ext_resource path="res://scenes/menu/title_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/menu/play-button.gd" type="Script" id=2]
 [ext_resource path="res://scenes/menu/exit-button.gd" type="Script" id=3]
-[ext_resource path="res://resources/fonts/normal.tres" type="DynamicFont" id=4]
-[ext_resource path="res://resources/fonts/credits-font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/menu/normal.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/menu/credits-font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/menu/version.gd" type="Script" id=6]
 [ext_resource path="res://scenes/menu/godot-version.gd" type="Script" id=8]
 
@@ -91,7 +91,7 @@ anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = -90.0
 margin_right = 198.0
-margin_bottom = -16.0
+margin_bottom = -18.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

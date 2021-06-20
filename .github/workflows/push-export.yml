@@ -4,7 +4,7 @@ on:
     branches:
       - main
       - master
-      - dev
+      # - dev
 env:
   GODOT_VERSION: 3.3
   EXPORT_NAME: godot-game-template
