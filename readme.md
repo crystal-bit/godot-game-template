@@ -36,6 +36,12 @@
 - Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
 - Compatible with other Godot addons
 
+## Discuss with the community
+
+![Discord](https://img.shields.io/discord/686600734636376102?logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)
+
+Join [the Discord server](https://discord.gg/SA6S2Db)
+
 ## Contributors
 
 Many features were implemented only thanks to the help of:
