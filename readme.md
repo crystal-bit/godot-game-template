@@ -28,8 +28,9 @@
   - Automatic HTML5 deploy to itch.io
   - Automatic Android builds
 - **Scenes loading** with graphic transitions (fade-in/out)
-  - You can still play individual scenes for quick development
+  - Send parameters to the new scene
   - Input prevention during scene changes
+  - You can still play individual scenes for quick development
   - Singlethread & Multithread
 - **Game pause** handling
 - `.gitignore`
