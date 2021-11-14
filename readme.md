@@ -18,7 +18,34 @@
 <a href="https://github.com/crystal-bit/godot-game-template/wiki">
   <img alt="GitHub wiki" src="https://img.shields.io/badge/%F0%9F%93%96-wiki-blueviolet">
 </a>
+
+<a href="https://play.google.com/store/apps/details?id=org.godotengine.godottemplate">
+  <img alt="Play store badge" src="https://img.shields.io/badge/Android-PlayStore-green">
+</a>
+
+<a href="https://crystalbit.itch.io/godot-game-template">
+  <img alt="Play store badge" src="https://img.shields.io/badge/HTML5-Itch.io-critical">
+</a>
 </p>
+
+# Get started
+
+1. 💻 [Create a new repo using this template](https://github.com/crystal-bit/godot-game-template/generate)
+2. Clone the new repository locally
+3. Open the project in [Godot](https://godotengine.org/download/) (GDScript)
+4. Done
+
+Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/Getting-started) to learn more.
+
+## Used by
+
+| Game                       | Logo                                                                                                                                        | Play it!                                                                                                                                                             | Source                                                   |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **YouAreUto** (2019)       | ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s180-rw)        | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone) | [GitHub](https://github.com/YouAreUto/YouAreUto)         |
+| **Defending Todot** (2020) | ![Defending Todot icon](https://user-images.githubusercontent.com/6860637/142186577-760a2f09-4c2b-4c8a-9fe4-1b5a0a9382cd.png)               | [HTML5](https://crystal-bit.github.io/defending-todot/)                                                                                                              | [GitHub](https://github.com/crystal-bit/defending-todot) |
+| **Karooto No Gase** (2021) | ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s180-rw) | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                          | N/A                                                      |
+
+_Get in contact if you want to be featured here!_
 
 # Features
 
@@ -37,11 +64,9 @@
 - Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
 - Compatible with other Godot addons
 
-## Discuss with the community
+### Changelog
 
-![Discord](https://img.shields.io/discord/686600734636376102?logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)
-
-Join [the Discord server](https://discord.gg/SA6S2Db)
+- [changelog.md](./changelog.md)
 
 ## Contributors
 
@@ -54,40 +79,19 @@ Many features were implemented only thanks to the help of:
 
 Also many tools were already available in the open source community, see the [Thanks](#thanks) section.
 
-## Changelog
-
-- [changelog.md](./changelog.md)
-
-## Used by
-
-- [defending-todot](https://github.com/crystal-bit/defending-todot)
-
-# Start a project with Godot Game Template
-
-1. 💻 [Click here](https://github.com/crystal-bit/godot-game-template/generate)
-   to create a repo using this template
-2. Clone the new repository on your PC
-3. Open the project in [Godot Engine](https://godotengine.org/download/) (GDScript) and create your game!
-
-Read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki) to learn more about the template. Eg: how to use
-automatic HTML5 deploy.
-
-## Disclaimer
-
-This is not an official Godot template.
-
-It's an opinionated project that I built to ease my game development workflow.
-
-# Contributing
+## Contributing
 
 Development of new versions is made on the [`dev`](https://github.com/crystal-bit/godot-game-template/tree/dev) branch.
 
-If you want to help the project, create games and feel free to report any issue.
+If you want to help the project, create games and feel free to get in touch and report any issue.
 
-If you want to add more features, please open an issue before and let's discuss.
-I want to keep this template small, focused and easy to use.
+![Discord](https://img.shields.io/discord/686600734636376102?logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)
 
-# Thanks
+You can also join [the Discord server](https://discord.gg/SA6S2Db) (`#godot-game-template` channel).
+
+Before adding new features please open an issue to discuss it with the contributors.
+
+## Thanks
 
 - For support & inspiration:
   - All the [contributors](https://github.com/crystal-bit/godot-game-template/graphs/contributors)

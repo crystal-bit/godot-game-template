@@ -21,7 +21,9 @@ This is needed to trigger new line rendering for markdown.
 
 ## [dev branch / Unreleased]
 
-...
+## v2021.11.0
+
+🟢 Added Godot 3.4 support \
 
 ## v2021.06.0
 

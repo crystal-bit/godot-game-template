@@ -16,7 +16,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4
+      image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -49,7 +49,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4
+      image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -82,7 +82,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4
+      image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -125,7 +125,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4
+      image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -158,22 +158,22 @@ jobs:
     name: Android Export
     runs-on: ubuntu-latest
     container:
-      image: myood/godot-ci-android-export:godot-3.3
+      image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           mkdir -v -p ~/.config/godot/
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
+          echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
           mkdir -v -p build/android
-          godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+          godot --verbose --export-debug "Android-CI-job (Do not edit)" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
         if: ${{ env.RELEASE_ANDROID==true }}
         env:
