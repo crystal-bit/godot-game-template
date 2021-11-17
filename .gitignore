@@ -4,7 +4,11 @@
 # Godot-specific ignores
 .import/
 
+# Builds/export directory
+builds
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 
+# OSX 
 .DS_Store
