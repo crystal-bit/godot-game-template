@@ -5,7 +5,7 @@ on:
       godot_version:
         description: "Godot Version"
         required: true
-        default: "3.3"
+        default: "3.4"
       export_platform:
         description: "Export Platform - all|windows|linux|web|macos|android"
         required: true
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'windows' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.3
+      image: barichello/godot-ci:3.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'linux' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.3
+      image: barichello/godot-ci:3.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'web' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.3
+      image: barichello/godot-ci:3.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -156,7 +156,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'macos' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.3
+      image: barichello/godot-ci:3.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -191,23 +191,23 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'android' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: myood/godot-ci-android-export:godot-3.3
+      image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           mkdir -v -p ~/.config/godot/
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
+          echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
           cd ${EXPORT_FOLDER}
           mkdir -v -p build/android
-          godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+          godot --verbose --export-debug "Android-CI-job (Do not edit)" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
         if: ${{ env.RELEASE_ANDROID == true }}
         env:

@@ -3,8 +3,7 @@ on:
   push:
     branches:
       - main
-      - master
-      - dev
+      # - dev
 env:
   GODOT_VERSION: 3.4
   EXPORT_NAME: godot-game-template
