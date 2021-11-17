@@ -24,6 +24,9 @@ This is needed to trigger new line rendering for markdown.
 ## v2021.11.0
 
 🟢 Added Godot 3.4 support \
+🔵 Use GLES3 renderer by default. \
+Safari 15 supports WebGL2 starting from version 15, this means that
+GLES3 should be a safe default right now.
 
 ## v2021.06.0
 
