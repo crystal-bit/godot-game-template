@@ -4,11 +4,8 @@
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/gameplay/gameplay.gd" type="Script" id=5]
 
-[node name="Gameplay" type="Node2D"]
+[node name="Gameplay" type="Node"]
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 523.993, 298.508 )
