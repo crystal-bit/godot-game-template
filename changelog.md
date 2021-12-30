@@ -23,8 +23,8 @@ This is needed to trigger new line rendering for markdown.
 
 🟢 Added `Game.restart_scene()` and `Game.restart_scene_with_params(override_params)` \
 🟢 Added `scenes._history` to keep track of scenes loading. Currently for internal use only. \
-History keeps track of the last 5 scenes and keep track of their parameters.
-🔵 `gameplay.tscn`: use Node as root node instead of Node2D. \
+History keeps track of the last 5 scenes and keep track of their parameters. \
+🔵 `gameplay.tscn`: use Node as root node instead of Node2D.
 
 ## v2021.11.0
 

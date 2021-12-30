@@ -49,6 +49,10 @@ more.
 
 _Get in contact if you want to be featured here!_
 
+### Changelog
+
+- [changelog.md](./changelog.md)
+
 # Features
 
 - **Continuos Integration**:
@@ -66,9 +70,77 @@ _Get in contact if you want to be featured here!_
 - Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
 - Compatible with other Godot addons
 
-### Changelog
+# How to
 
-- [changelog.md](./changelog.md)
+## Change scene
+
+```gd
+Game.change_scene("res://scenes/gameplay/gameplay.tscn")
+```
+
+### Single thread vs multihtread
+
+`Game.change_scene` is multithreaded by default.  
+If the game is exported for HTML5 platform, it automatically uses single
+threaded interactive loading as fallback.
+
+## Change scene and show progress bar
+
+```gd
+Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
+  'show_progress_bar': true
+})
+```
+
+## Change scene and pass parameters
+
+```gd
+# you can pass whatever value you like: int, float, dictionary, ...
+var params = {
+  "level": 4,
+  "skin": 'dark'
+}
+Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
+```
+
+To use parameters in the new scene, add a `pre_start(params)` function in your scene root node.
+
+```gd
+# gameplay.gd
+
+func pre_start(params):
+   print(params.level) # 4
+   print(params.skin) # 'dark'
+   # setup your scene here
+```
+
+Some notes about `pre_start` and `start`:
+
+1. `pre_start` it's called after `_ready()`, just before a fade out
+   transition is played. It's safe to apply dynamic layout code here
+   since the graphic transition covers everything.
+2. `start` it's called after `pre_start`, it's called as soon as the graphic transition finishes.
+
+## Restart the current scene
+
+```gd
+Game.restart_scene()
+```
+
+## Restart the current scene but override params
+
+```gd
+var new_params = {
+  level: 5,
+}
+Game.restart_scene_with_params(new_params)
+```
+
+## Center a Node2D into the viewport
+
+```gd
+$Sprite.position = Game.size / 2
+```
 
 ## Contributors
 
@@ -91,7 +163,7 @@ If you want to help the project, create games and feel free to get in touch and 
 
 You can also join [the Discord server](https://discord.gg/SA6S2Db) (`#godot-game-template` channel).
 
-Before adding new features please open an issue to discuss it with the contributors.
+Before adding new features please open an issue to discuss it with other contributors.
 
 ## Thanks
 
