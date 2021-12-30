@@ -23,7 +23,7 @@
   <img alt="Play store badge" src="https://img.shields.io/badge/HTML5-Itch.io-critical">
 </a>
 
-<a href="https://play.google.com/store/apps/details?id=org.crystalbit.godotgametemplate">
+<a href="https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate">
   <img alt="Play store badge" src="https://img.shields.io/badge/Android-PlayStore-green">
 </a>
 </p>
@@ -35,15 +35,17 @@
 3. Open the project in [Godot](https://godotengine.org/download/) (GDScript)
 4. Done
 
-Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/Getting-started) to learn more.
+Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/Getting-started) to learn
+more.
 
 ## Used by
 
-| Logo                                                                                                                                        | Title                      | Play it!                                                                                                                                                             | Source                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s180-rw)        | **YouAreUto** (2019)       | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone) | [GitHub](https://github.com/YouAreUto/YouAreUto)         |
-| ![Defending Todot icon](https://user-images.githubusercontent.com/6860637/142186577-760a2f09-4c2b-4c8a-9fe4-1b5a0a9382cd.png)               | **Defending Todot** (2020) | [HTML5](https://crystal-bit.github.io/defending-todot/)                                                                                                              | [GitHub](https://github.com/crystal-bit/defending-todot) |
-| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s180-rw) | **Karooto No Gase** (2021) | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                          | N/A                                                      |
+| Logo                                                                                                                                            | Title                               | Play it!                                                                                                                                                             | Source                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s100-rw)            | **YouAreUto** (2019)                | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone) | [GitHub](https://github.com/YouAreUto/YouAreUto)                  |
+| ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                          | **Defending Todot** (2020)          | [HTML5](https://crystal-bit.github.io/defending-todot/)                                                                                                              | [GitHub](https://github.com/crystal-bit/defending-todot)          |
+| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw)     | **Karooto No Gase** (2021)          | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                          | N/A                                                               |
+| ![Godot Game Template Demo](https://play-lh.googleusercontent.com/aOVexQckoyjN2WJp_puq8ifTr2TnWwJ-cNw6iflcH0IpQYp04m_ChTd0jwkCKalz5wVM=s100-rw) | **demo-godot-game-template** (2021) | [Android](https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate)                                                                                | [GitHub](https://github.com/crystal-bit/demo-godot-game-template) |
 
 _Get in contact if you want to be featured here!_
 
