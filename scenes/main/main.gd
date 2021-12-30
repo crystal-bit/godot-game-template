@@ -57,6 +57,18 @@ func change_scene(new_scene: String, params = {}):
 		scenes.change_scene_multithread(scene_to_load, params) # multi-thread
 
 
+# Restart the current scene
+func restart():
+	var scene_data = scenes.get_last_loaded_scene_data()
+	change_scene(scene_data.path, scene_data.params)
+
+
+# Restart the current scene, but use given params
+func restart_with_params(override_params):
+	var scene_data = scenes.get_last_loaded_scene_data()
+	change_scene(scene_data.path, override_params)
+
+
 func is_scene_valid(path) -> bool:
 	var f = File.new()
 	return f.file_exists(path)

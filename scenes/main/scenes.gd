@@ -12,7 +12,7 @@ extends Node
 signal change_started
 signal change_finished
 
-const MINIMUM_TRANSITION_DURATION = 250 #ms
+const MINIMUM_TRANSITION_DURATION = 300 # ms
 
 # Reference to the Main node, set by main.tscn
 var main
@@ -21,6 +21,9 @@ var transitions: Transition
 # params caching
 var _params = {}
 var _loading_start_time = 0
+
+
+onready var _history = preload("res://scenes/main/scenes/scenes-history.gd").new()
 
 onready var _loader_ri = \
   preload("res://scenes/main/scenes/resource_interactive_loader.gd").new()
@@ -44,7 +47,13 @@ func _ready():
 		transitions,
 		"_on_resource_stage_loaded"
 	)
+	connect("change_started", self, "_on_change_started")
 	pause_mode = Node.PAUSE_MODE_PROCESS
+	_history.add(_get_current_scene_node().filename, null)
+
+
+func get_last_loaded_scene_data() -> SceneData:
+	return _history.get_last_loaded_scene_data()
 
 
 func _get_current_scene_node() -> Node:
@@ -71,7 +80,7 @@ func _transition_appear(params):
 
 # Multithread interactive loading
 func change_scene_multithread(new_scene: String, params = {}):
-	emit_signal("change_started")
+	emit_signal("change_started", new_scene, params)
 	_params = params
 	_loading_start_time = OS.get_ticks_msec()
 	_transition_appear(params)
@@ -94,12 +103,16 @@ func change_scene_background_loading(new_scene: String, params = {}):
 		[],
 		CONNECT_ONESHOT
 	)
-	emit_signal("change_started")
+	emit_signal("change_started", new_scene, params)
 	_params = params
 	_loading_start_time = OS.get_ticks_msec()
 	_transition_appear(params)
 	yield(transitions.anim, "animation_finished")
 	_loader_ri.load_scene(new_scene)
+
+
+func _on_change_started(new_scene, params):
+	_history.add(new_scene, params)
 
 
 func _on_resource_loaded(resource):
