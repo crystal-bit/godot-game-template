@@ -23,7 +23,7 @@
   <img alt="Play store badge" src="https://img.shields.io/badge/HTML5-Itch.io-critical">
 </a>
 
-<a href="https://play.google.com/store/apps/details?id=org.crystalbit.godotgametemplate">
+<a href="https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate">
   <img alt="Play store badge" src="https://img.shields.io/badge/Android-PlayStore-green">
 </a>
 </p>
@@ -35,17 +35,23 @@
 3. Open the project in [Godot](https://godotengine.org/download/) (GDScript)
 4. Done
 
-Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/Getting-started) to learn more.
+Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/Getting-started) to learn
+more.
 
 ## Used by
 
-| Logo                                                                                                                                        | Title                      | Play it!                                                                                                                                                             | Source                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s180-rw)        | **YouAreUto** (2019)       | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone) | [GitHub](https://github.com/YouAreUto/YouAreUto)         |
-| ![Defending Todot icon](https://user-images.githubusercontent.com/6860637/142186577-760a2f09-4c2b-4c8a-9fe4-1b5a0a9382cd.png)               | **Defending Todot** (2020) | [HTML5](https://crystal-bit.github.io/defending-todot/)                                                                                                              | [GitHub](https://github.com/crystal-bit/defending-todot) |
-| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s180-rw) | **Karooto No Gase** (2021) | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                          | N/A                                                      |
+| Logo                                                                                                                                            | Title                               | Play it!                                                                                                                                                             | Source                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s100-rw)            | **YouAreUto** (2019)                | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone) | [GitHub](https://github.com/YouAreUto/YouAreUto)                  |
+| ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                          | **Defending Todot** (2020)          | [HTML5](https://crystal-bit.github.io/defending-todot/)                                                                                                              | [GitHub](https://github.com/crystal-bit/defending-todot)          |
+| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw)     | **Karooto No Gase** (2021)          | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                          | N/A                                                               |
+| ![Godot Game Template Demo](https://play-lh.googleusercontent.com/aOVexQckoyjN2WJp_puq8ifTr2TnWwJ-cNw6iflcH0IpQYp04m_ChTd0jwkCKalz5wVM=s100-rw) | **demo-godot-game-template** (2021) | [Android](https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate)                                                                                | [GitHub](https://github.com/crystal-bit/demo-godot-game-template) |
 
 _Get in contact if you want to be featured here!_
+
+### Changelog
+
+- [changelog.md](./changelog.md)
 
 # Features
 
@@ -64,9 +70,77 @@ _Get in contact if you want to be featured here!_
 - Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
 - Compatible with other Godot addons
 
-### Changelog
+# How to
 
-- [changelog.md](./changelog.md)
+## Change scene
+
+```gd
+Game.change_scene("res://scenes/gameplay/gameplay.tscn")
+```
+
+### Single thread vs multihtread
+
+`Game.change_scene` is multithreaded by default.  
+If the game is exported for HTML5 platform, it automatically uses single
+threaded interactive loading as fallback.
+
+## Change scene and show progress bar
+
+```gd
+Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
+  'show_progress_bar': true
+})
+```
+
+## Change scene and pass parameters
+
+```gd
+# you can pass whatever value you like: int, float, dictionary, ...
+var params = {
+  "level": 4,
+  "skin": 'dark'
+}
+Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
+```
+
+To use parameters in the new scene, add a `pre_start(params)` function in your scene root node.
+
+```gd
+# gameplay.gd
+
+func pre_start(params):
+   print(params.level) # 4
+   print(params.skin) # 'dark'
+   # setup your scene here
+```
+
+Some notes about `pre_start` and `start`:
+
+1. `pre_start` it's called after `_ready()`, just before a fade out
+   transition is played. It's safe to apply dynamic layout code here
+   since the graphic transition covers everything.
+2. `start` it's called after `pre_start`, it's called as soon as the graphic transition finishes.
+
+## Restart the current scene
+
+```gd
+Game.restart_scene()
+```
+
+## Restart the current scene but override params
+
+```gd
+var new_params = {
+  level: 5,
+}
+Game.restart_scene_with_params(new_params)
+```
+
+## Center a Node2D into the viewport
+
+```gd
+$Sprite.position = Game.size / 2
+```
 
 ## Contributors
 
@@ -89,7 +163,7 @@ If you want to help the project, create games and feel free to get in touch and 
 
 You can also join [the Discord server](https://discord.gg/SA6S2Db) (`#godot-game-template` channel).
 
-Before adding new features please open an issue to discuss it with the contributors.
+Before adding new features please open an issue to discuss it with other contributors.
 
 ## Thanks
 

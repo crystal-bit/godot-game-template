@@ -40,6 +40,14 @@ func change_scene(new_scene, params= {}):
 	main.change_scene(new_scene, params)
 
 
+func restart_scene():
+	main.restart_scene()
+
+
+func restart_scene_with_params(override_params):
+	main.restart_scene_with_params(override_params)
+
+
 func reparent_node(node: Node2D, new_parent, update_transform = true):
 	main.reparent_node(node, new_parent, update_transform)
 

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/main/main.gd"
 }, {
+"base": "Reference",
+"class": "SceneData",
+"language": "GDScript",
+"path": "res://scenes/main/scenes/scene-data.gd"
+}, {
 "base": "Node",
 "class": "Scenes",
 "language": "GDScript",
@@ -26,13 +31,14 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Main": "",
+"SceneData": "",
 "Scenes": "",
 "Transition": ""
 }
 
 [application]
 
-config/name="godot-template"
+config/name="godot-game-template"
 run/main_scene="res://scenes/main/main.tscn"
 boot_splash/image="res://assets/splash.png"
 boot_splash/bg_color=Color( 0.0862745, 0.0862745, 0.0862745, 1 )
