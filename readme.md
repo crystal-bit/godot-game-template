@@ -78,17 +78,11 @@ _Get in contact if you want to be featured here!_
 Game.change_scene("res://scenes/gameplay/gameplay.tscn")
 ```
 
-### Single thread vs multihtread
-
-`Game.change_scene` is multithreaded by default.  
-If the game is exported for HTML5 platform, it automatically uses single
-threaded interactive loading as fallback.
-
 ## Change scene and show progress bar
 
 ```gd
 Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
-  'show_progress_bar': true
+  "show_progress_bar": true
 })
 ```
 
@@ -103,8 +97,6 @@ var params = {
 Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
 ```
 
-To use parameters in the new scene, add a `pre_start(params)` function in your scene root node.
-
 ```gd
 # gameplay.gd
 
@@ -114,27 +106,7 @@ func pre_start(params):
    # setup your scene here
 ```
 
-Some notes about `pre_start` and `start`:
-
-1. `pre_start` it's called after `_ready()`, just before a fade out
-   transition is played. It's safe to apply dynamic layout code here
-   since the graphic transition covers everything.
-2. `start` it's called after `pre_start`, it's called as soon as the graphic transition finishes.
-
-## Restart the current scene
-
-```gd
-Game.restart_scene()
-```
-
-## Restart the current scene but override params
-
-```gd
-var new_params = {
-  level: 5,
-}
-Game.restart_scene_with_params(new_params)
-```
+To learn more about scenes management, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/Features#scenes-management). 
 
 ## Center a Node2D into the viewport
 
