@@ -35,7 +35,7 @@
 3. Open the project in [Godot](https://godotengine.org/download/) (GDScript)
 4. Done
 
-Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/Getting-started) to learn
+Read [wiki/Getting-started](https://github.com/crystal-bit/godot-game-template/wiki/1.-Getting-started) to learn
 more.
 
 ## Used by
