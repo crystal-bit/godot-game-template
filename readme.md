@@ -106,7 +106,7 @@ func pre_start(params):
    # setup your scene here
 ```
 
-To learn more about scenes management, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/Features#scenes-management). 
+To learn more about scenes management, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/2.-Features). 
 
 ## Center a Node2D into the viewport
 
