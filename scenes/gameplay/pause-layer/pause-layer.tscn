@@ -20,8 +20,8 @@ margin_left = -244.5
 margin_top = 24.0
 margin_right = 244.5
 margin_bottom = 31.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.788235, 0.788235, 0.788235, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Pause: ESC (keyboard) or START button (joypad)"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -72,6 +72,8 @@ func _set_new_scene(resource: PackedScene):
 	if instanced_scn.has_method("start"):
 		instanced_scn.start()
 	emit_signal("change_finished")
+	_params = {}
+	_loading_start_time = 0
 
 
 func _transition_appear(params):

@@ -32,7 +32,6 @@ func _ready() -> void:
 	scenes = preload("res://scenes/main/scenes.gd").new()
 	scenes.name = "Scenes"
 	scenes.main = self
-	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
 	get_node("/root/").call_deferred("add_child", scenes)
 
 
@@ -94,8 +93,3 @@ func _input(_event: InputEvent):
 	if transitions.is_displayed():
 		# prevent all input events
 		get_tree().set_input_as_handled()
-
-
-# Unpause the game when the transition finishes.
-func _on_Scenes_change_finished():
-	get_tree().paused = false

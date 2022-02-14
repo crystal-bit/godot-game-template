@@ -5,6 +5,7 @@ onready var pause_button := $PauseButton
 onready var resume_option := $Pause/VBoxOptions/Resume
 onready var label := $PressESCToOpenMenu
 
+
 func _ready():
 	if OS.has_touchscreen_ui_hint():
 		label.visible = false
@@ -12,6 +13,12 @@ func _ready():
 		# to hide the pause_button on desktop: un-comment the next line
 		# pause_button.hide()
 		pass
+
+
+# when the node is removed from the tree (mostly because of a scene change)
+func _exit_tree() -> void:
+	# disable pause
+	get_tree().paused = false
 
 
 func _unhandled_input(event):
