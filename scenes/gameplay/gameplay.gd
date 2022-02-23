@@ -11,7 +11,6 @@ func pre_start(params):
 			var val = params[key]
 			printt("", key, val)
 	$Sprite.position = Game.size / 2
-	set_process(false)
 
 
 # `start()` is called when the graphic transition ends.
@@ -20,7 +19,6 @@ func start():
 	var active_scene: Node = Game.get_active_scene()
 	print("\nCurrent active scene is: ",
 		active_scene.name, " (", active_scene.filename, ")")
-	set_process(true)
 
 
 func _process(delta):

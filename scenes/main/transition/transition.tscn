@@ -22,6 +22,10 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.305882, 0.560784, 0.74902, 1 )
 border_width_left = 2
@@ -51,10 +55,6 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
-
-[sub_resource type="DynamicFont" id=4]
-size = 18
-font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -275,9 +275,9 @@ margin_left = -85.0
 margin_top = -11.0
 margin_right = 85.0
 margin_bottom = 11.0
+custom_fonts/font = SubResource( 4 )
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
 max_value = 1.0
 percent_visible = false
 __meta__ = {
@@ -292,3 +292,6 @@ anims/black = SubResource( 5 )
 anims/transition-in = SubResource( 6 )
 anims/transition-out = SubResource( 7 )
 anims/transparent = SubResource( 8 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
