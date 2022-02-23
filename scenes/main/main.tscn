@@ -18,3 +18,6 @@ layer = 128
 pause_mode = 1
 
 [node name="Menu" parent="ActiveSceneContainer" instance=ExtResource( 2 )]
+
+[connection signal="transition_finished" from="Transitions" to="." method="_on_Transitions_transition_finished"]
+[connection signal="transition_started" from="Transitions" to="." method="_on_Transitions_transition_started"]

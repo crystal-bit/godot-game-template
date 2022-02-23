@@ -5,6 +5,8 @@ class_name Transition
 extends CanvasLayer
 
 signal progress_bar_filled()
+signal transition_started(anim_name)
+signal transition_finished(anim_name)
 
 onready var anim: AnimationPlayer = $AnimationPlayer
 onready var progress = $ColorRect/Progress
@@ -70,3 +72,13 @@ func _on_resource_stage_loaded(stage: int, stages_amount: int):
 		_update_progress_bar(percentage)
 	else:
 		pass
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "transition-in" or anim_name == "transition_out":
+		emit_signal("transition_finished", anim_name)
+
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	if anim_name == "transition-in" or anim_name == "transition_out":
+		emit_signal("transition_started", anim_name)

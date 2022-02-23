@@ -2,6 +2,8 @@
 class_name Main
 extends Node
 
+export var pause_scenes_on_transitions = false
+
 # Scenes which are prevented to be loaded.
 # Eg: if you try to call Game.change_scene("res://scenes/main.tscn")
 # the scene manager will load `fallback_scene` instead.
@@ -10,11 +12,6 @@ const SCENES_DENYLIST = [
 ]
 # Fallback scene loaded if you try to load a scene contained in `SCENES_DENYLIST`.
 const FALLBACK_SCENE = "res://scenes/menu/menu.tscn"
-
-# Toggles initial graphic transition when starting the game.
-# Scenes run with "Play Scene" never use transitions (to speed up development).
-# Note: this may be replaced with custom splash screens in the future
-export var splash_transition_on_start = false
 
 var size := Vector2()
 var scenes: Scenes
@@ -32,7 +29,6 @@ func _ready() -> void:
 	scenes = preload("res://scenes/main/scenes.gd").new()
 	scenes.name = "Scenes"
 	scenes.main = self
-	scenes.connect("change_finished", self, "_on_Scenes_change_finished")
 	get_node("/root/").call_deferred("add_child", scenes)
 
 
@@ -96,6 +92,12 @@ func _input(_event: InputEvent):
 		get_tree().set_input_as_handled()
 
 
-# Unpause the game when the transition finishes.
-func _on_Scenes_change_finished():
-	get_tree().paused = false
+func _on_Transitions_transition_started(anim_name):
+	if pause_scenes_on_transitions:
+		get_tree().paused = true
+
+
+func _on_Transitions_transition_finished(anim_name):
+	if pause_scenes_on_transitions:
+		yield(get_tree().create_timer(1), "timeout")
+		get_tree().paused = false
