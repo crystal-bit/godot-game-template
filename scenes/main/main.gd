@@ -99,5 +99,4 @@ func _on_Transitions_transition_started(anim_name):
 
 func _on_Transitions_transition_finished(anim_name):
 	if pause_scenes_on_transitions:
-		yield(get_tree().create_timer(1), "timeout")
 		get_tree().paused = false
