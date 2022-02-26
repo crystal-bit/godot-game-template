@@ -75,10 +75,10 @@ func _on_resource_stage_loaded(stage: int, stages_amount: int):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "transition-in" or anim_name == "transition_out":
+	if anim_name == "transition-out":
 		emit_signal("transition_finished", anim_name)
 
 
 func _on_AnimationPlayer_animation_started(anim_name):
-	if anim_name == "transition-in" or anim_name == "transition_out":
+	if anim_name == "transition-in":
 		emit_signal("transition_started", anim_name)
