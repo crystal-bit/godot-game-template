@@ -8,10 +8,9 @@ func _ready() -> void:
 
 func _on_ExitButton_pressed():
 	# gently shutdown the game
-	var main = Game.main
-	main.transitions.fade_in({
+	Transitions.fade_in({
 		'show_progress_bar': false
 	})
-	yield(main.transitions.anim, "animation_finished")
+	yield(Transitions.anim, "animation_finished")
 	yield(get_tree().create_timer(0.3), "timeout")
 	get_tree().quit()

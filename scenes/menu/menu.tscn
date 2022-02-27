@@ -20,9 +20,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.176471, 0.682353, 0.647059, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -54,9 +51,6 @@ margin_top = -34.0
 margin_right = 100.0
 margin_bottom = 130.0
 custom_constants/separation = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 margin_right = 200.0

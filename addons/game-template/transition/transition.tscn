@@ -1,13 +1,28 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/open-sans/open-sans-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/sprites/icon.png" type="Texture" id=2]
-[ext_resource path="res://scenes/main/transition/progress.gd" type="Script" id=3]
-[ext_resource path="res://scenes/main/transition/transition.gd" type="Script" id=4]
+[ext_resource path="res://addons/game-template/transition/progress.gd" type="Script" id=3]
+[ext_resource path="res://addons/game-template/transition/transition.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -20, -79 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
-length = 3.0
+length = 2.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_rotation")
@@ -16,10 +31,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 0.554785, -2 ),
+"times": PoolRealArray( 0, 0.16, 0.48, 0.64, 0.96, 1.12, 1.44, 1.6 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [ -90.0, -90.0, 0.0, 0.0, 90.0, 90.0, 0.0, 0.0 ]
 }
 
 [sub_resource type="DynamicFont" id=4]
@@ -55,6 +70,9 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
+
+[sub_resource type="Animation" id=10]
+length = 0.001
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -94,7 +112,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.0862745, 0.0862745, 0.0862745, 0 ), Color( 0.0862745, 0.0862745, 0.0862745, 1 ) ]
@@ -106,7 +124,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -118,7 +136,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
+"times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 2, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -130,7 +148,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
+"times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 2, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -146,7 +164,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -158,7 +176,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.0862745, 0.0862745, 0.0862745, 1 ), Color( 0.0862745, 0.0862745, 0.0862745, 1 ), Color( 0.0862745, 0.0862745, 0.0862745, 0 ) ]
@@ -170,7 +188,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -182,7 +200,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -221,13 +239,11 @@ layer = 100
 script = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color( 0.0862745, 0.0862745, 0.0862745, 0 )
 
 [node name="Progress" type="Control" parent="ColorRect"]
 anchor_left = 1.0
@@ -245,6 +261,7 @@ __meta__ = {
 }
 
 [node name="Spinner" type="TextureRect" parent="ColorRect/Progress"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -253,20 +270,19 @@ margin_left = -40.0
 margin_top = -99.0
 margin_right = 40.0
 margin_bottom = -19.0
+rect_rotation = -90.0
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 40, 40 )
 mouse_filter = 2
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/Progress/Spinner"]
 autoplay = "idle"
-playback_speed = 2.0
+anims/RESET = SubResource( 9 )
 anims/idle = SubResource( 1 )
 
 [node name="ProgressBar" type="ProgressBar" parent="ColorRect/Progress"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -280,14 +296,12 @@ custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 max_value = 1.0
 percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="ColorRect/Progress/ProgressBar"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "transparent"
+anims/RESET = SubResource( 10 )
 anims/black = SubResource( 5 )
 anims/transition-in = SubResource( 6 )
 anims/transition-out = SubResource( 7 )

@@ -1,4 +1,4 @@
-# Scene manager.
+# Scenes manager.
 # When the loading of a new scene is completed, it calls
 # two methods on the new loaded scene (if they are defined):
 # 1. `pre_start(params)`: called as soon as the scene is loaded in memory.
@@ -14,8 +14,6 @@ signal change_finished
 
 const MINIMUM_TRANSITION_DURATION = 300 # ms
 
-# Reference to the Main node, set by main.tscn
-var main
 var transitions: Transition
 
 # params caching
@@ -23,28 +21,27 @@ var _params = {}
 var _loading_start_time = 0
 
 
-onready var _history = preload("res://scenes/main/scenes/scenes-history.gd").new()
+onready var _history = preload("res://addons/game-template/scenes/scenes-history.gd").new()
 
 onready var _loader_ri = \
-  preload("res://scenes/main/scenes/resource_interactive_loader.gd").new()
+  preload("res://addons/game-template/scenes/resource_interactive_loader.gd").new()
 onready var _loader_mt = \
-  preload("res://scenes/main/scenes/resource_multithread_loader.gd").new()
+  preload("res://addons/game-template/scenes/resource_multithread_loader.gd").new()
 
 
 func _ready():
-	transitions = main.transitions
 	_loader_mt.name = "ResourceLoaderMultithread"
 	add_child(_loader_mt)
 	_loader_ri.name = "ResourceInteractiveLoader"
 	add_child(_loader_ri)
 	_loader_mt.connect(
 		"resource_stage_loaded",
-		transitions,
+		Transitions,
 		"_on_resource_stage_loaded"
 	)
 	_loader_ri.connect(
 		"resource_stage_loaded",
-		transitions,
+		Transitions,
 		"_on_resource_stage_loaded"
 	)
 	connect("change_started", self, "_on_change_started")
@@ -57,18 +54,19 @@ func get_last_loaded_scene_data() -> SceneData:
 
 
 func _get_current_scene_node() -> Node:
-	return main.get_active_scene()
+	return get_tree().current_scene
 
 
 func _set_new_scene(resource: PackedScene):
 	var current_scene = _get_current_scene_node()
 	current_scene.queue_free()
-	var instanced_scn = resource.instance() # triggers _init
-	main.active_scene_container.add_child(instanced_scn) # triggers _ready
-	transitions.fade_out()
+	var instanced_scn: Node = resource.instance() # triggers _init
+	get_tree().root.add_child(instanced_scn) # triggers _ready
+	get_tree().current_scene = instanced_scn
+	Transitions.fade_out()
 	if instanced_scn.has_method("pre_start"):
 		instanced_scn.pre_start(_params)
-	yield(transitions.anim, "animation_finished")
+	yield(Transitions.anim, "animation_finished")
 	if instanced_scn.has_method("start"):
 		instanced_scn.start()
 	emit_signal("change_finished")
@@ -77,7 +75,7 @@ func _set_new_scene(resource: PackedScene):
 
 
 func _transition_appear(params):
-	transitions.fade_in(params)
+	Transitions.fade_in(params)
 
 
 # Multithread interactive loading
@@ -109,7 +107,7 @@ func change_scene_background_loading(new_scene: String, params = {}):
 	_params = params
 	_loading_start_time = OS.get_ticks_msec()
 	_transition_appear(params)
-	yield(transitions.anim, "animation_finished")
+	yield(Game.transitions.anim, "animation_finished")
 	_loader_ri.load_scene(new_scene)
 
 
@@ -118,8 +116,8 @@ func _on_change_started(new_scene, params):
 
 
 func _on_resource_loaded(resource):
-	if main.transitions.is_transition_in_playing():
-		yield(transitions.anim, "animation_finished")
+	if Transitions.is_transition_in_playing():
+		yield(Transitions.anim, "animation_finished")
 	var load_time = OS.get_ticks_msec() - _loading_start_time # ms
 	print("{scn} loaded in {elapsed}ms".format({
 		'scn': resource.resource_path,
