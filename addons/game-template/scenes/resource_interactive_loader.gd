@@ -9,6 +9,7 @@ var _stages_amount
 var _elapsed = 0
 const LOAD_STEP_DELAY = 2 # `_process` calls.
 
+
 func _ready() -> void:
 	set_process(false)
 

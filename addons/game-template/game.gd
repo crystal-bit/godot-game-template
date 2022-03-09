@@ -3,6 +3,8 @@
 extends Node
 
 
+onready var transitions = get_node_or_null("/root/Transitions")
+
 var pause_scenes_on_transitions = false
 var prevent_input_on_transitions = true
 var scenes: Scenes
@@ -13,6 +15,9 @@ func _enter_tree() -> void:
 	pause_mode = Node.PAUSE_MODE_PROCESS # needed to make "prevent_input_on_transitions" work even if the game is paused
 	_register_size()
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
+	if transitions:
+		transitions.connect("transition_started", self, "_on_Transitions_transition_started")
+		transitions.connect("transition_finished", self, "_on_Transitions_transition_finished")
 #	add_script("Utils", "utils", "res://addons/game-template/utils.gd")
 
 
@@ -55,7 +60,7 @@ func restart_scene_with_params(override_params):
 
 # Prevents all inputs while a graphic transition is playing.
 func _input(_event: InputEvent):
-	if prevent_input_on_transitions and Transitions.is_displayed():
+	if transitions and prevent_input_on_transitions and transitions.is_displayed():
 		# prevent all input events
 		get_tree().set_input_as_handled()
 
