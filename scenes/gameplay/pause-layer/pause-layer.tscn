@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/menu/credits-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/open-sans/open-sans-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/ui-theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/pause_button.png" type="Texture" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-size = 22
-font_data = ExtResource( 3 )
 
 [node name="PauseLayer" type="CanvasLayer"]
 pause_mode = 2
@@ -19,19 +14,16 @@ anchor_right = 0.5
 margin_left = -244.5
 margin_top = 24.0
 margin_right = 244.5
-margin_bottom = 31.0
+margin_bottom = 38.0
+theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.788235, 0.788235, 0.788235, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "Pause: ESC (keyboard) or START button (joypad)"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PauseButton" type="TextureButton" parent="."]
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 62.0
-margin_bottom = 62.0
+margin_right = 78.0
+margin_bottom = 78.0
 texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,6 +33,7 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,17 +62,15 @@ __meta__ = {
 
 [node name="Resume" type="LinkButton" parent="Pause/VBoxOptions"]
 margin_right = 161.0
-margin_bottom = 39.0
+margin_bottom = 34.0
 focus_mode = 2
-custom_fonts/font = ExtResource( 1 )
 text = "RESUME"
 
 [node name="Main Menu" type="LinkButton" parent="Pause/VBoxOptions"]
-margin_top = 59.0
+margin_top = 54.0
 margin_right = 161.0
-margin_bottom = 98.0
+margin_bottom = 88.0
 focus_mode = 2
-custom_fonts/font = ExtResource( 1 )
 text = "MAIN MENU"
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]

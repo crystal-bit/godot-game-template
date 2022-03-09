@@ -1,16 +1,24 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://scenes/menu/title_font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://scenes/menu/play-button.gd" type="Script" id=2]
-[ext_resource path="res://scenes/menu/exit-button.gd" type="Script" id=3]
-[ext_resource path="res://scenes/menu/normal.tres" type="DynamicFont" id=4]
-[ext_resource path="res://scenes/menu/credits-font.tres" type="DynamicFont" id=5]
-[ext_resource path="res://scenes/menu/version.gd" type="Script" id=6]
-[ext_resource path="res://scenes/menu/godot-version.gd" type="Script" id=8]
+[ext_resource path="res://assets/ui-theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/menu/menu.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=5]
+size = 60
+font_data = ExtResource( 4 )
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+
+"
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -25,16 +33,13 @@ color = Color( 0.176471, 0.682353, 0.647059, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -339.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="CenterContainer"]
-margin_left = 123.0
-margin_top = 86.0
-margin_right = 901.0
-margin_bottom = 174.0
-custom_fonts/font = ExtResource( 1 )
+margin_left = 145.0
+margin_top = 89.0
+margin_right = 878.0
+margin_bottom = 172.0
+custom_fonts/font = SubResource( 5 )
 text = "Godot Game Template"
 uppercase = true
 __meta__ = {
@@ -58,9 +63,7 @@ margin_bottom = 70.0
 rect_min_size = Vector2( 200, 70 )
 focus_neighbour_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
-custom_fonts/font = ExtResource( 4 )
 text = "START"
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -72,9 +75,7 @@ margin_bottom = 156.0
 rect_min_size = Vector2( 200, 70 )
 focus_neighbour_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
-custom_fonts/font = ExtResource( 4 )
 text = "EXIT"
-script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -90,18 +91,15 @@ margin_bottom = -18.0
 [node name="GameVersion" type="Label" parent="Version"]
 margin_right = 182.0
 margin_bottom = 34.0
-custom_fonts/font = ExtResource( 5 )
 text = "<x.y.z>"
-script = ExtResource( 6 )
 
 [node name="GodotVersion" type="Label" parent="Version"]
 margin_top = 38.0
 margin_right = 182.0
 margin_bottom = 72.0
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
-custom_fonts/font = ExtResource( 5 )
 text = "<GodotVersion>"
-script = ExtResource( 8 )
+script = SubResource( 1 )
 
 [node name="Credits" type="VBoxContainer" parent="."]
 anchor_left = 1.0
@@ -119,7 +117,6 @@ grow_vertical = 0
 margin_right = 243.0
 margin_bottom = 34.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 5 )
 text = "made by:"
 
 [node name="Developer1" type="Label" parent="Credits"]
@@ -128,7 +125,6 @@ margin_right = 243.0
 margin_bottom = 72.0
 grow_horizontal = 0
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
-custom_fonts/font = ExtResource( 5 )
 text = "Crystal Bit community"
 
 [node name="Developer2" type="Label" parent="Credits"]
@@ -138,7 +134,6 @@ margin_right = 157.0
 margin_bottom = 125.0
 grow_horizontal = 0
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
-custom_fonts/font = ExtResource( 5 )
 text = "Developer 2"
 
 [node name="Developer3" type="Label" parent="Credits"]
@@ -148,8 +143,7 @@ margin_right = 157.0
 margin_bottom = 168.0
 grow_horizontal = 0
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
-custom_fonts/font = ExtResource( 5 )
 text = "Developer 3"
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="VBoxContainer/ExitButton" method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
