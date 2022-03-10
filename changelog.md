@@ -19,9 +19,15 @@ This is needed to trigger new line rendering for markdown.
 
 ---
 
-## [dev branch / Unreleased]
+## WIP (v2022.03.0)
 
-...
+🟢 Godot 3.4.3 support (CI is still WIP) \
+🔵 Big refactoring of the template into a separate addon \
+🔵 Menu.tsnc: reduced the number of files. Smaller scripts and resources have
+been merged
+🔵 During transitions: scenes are not paused by default anymore. If users
+want to pause scenes during transitions, it's possible to do it by setting
+`pause_scenes_on_transitions = true` in `Game.gd`
 
 ## v2021.12.0
 
