@@ -3,20 +3,19 @@ on:
   push:
     branches:
       - main
-      - dev
+      - staging
 env:
-  GODOT_VERSION: 3.4.2
+  GODOT_VERSION: 3.4.4
   EXPORT_NAME: godot-game-template
   ITCH_IO: ${{ false }} #set to true if you want to enable automatic itch.io deploy
   RELEASE_ANDROID: ${{ false }} #set to  true if you want to enable automatic android release export
 
 jobs:
   export-windows:
-    if: true
     name: Windows Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:latest
+      image: barichello/godot-ci:3.4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -46,11 +45,10 @@ jobs:
           PACKAGE: itch.zip
 
   export-linux:
-    if: true
     name: Linux Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:latest
+      image: barichello/godot-ci:3.4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -80,11 +78,10 @@ jobs:
           PACKAGE: itch.zip
 
   export-web:
-    if: true
     name: Web Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:latest
+      image: barichello/godot-ci:3.4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -124,11 +121,10 @@ jobs:
           PACKAGE: itch.zip
 
   export-mac:
-    if: true
     name: Mac Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:latest
+      image: barichello/godot-ci:3.4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -158,11 +154,10 @@ jobs:
           PACKAGE: itch.zip
 
   export-android:
-    if: true
     name: Android Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
-      image: davcri/godot-game-template-ci:3.4.2
+      image: barichello/godot-ci:3.4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -174,7 +169,7 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+          echo 'export/android/android_sdk_path = "/usr/lib/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
           mkdir -v -p build/android
