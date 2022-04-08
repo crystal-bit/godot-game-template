@@ -19,9 +19,9 @@ This is needed to trigger new line rendering for markdown.
 
 ---
 
-## WIP (v2022.03.0)
+## v2022.04.0
 
-🟢 Godot 3.4.3 support (CI is still WIP) \
+🟢 Godot 3.4.4 support \
 🔵 Big refactoring of the template into a separate addon \
 🔵 Menu.tsnc: reduced the number of files. Smaller scripts and resources have
 been merged
