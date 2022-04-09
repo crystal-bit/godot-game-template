@@ -77,6 +77,8 @@ _Get in contact if you want to be featured here!_
 Game.change_scene("res://scenes/gameplay/gameplay.tscn")
 ```
 
+![change_scene](https://user-images.githubusercontent.com/6860637/162567110-026c1979-6237-4255-bb2a-97815fc4b0c4.gif)
+
 ## Change scene and show progress bar
 
 ```gd
@@ -84,6 +86,8 @@ Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
   "show_progress_bar": true
 })
 ```
+
+![progress](https://user-images.githubusercontent.com/6860637/162567097-81b5c54e-1ee5-42b9-a583-60764ecff069.gif)
 
 ## Change scene and pass parameters
 
@@ -105,7 +109,7 @@ func pre_start(params):
    # setup your scene here
 ```
 
-To learn more about scenes management, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/2.-Features). 
+To learn more about all the features, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/2.-Features). 
 
 ## Center a Node2D into the viewport
 

@@ -6,9 +6,8 @@ var elapsed = 0
 # Use this function to receive params from `Game.change_scene(params)`.
 func pre_start(params):
 	var cur_scene: Node = get_tree().current_scene
-	print("\nCurrent active scene is: ",
-		cur_scene.name, " (", cur_scene.filename, ")")
-	print("\ngameplay.gd:pre_start() called with params = ")
+	print("Current scene is: ", cur_scene.name, " (", cur_scene.filename, ")")
+	print("gameplay.gd: pre_start() called with params = ")
 	if params:
 		for key in params:
 			var val = params[key]
@@ -18,7 +17,7 @@ func pre_start(params):
 
 # `start()` is called when the graphic transition ends.
 func start():
-	print("\ngameplay.gd:start() called")
+	print("gameplay.gd: start() called")
 
 
 func _process(delta):
