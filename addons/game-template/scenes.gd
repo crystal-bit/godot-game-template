@@ -61,10 +61,10 @@ func _set_new_scene(resource: PackedScene):
 	var instanced_scn: Node = resource.instance() # triggers _init
 	get_tree().root.add_child(instanced_scn) # triggers _ready
 	get_tree().current_scene = instanced_scn
+	if instanced_scn.has_method("pre_start"):
+		yield(instanced_scn.pre_start(_params), "completed")
 	if transitions:
 		transitions.fade_out()
-	if instanced_scn.has_method("pre_start"):
-		instanced_scn.pre_start(_params)
 	if transitions:
 		yield(transitions.anim, "animation_finished")
 	if instanced_scn.has_method("start"):

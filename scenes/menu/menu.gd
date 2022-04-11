@@ -12,7 +12,7 @@ func _ready():
 
 func _on_PlayButton_pressed() -> void:
 	var params = {
-		show_progress_bar = false,
+		show_progress_bar = true,
 		"a_number": 10,
 		"a_string": "Ciao mamma!",
 		"an_array": [1, 2, 3, 4],
