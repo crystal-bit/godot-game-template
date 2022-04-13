@@ -62,7 +62,10 @@ func _set_new_scene(resource: PackedScene):
 	get_tree().root.add_child(instanced_scn) # triggers _ready
 	get_tree().current_scene = instanced_scn
 	if instanced_scn.has_method("pre_start"):
-		yield(instanced_scn.pre_start(_params), "completed")
+		var coroutine_state = instanced_scn.pre_start(_params)
+		if (coroutine_state is GDScriptFunctionState) and (coroutine_state.is_valid()):
+			yield(coroutine_state, "completed")
+	# else... this is a normal function that just ended
 	if transitions:
 		transitions.fade_out()
 	if transitions:
