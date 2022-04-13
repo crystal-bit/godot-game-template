@@ -13,6 +13,9 @@ func pre_start(params):
 			var val = params[key]
 			printt("", key, val)
 	$Sprite.position = Game.size / 2
+	print("Processing...")
+	yield(get_tree().create_timer(2), "timeout")
+	print("Done")
 
 
 # `start()` is called when the graphic transition ends.
