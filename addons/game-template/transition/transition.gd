@@ -19,7 +19,7 @@ func is_displayed() -> bool:
 
 
 func is_transition_in_playing():
-	return anim.is_playing() and anim.current_animation == 'transition-in'
+	return anim.current_animation == 'transition-in' and anim.is_playing()
 
 
 # appear
