@@ -65,7 +65,6 @@ func _set_new_scene(resource: PackedScene):
 		var coroutine_state = instanced_scn.pre_start(_params)
 		if (coroutine_state is GDScriptFunctionState) and (coroutine_state.is_valid()):
 			yield(coroutine_state, "completed")
-	# else... this is a normal function that just ended
 	if transitions:
 		transitions.fade_out()
 	if transitions:

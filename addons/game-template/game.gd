@@ -40,7 +40,7 @@ func change_scene(new_scene: String, params = {}):
 		printerr("Scene file not found: ", new_scene)
 		return
 
-	if OS.has_feature('HTML5'): # Godot 3.2.3 HTML5 export template does not support multithreading
+	if OS.has_feature('HTML5'): # See https://github.com/crystal-bit/godot-game-template/wiki/2.-Features#single-thread-vs-multihtread
 		scenes.change_scene_background_loading(new_scene, params) # single-thread
 	else:
 		scenes.change_scene_multithread(new_scene, params) # multi-thread
