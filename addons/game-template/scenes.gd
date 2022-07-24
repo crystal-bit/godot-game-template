@@ -44,19 +44,24 @@ func _ready():
 		)
 	connect("change_started", self, "_on_change_started")
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	_history.add(_get_current_scene_node().filename, null)
+	var cur_scene = get_tree().current_scene
+	_history.add(cur_scene.filename, {})
+	# if playing a specific scene
+	if ProjectSettings.get("application/run/main_scene") != cur_scene.filename:
+		# call pre_start and start method to ensure compatibility with "Play Scene"
+		if cur_scene.has_method("pre_start"):
+			cur_scene.pre_start({})
+		if cur_scene.has_method("start"):
+			cur_scene.start()
 
 
 func get_last_loaded_scene_data() -> SceneData:
 	return _history.get_last_loaded_scene_data()
 
 
-func _get_current_scene_node() -> Node:
-	return get_tree().current_scene
-
 
 func _set_new_scene(resource: PackedScene):
-	var current_scene = _get_current_scene_node()
+	var current_scene = get_tree().current_scene
 	current_scene.queue_free()
 	yield(current_scene, "tree_exited") # wait for the current scene to be fully removed
 	var instanced_scn: Node = resource.instance() # triggers _init
