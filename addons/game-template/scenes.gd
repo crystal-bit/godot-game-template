@@ -58,6 +58,7 @@ func _get_current_scene_node() -> Node:
 func _set_new_scene(resource: PackedScene):
 	var current_scene = _get_current_scene_node()
 	current_scene.queue_free()
+	yield(current_scene, "tree_exited") # wait for the current scene to be fully removed
 	var instanced_scn: Node = resource.instance() # triggers _init
 	get_tree().root.add_child(instanced_scn) # triggers _ready
 	get_tree().current_scene = instanced_scn
