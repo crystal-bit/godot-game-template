@@ -62,7 +62,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/windows
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == true }}
+        if: ${{ env.ITCH_IO == 'true' }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -97,7 +97,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/linux
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == true }}
+        if: ${{ env.ITCH_IO == 'true' }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -142,7 +142,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/web
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == true }}
+        if: ${{ env.ITCH_IO == 'true' }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -177,7 +177,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/mac
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == true }}
+        if: ${{ env.ITCH_IO == 'true' }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -209,7 +209,7 @@ jobs:
           mkdir -v -p build/android
           godot --verbose --export-debug "Android-CI-job (Do not edit)" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
-        if: ${{ env.RELEASE_ANDROID == true }}
+        if: ${{ env.RELEASE_ANDROID == 'true' }}
         env:
           K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
           K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
@@ -228,7 +228,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/android
       - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == true }}
+        if: ${{ env.ITCH_IO == 'true' }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
