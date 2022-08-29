@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-      - staging
-      - "feature/**"
+      # - staging
+      # - "feature/**"
 env:
   GODOT_VERSION: 3.5
   EXPORT_NAME: godot-game-template
