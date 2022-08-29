@@ -4,7 +4,7 @@ on:
     branches:
       - main
       - staging
-
+      - "feature/**"
 env:
   GODOT_VERSION: 3.5
   EXPORT_NAME: godot-game-template
@@ -107,7 +107,7 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
