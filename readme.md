@@ -4,7 +4,7 @@
 
 <p>
 <a href="https://godotengine.org/download">
-  <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-3.4-blue">
+  <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-3.5-blue">
 </a>
 
 <a href="https://github.com/crystal-bit/godot-game-template/releases">
