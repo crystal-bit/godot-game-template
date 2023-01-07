@@ -30,10 +30,11 @@ jobs:
           mkdir -v -p build/windows
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: windows
           path: build/windows
+          retention-days: 1
       - name: Zip Folder
         run: zip -r itch.zip build/windows
       - name: Deploy to itch.io
@@ -64,10 +65,11 @@ jobs:
           mkdir -v -p build/linux
           godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: linux
           path: build/linux
+          retention-days: 1
       - name: Zip Folder
         run: zip -r itch.zip build/linux
       - name: Deploy to itch.io
@@ -98,10 +100,11 @@ jobs:
           mkdir -v -p build/web
           godot -v --export "HTML5" ./build/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: web
           path: build/web
+          retention-days: 1
       # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
       - name: Install rsync 📚
         run: |
@@ -141,10 +144,11 @@ jobs:
           mkdir -v -p build/mac
           godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: mac
           path: build/mac
+          retention-days: 1
       - name: Zip Folder
         run: zip -r itch.zip build/mac
       - name: Deploy to itch.io
@@ -190,10 +194,11 @@ jobs:
           sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'$K8S_SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
           sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'$K8S_SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
           godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         with:
           name: android
           path: build/android
+          retention-days: 1
       - name: Zip Folder
         run: zip -r itch.zip build/android
       - name: Deploy to itch.io
