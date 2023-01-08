@@ -11,21 +11,21 @@
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/crystal-bit/godot-game-template">
 </a>
 
-<a href="https://github.com/crystal-bit/godot-game-template/actions?query=workflow%3A%22godot-ci+export%22">
+<!-- <a href="https://github.com/crystal-bit/godot-game-template/actions?query=workflow%3A%22godot-ci+export%22">
   <img alt="GitHub workflow status" src="https://img.shields.io/github/workflow/status/crystal-bit/godot-game-template/godot-ci%20export?label=game-export">
-</a>
+</a> -->
 
 <!-- <a href="https://github.com/crystal-bit/godot-game-template/wiki">
   <img alt="GitHub wiki" src="https://img.shields.io/badge/%F0%9F%93%96-wiki-blueviolet">
 </a> -->
 
-<a href="https://crystalbit.itch.io/godot-game-template">
+<!-- <a href="https://crystalbit.itch.io/godot-game-template">
   <img alt="Play store badge" src="https://img.shields.io/badge/HTML5-Itch.io-critical">
-</a>
+</a> -->
 
-<a href="https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate">
+<!-- <a href="https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate">
   <img alt="Play store badge" src="https://img.shields.io/badge/Android-PlayStore-green">
-</a>
+</a> -->
 </p>
 
 # Get started
@@ -47,10 +47,6 @@ Read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/) to lea
 | ![Godot Game Template Demo](https://play-lh.googleusercontent.com/aOVexQckoyjN2WJp_puq8ifTr2TnWwJ-cNw6iflcH0IpQYp04m_ChTd0jwkCKalz5wVM=s100-rw) | **demo-godot-game-template** (2021) | [Android](https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate)                                                                                | [GitHub](https://github.com/crystal-bit/demo-godot-game-template) |
 
 _Get in contact if you want to be featured here!_
-
-### Changelog
-
-- [changelog.md](./changelog.md)
 
 # Features
 
@@ -109,7 +105,7 @@ func pre_start(params):
    # setup your scene here
 ```
 
-To learn more about all the features, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/2.-Features). 
+To learn more about all the features, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/2.-Features).
 
 ## Center a Node2D into the viewport
 
@@ -125,6 +121,7 @@ Many features were implemented only thanks to the help of:
 - [Fahien](https://github.com/Fahien)
 - [Andrea1141](https://github.com/Andrea1141)
 - [vini-guerrero](https://github.com/vini-guerrero)
+- [idbrii](https://github.com/idbrii)
 
 Also many tools were already available in the open source community, see the [Thanks](#thanks) section.
 
