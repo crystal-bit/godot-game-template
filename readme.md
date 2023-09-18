@@ -4,7 +4,7 @@
 
 <p>
 <a href="https://godotengine.org/download">
-  <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-3.5-blue">
+  <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-4.1-blue">
 </a>
 
 <a href="https://github.com/crystal-bit/godot-game-template/releases">
@@ -51,15 +51,22 @@ _Get in contact if you want to be featured here!_
 # Features
 
 - **Continuos Integration**:
+
   - Automatic desktop build (linux, windows, osx, HTML5)
   - Automatic HTML5 deploy to Github pages
   - Automatic HTML5 deploy to itch.io
-  - Automatic Android builds
-- **Scenes loading** with graphic transitions (fade-in/out)
+  - Automatic Android builds -->
+
+- **release.sh** script
+  - build Mac, Windows, Linux and HTML5 builds with a single command
+  - keep a logfile with the build info such as: build date, git commit hash, Godot version, complete log
+  - TODO: integration with https://itch.io/docs/butler/ https://github.com/crystal-bit/godot-game-template/issues/79
+- **Scenes loading**:
+  - graphic transitions (fade-in/out)
   - Send parameters to the new scene
   - Input prevention during scene changes
   - You can still play individual scenes for quick development
-  - Singlethread & Multithread
+  - Multithreaded resource loading
 - **Game pause** handling
 - `.gitignore`
 - Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
