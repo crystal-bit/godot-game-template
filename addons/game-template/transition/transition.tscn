@@ -31,10 +31,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.48, 0.64, 0.96, 1.12, 1.44, 1.6),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2),
 "transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
 "update": 0,
-"values": [-90.0, -90.0, 0.0, 0.0, 90.0, 90.0, 0.0, 0.0]
+"values": [3.48787e-16, 3.48787e-16, 3.14159, 0.0, 0.0, -3.14159, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hvhmj"]
@@ -308,7 +308,6 @@ offset_left = -40.0
 offset_top = -99.0
 offset_right = 40.0
 offset_bottom = -19.0
-rotation = -90.0
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(40, 40)
 mouse_filter = 2
