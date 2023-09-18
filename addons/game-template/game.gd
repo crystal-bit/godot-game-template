@@ -9,8 +9,7 @@ var pause_scenes_on_transitions = false
 var prevent_input_on_transitions = true
 var scenes: Scenes
 var size : get = get_size  
-func get_size():
-	return get_viewport().get_visible_rect().size
+
 
 func _enter_tree() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS # needed to make "prevent_input_on_transitions" work even if the game is paused
@@ -43,6 +42,10 @@ func restart_scene_with_params(override_params):
 	var scene_data = scenes.get_last_loaded_scene_data()
 	change_scene_to_file(scene_data.path, override_params)
 
+
+func get_size():
+	return get_viewport().get_visible_rect().size
+	
 
 # Prevents all inputs while a graphic transition is playing.
 func _input(_event: InputEvent):

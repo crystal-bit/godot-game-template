@@ -299,7 +299,8 @@ script = ExtResource("3")
 
 [node name="Spinner" type="TextureRect" parent="ColorRect/Progress"]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -308,6 +309,8 @@ offset_left = -40.0
 offset_top = -99.0
 offset_right = 40.0
 offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(40, 40)
 mouse_filter = 2

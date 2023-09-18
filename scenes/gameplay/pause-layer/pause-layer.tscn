@@ -1,22 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://barl4q1kugrmm"]
 
-[ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.gd" type="Script" id=2]
-[ext_resource path="res://assets/ui-theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/pause_button.png" type="Texture2D" id=4]
+[ext_resource type="Script" path="res://scenes/gameplay/pause-layer/pause-layer.gd" id="2"]
+[ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://assets/ui-theme.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://byniue2cdd2yv" path="res://assets/pause_button.png" id="4"]
 
 [node name="PauseLayer" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="PressESCToOpenMenu" type="Label" parent="."]
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -244.5
 offset_top = 24.0
 offset_right = 244.5
 offset_bottom = 38.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 0.788235, 0.788235, 0.788235, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
 text = "Pause: ESC (keyboard) or START button (joypad)"
 
 [node name="PauseButton" type="TextureButton" parent="."]
@@ -24,29 +25,24 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 78.0
 offset_bottom = 78.0
-texture_normal = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource("4")
 
 [node name="Pause" type="Control" parent="."]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("3")
 
 [node name="ColorRect" type="ColorRect" parent="Pause"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.243137, 0.211765, 0.290196, 0.717647 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.243137, 0.211765, 0.290196, 0.717647)
 
 [node name="VBoxOptions" type="VBoxContainer" parent="Pause"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -56,20 +52,14 @@ offset_top = -100.0
 offset_right = 80.5
 offset_bottom = 100.0
 theme_override_constants/separation = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Resume" type="LinkButton" parent="Pause/VBoxOptions"]
-offset_right = 161.0
-offset_bottom = 34.0
+layout_mode = 2
 focus_mode = 2
 text = "RESUME"
 
 [node name="Main Menu" type="LinkButton" parent="Pause/VBoxOptions"]
-offset_top = 54.0
-offset_right = 161.0
-offset_bottom = 88.0
+layout_mode = 2
 focus_mode = 2
 text = "MAIN MENU"
 
