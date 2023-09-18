@@ -16,8 +16,6 @@ const MINIMUM_TRANSITION_DURATION = 300 # ms
 
 @onready var transitions: Transition = get_node_or_null("/root/Transitions")
 @onready var _history = preload("res://addons/game-template/scenes/scenes-history.gd").new()
-@onready var _loader_ri = \
-  preload("res://addons/game-template/scenes/resource_interactive_loader.gd").new()
 @onready var _loader_mt = \
   preload("res://addons/game-template/scenes/resource_multithread_loader.gd").new()
 
@@ -29,25 +27,18 @@ var _loading_start_time = 0
 func _ready():
 	_loader_mt.name = "ResourceLoaderMultithread"
 	add_child(_loader_mt)
-	_loader_ri.name = "ResourceLoader"
-	add_child(_loader_ri)
+	
 	if transitions:
 		_loader_mt.connect(
-			"resource_stage_loaded",
-			transitions,
-			"_on_resource_stage_loaded"
-		)
-		_loader_ri.connect(
-			"resource_stage_loaded",
-			transitions,
-			"_on_resource_stage_loaded"
+			"resource_stage_loaded", 
+			transitions._on_resource_stage_loaded
 		)
 	connect("change_started", Callable(self, "_on_change_started"))
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	var cur_scene = get_tree().current_scene
-	_history.add(cur_scene.filename, {})
+	var cur_scene: Node = get_tree().current_scene
+	_history.add(cur_scene.scene_file_path, {})
 	# if playing a specific scene
-	if ProjectSettings.get("application/run/main_scene") != cur_scene.filename:
+	if ProjectSettings.get("application/run/main_scene") != cur_scene.scene_file_path:
 		# call pre_start and start method to ensure compatibility with "Play Scene"
 		if cur_scene.has_method("pre_start"):
 			cur_scene.pre_start({})
@@ -59,7 +50,6 @@ func get_last_loaded_scene_data() -> SceneData:
 	return _history.get_last_loaded_scene_data()
 
 
-
 func _set_new_scene(resource: PackedScene):
 	var current_scene = get_tree().current_scene
 	current_scene.queue_free()
@@ -68,9 +58,9 @@ func _set_new_scene(resource: PackedScene):
 	get_tree().root.add_child(instanced_scn) # triggers _ready
 	get_tree().current_scene = instanced_scn
 	if instanced_scn.has_method("pre_start"):
-		var coroutine_state = instanced_scn.pre_start(_params)
-		if (coroutine_state is GDScriptFunctionState) and (coroutine_state.is_valid()):
-			await coroutine_state.completed
+		await instanced_scn.pre_start(_params)
+#		if (coroutine_state is GDScriptFunctionState) and (coroutine_state.is_valid()):
+#		await coroutine_state.completed
 	if transitions:
 		transitions.fade_out()
 	if transitions:
@@ -95,30 +85,10 @@ func change_scene_multithread(new_scene: String, params = {}):
 	_transition_appear(params)
 	_loader_mt.connect(
 		"resource_loaded",
-		self,
-		"_on_resource_loaded",
-		[],
+		_on_resource_loaded,
 		CONNECT_ONE_SHOT
 	)
 	_loader_mt.load_scene(new_scene)
-
-
-# Single thread interactive loading
-func change_scene_background_loading(new_scene: String, params = {}):
-	_loader_ri.connect(
-		"resource_loaded",
-		self,
-		"_on_resource_loaded",
-		[],
-		CONNECT_ONE_SHOT
-	)
-	emit_signal("change_started", new_scene, params)
-	_params = params
-	_loading_start_time = Time.get_ticks_msec()
-	_transition_appear(params)
-	if transitions:
-		await transitions.anim.animation_finished
-	_loader_ri.load_scene(new_scene)
 
 
 func _on_change_started(new_scene, params):

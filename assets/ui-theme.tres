@@ -1,10 +1,15 @@
-[gd_resource type="Theme" load_steps=3 format=2]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ducfept6pmkkm"]
 
-[ext_resource path="res://assets/fonts/open-sans/open-sans-regular.ttf" type="FontFile" id=1]
+[ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1"]
 
-[sub_resource type="FontFile" id=3]
-size = 24
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [resource]
-default_font = SubResource( 3 )
+default_font = SubResource("3")

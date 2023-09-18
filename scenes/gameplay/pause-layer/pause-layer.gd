@@ -7,7 +7,7 @@ extends CanvasLayer
 
 
 func _ready():
-	if OS.has_touchscreen_ui_hint():
+	if DisplayServer.is_touchscreen_available():
 		label.visible = false
 	else:
 		# to hide the pause_button on desktop: un-comment the next line

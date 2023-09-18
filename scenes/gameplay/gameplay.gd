@@ -6,16 +6,13 @@ var elapsed = 0
 # Use this function to receive params from `Game.change_scene(params)`.
 func pre_start(params):
 	var cur_scene: Node = get_tree().current_scene
-	print("Current scene is: ", cur_scene.name, " (", cur_scene.filename, ")")
-	print("gameplay.gd: pre_start() called with params = ")
+	print("Scene loaded: ", cur_scene.name, " (", cur_scene.scene_file_path, ")")
 	if params:
 		for key in params:
 			var val = params[key]
 			printt("", key, val)
 	$Sprite2D.position = Game.size / 2
-	print("Processing...")
 	await get_tree().create_timer(2).timeout
-	print("Done")
 
 
 # `start()` is called when the graphic transition ends.

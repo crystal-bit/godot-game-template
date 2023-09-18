@@ -11,6 +11,9 @@ signal transition_finished(anim_name)
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var progress = $ColorRect/Progress
 
+var target_progress = 0
+var loading = false
+
 
 # Tells if transition is currently displayed
 func is_displayed() -> bool:
@@ -43,33 +46,27 @@ func _on_fade_out_finished(cur_anim):
 	if cur_anim == "transition-out":
 		progress.bar.value = 0
 
-
 # progress_ratio: value between 0 and 1
-func _update_progress_bar(progress_ratio):
-	var tween = progress.tween
-	if tween.is_active():
-		tween.stop_all() # stop previous animation
-	tween.interpolate_property(
-		progress.bar,
-		"value",
-		progress.bar.value,
-		progress_ratio,
-		1,
-		Tween.TRANS_QUAD,
-		Tween.EASE_IN_OUT,
-		0
-	)
-	tween.start()
-	if progress_ratio == 1:
-		await tween.tween_completed
-		emit_signal("progress_bar_filled")
+func _update_progress_bar(progress_ratio: float):
+	loading = true
+	if is_nan(progress_ratio):
+		target_progress = 1.0
+		return
+	target_progress = progress_ratio
+
+
+func _process(delta):
+	if loading:
+		progress.bar.value += 0.01 * sign(target_progress - progress.bar.value) 
+		if progress.bar.value > 0.99 and target_progress == 1.0:
+			loading = false
+			emit_signal("progress_bar_filled")
 
 
 # called by the scene loader
-func _on_resource_stage_loaded(stage: int, stages_amount: int):
+func _on_resource_stage_loaded(progress_percentage: float):
 	if progress.visible:
-		var percentage = float(stage) / float(stages_amount)
-		_update_progress_bar(percentage)
+		_update_progress_bar(progress_percentage)
 	else:
 		pass
 

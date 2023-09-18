@@ -8,17 +8,15 @@ extends Node
 var pause_scenes_on_transitions = false
 var prevent_input_on_transitions = true
 var scenes: Scenes
-var size: Vector2
-
+var size : get = get_size  
+func get_size():
+	return get_viewport().get_visible_rect().size
 
 func _enter_tree() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS # needed to make "prevent_input_on_transitions" work even if the game is paused
-	_register_size()
-	get_tree().connect("screen_resized", Callable(self, "_on_screen_resized"))
 	if transitions:
 		transitions.connect("transition_started", Callable(self, "_on_Transitions_transition_started"))
 		transitions.connect("transition_finished", Callable(self, "_on_Transitions_transition_finished"))
-#	add_script("Utils", "utils", "res://addons/game-template/utils.gd")
 
 
 func _ready() -> void:
@@ -27,23 +25,11 @@ func _ready() -> void:
 	get_node("/root/").call_deferred("add_child", scenes)
 
 
-func _on_screen_resized():
-	_register_size()
-
-
-func _register_size():
-	size = get_viewport().get_visible_rect().size
-
-
 func change_scene_to_file(new_scene: String, params = {}):
-	if not Utils.file_exists(new_scene):
-		printerr("Scene file not found: ", new_scene)
+	if not ResourceLoader.exists(new_scene):
+		push_error("Scene resource not found: ", new_scene)
 		return
-
-	if OS.has_feature('HTML5'): # See https://github.com/crystal-bit/godot-game-template/wiki/2.-Features#single-thread-vs-multihtread
-		scenes.change_scene_background_loading(new_scene, params) # single-thread
-	else:
-		scenes.change_scene_multithread(new_scene, params) # multi-thread
+	scenes.change_scene_multithread(new_scene, params) # multi-thread
 
 
 # Restart the current scene
@@ -74,13 +60,3 @@ func _on_Transitions_transition_finished(anim_name):
 	if pause_scenes_on_transitions:
 		get_tree().paused = false
 
-
-func add_script(script_name, self_prop_name, script_path):
-	var new_script: Node = load(script_path).new()
-	new_script.name = script_name
-	call_deferred("add_script_node", new_script, self_prop_name)
-
-
-func add_script_node(new_node, prop_name):
-	get_tree().root.add_child(new_node)
-	self[prop_name] = new_node
