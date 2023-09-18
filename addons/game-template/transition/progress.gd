@@ -1,8 +1,8 @@
 extends Control
 
 
-onready var bar := $ProgressBar
-onready var tween := $ProgressBar/Tween
+@onready var bar := $ProgressBar
+@onready var tween := $ProgressBar/Tween
 
 
 func is_completed():

@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/sprites/icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/icon.png" type="Texture2D" id=1]
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/gameplay/gameplay.gd" type="Script" id=5]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 523.993, 298.508 )
 texture = ExtResource( 1 )
 

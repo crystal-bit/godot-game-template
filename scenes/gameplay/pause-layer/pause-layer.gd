@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-onready var pause := $Pause
-onready var pause_button := $PauseButton
-onready var resume_option := $Pause/VBoxOptions/Resume
-onready var label := $PressESCToOpenMenu
+@onready var pause := $Pause
+@onready var pause_button := $PauseButton
+@onready var resume_option := $Pause/VBoxOptions/Resume
+@onready var label := $PressESCToOpenMenu
 
 
 func _ready():
@@ -27,7 +27,7 @@ func _unhandled_input(event):
 			resume()
 		else:
 			pause_game()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func resume():
@@ -46,7 +46,7 @@ func _on_Resume_pressed():
 
 
 func _on_Main_Menu_pressed():
-	Game.change_scene("res://scenes/menu/menu.tscn", {
+	Game.change_scene_to_file("res://scenes/menu/menu.tscn", {
 		'show_progress_bar': false
 	})
 

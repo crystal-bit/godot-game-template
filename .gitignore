@@ -3,6 +3,7 @@
 
 # Godot-specific ignores
 .import/
+.godot/
 
 # Builds/export directory
 builds

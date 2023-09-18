@@ -3,7 +3,7 @@
 extends Node
 
 
-onready var transitions = get_node_or_null("/root/Transitions")
+@onready var transitions = get_node_or_null("/root/Transitions")
 
 var pause_scenes_on_transitions = false
 var prevent_input_on_transitions = true
@@ -12,12 +12,12 @@ var size: Vector2
 
 
 func _enter_tree() -> void:
-	pause_mode = Node.PAUSE_MODE_PROCESS # needed to make "prevent_input_on_transitions" work even if the game is paused
+	process_mode = Node.PROCESS_MODE_ALWAYS # needed to make "prevent_input_on_transitions" work even if the game is paused
 	_register_size()
-	get_tree().connect("screen_resized", self, "_on_screen_resized")
+	get_tree().connect("screen_resized", Callable(self, "_on_screen_resized"))
 	if transitions:
-		transitions.connect("transition_started", self, "_on_Transitions_transition_started")
-		transitions.connect("transition_finished", self, "_on_Transitions_transition_finished")
+		transitions.connect("transition_started", Callable(self, "_on_Transitions_transition_started"))
+		transitions.connect("transition_finished", Callable(self, "_on_Transitions_transition_finished"))
 #	add_script("Utils", "utils", "res://addons/game-template/utils.gd")
 
 
@@ -35,7 +35,7 @@ func _register_size():
 	size = get_viewport().get_visible_rect().size
 
 
-func change_scene(new_scene: String, params = {}):
+func change_scene_to_file(new_scene: String, params = {}):
 	if not Utils.file_exists(new_scene):
 		printerr("Scene file not found: ", new_scene)
 		return
@@ -49,20 +49,20 @@ func change_scene(new_scene: String, params = {}):
 # Restart the current scene
 func restart_scene():
 	var scene_data = scenes.get_last_loaded_scene_data()
-	change_scene(scene_data.path, scene_data.params)
+	change_scene_to_file(scene_data.path, scene_data.params)
 
 
 # Restart the current scene, but use given params
 func restart_scene_with_params(override_params):
 	var scene_data = scenes.get_last_loaded_scene_data()
-	change_scene(scene_data.path, override_params)
+	change_scene_to_file(scene_data.path, override_params)
 
 
 # Prevents all inputs while a graphic transition is playing.
 func _input(_event: InputEvent):
 	if transitions and prevent_input_on_transitions and transitions.is_displayed():
 		# prevent all input events
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func _on_Transitions_transition_started(anim_name):

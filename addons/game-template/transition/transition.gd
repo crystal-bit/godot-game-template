@@ -8,8 +8,8 @@ signal progress_bar_filled()
 signal transition_started(anim_name)
 signal transition_finished(anim_name)
 
-onready var anim: AnimationPlayer = $AnimationPlayer
-onready var progress = $ColorRect/Progress
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var progress = $ColorRect/Progress
 
 
 # Tells if transition is currently displayed
@@ -34,8 +34,8 @@ func fade_in(params = {}):
 # disappear
 func fade_out():
 	if progress.visible and not progress.is_completed():
-		yield(self, "progress_bar_filled")
-	anim.connect("animation_finished", self, "_on_fade_out_finished", [], CONNECT_ONESHOT)
+		await self.progress_bar_filled
+	anim.connect("animation_finished", Callable(self, "_on_fade_out_finished").bind(), CONNECT_ONE_SHOT)
 	anim.play("transition-out")
 
 
@@ -61,7 +61,7 @@ func _update_progress_bar(progress_ratio):
 	)
 	tween.start()
 	if progress_ratio == 1:
-		yield(tween, "tween_completed")
+		await tween.tween_completed
 		emit_signal("progress_bar_filled")
 
 

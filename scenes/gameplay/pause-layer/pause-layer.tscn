@@ -2,28 +2,28 @@
 
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui-theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/pause_button.png" type="Texture" id=4]
+[ext_resource path="res://assets/pause_button.png" type="Texture2D" id=4]
 
 [node name="PauseLayer" type="CanvasLayer"]
-pause_mode = 2
+process_mode = 3
 script = ExtResource( 2 )
 
 [node name="PressESCToOpenMenu" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -244.5
-margin_top = 24.0
-margin_right = 244.5
-margin_bottom = 38.0
+offset_left = -244.5
+offset_top = 24.0
+offset_right = 244.5
+offset_bottom = 38.0
 theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.788235, 0.788235, 0.788235, 1 )
+theme_override_colors/font_color = Color( 0.788235, 0.788235, 0.788235, 1 )
 text = "Pause: ESC (keyboard) or START button (joypad)"
 
 [node name="PauseButton" type="TextureButton" parent="."]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 78.0
-margin_bottom = 78.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 78.0
+offset_bottom = 78.0
 texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,25 +51,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -80.5
-margin_top = -100.0
-margin_right = 80.5
-margin_bottom = 100.0
-custom_constants/separation = 20
+offset_left = -80.5
+offset_top = -100.0
+offset_right = 80.5
+offset_bottom = 100.0
+theme_override_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Resume" type="LinkButton" parent="Pause/VBoxOptions"]
-margin_right = 161.0
-margin_bottom = 34.0
+offset_right = 161.0
+offset_bottom = 34.0
 focus_mode = 2
 text = "RESUME"
 
 [node name="Main Menu" type="LinkButton" parent="Pause/VBoxOptions"]
-margin_top = 54.0
-margin_right = 161.0
-margin_bottom = 88.0
+offset_top = 54.0
+offset_right = 161.0
+offset_bottom = 88.0
 focus_mode = 2
 text = "MAIN MENU"
 

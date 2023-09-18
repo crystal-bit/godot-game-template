@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func load_scene(p):
 	_path = p
-	_loader = ResourceLoader.load_interactive(_path)
+	_loader = ResourceLoader.load_threaded_request(_path)
 	_stages_amount = float(_loader.get_stage_count())
 	set_process(true)
 

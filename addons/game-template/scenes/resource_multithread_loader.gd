@@ -14,13 +14,13 @@ func _ready() -> void:
 
 
 func load_scene(path):
-	var state = thread.start(self, "_thread_load", path)
+	var state = thread.start(Callable(self, "_thread_load").bind(path))
 	if state != OK:
 		print("Error while starting thread: " + str(state))
 
 
 func _thread_load(path):
-	var ril = ResourceLoader.load_interactive(path)
+	var ril = ResourceLoader.load_threaded_request(path)
 	stages_amount = ril.get_stage_count()
 	var res = null
 

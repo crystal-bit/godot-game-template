@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const MAX_HISTORY_LENGTH = 5
 var _history = []
