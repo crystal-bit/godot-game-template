@@ -12,13 +12,13 @@ func _ready():
 
 func _on_PlayButton_pressed() -> void:
 	var params = {
-		"show_progress_bar" = true,
-		"a_number" = 10,
-		"a_string" = "Ciao mamma!",
-		"an_array" = [1, 2, 3, 4],
-		"a_dict" = {
-			"name" = "test",
-			"val" = 15
+		"show_progress_bar": true,
+		"a_number": 10,
+		"a_string": "Ciao mamma!",
+		"an_array": [1, 2, 3, 4],
+		"a_dict": {
+			"name": "test",
+			"val": 15
 		},
 	}
 	Game.change_scene_to_file("res://scenes/gameplay/gameplay.tscn", params)

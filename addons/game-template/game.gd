@@ -2,20 +2,24 @@
 # Eg: `Game.change_scene("res://scenes/gameplay/gameplay.tscn)`
 extends Node
 
-
-@onready var transitions = get_node_or_null("/root/Transitions")
-
 var pause_scenes_on_transitions = false
 var prevent_input_on_transitions = true
 var scenes: Scenes
-var size : get = get_size  
+var size:
+	get = get_size
+
+@onready var transitions = get_node_or_null("/root/Transitions")
 
 
 func _enter_tree() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS # needed to make "prevent_input_on_transitions" work even if the game is paused
+	process_mode = Node.PROCESS_MODE_ALWAYS  # needed for "prevent_input_on_transitions" to work
 	if transitions:
-		transitions.connect("transition_started", Callable(self, "_on_Transitions_transition_started"))
-		transitions.connect("transition_finished", Callable(self, "_on_Transitions_transition_finished"))
+		transitions.connect(
+			"transition_started", Callable(self, "_on_Transitions_transition_started")
+		)
+		transitions.connect(
+			"transition_finished", Callable(self, "_on_Transitions_transition_finished")
+		)
 
 
 func _ready() -> void:
@@ -28,7 +32,7 @@ func change_scene_to_file(new_scene: String, params = {}):
 	if not ResourceLoader.exists(new_scene):
 		push_error("Scene resource not found: ", new_scene)
 		return
-	scenes.change_scene_multithread(new_scene, params) # multi-thread
+	scenes.change_scene_multithread(new_scene, params)  # multi-thread
 
 
 # Restart the current scene
@@ -45,7 +49,7 @@ func restart_scene_with_params(override_params):
 
 func get_size():
 	return get_viewport().get_visible_rect().size
-	
+
 
 # Prevents all inputs while a graphic transition is playing.
 func _input(_event: InputEvent):
@@ -54,12 +58,11 @@ func _input(_event: InputEvent):
 		get_viewport().set_input_as_handled()
 
 
-func _on_Transitions_transition_started(anim_name):
+func _on_Transitions_transition_started(_anim_name):
 	if pause_scenes_on_transitions:
 		get_tree().paused = true
 
 
-func _on_Transitions_transition_finished(anim_name):
+func _on_Transitions_transition_finished(_anim_name):
 	if pause_scenes_on_transitions:
 		get_tree().paused = false
-

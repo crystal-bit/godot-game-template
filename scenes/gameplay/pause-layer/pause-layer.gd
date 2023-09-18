@@ -45,11 +45,9 @@ func _on_Resume_pressed():
 	resume()
 
 
-func _on_Main_Menu_pressed():
-	Game.change_scene_to_file("res://scenes/menu/menu.tscn", {
-		'show_progress_bar': false
-	})
-
-
 func _on_PauseButton_pressed():
 	pause_game()
+
+
+func _on_main_menu_pressed():
+	Game.change_scene_to_file("res://scenes/menu/menu.tscn", {"show_progress_bar": false})

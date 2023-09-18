@@ -2,6 +2,7 @@ extends Node
 
 var elapsed = 0
 
+
 # `pre_start()` is called when a scene is loaded.
 # Use this function to receive params from `Game.change_scene(params)`.
 func pre_start(params):
@@ -23,4 +24,4 @@ func start():
 func _process(delta):
 	elapsed += delta
 	$Sprite2D.position.x = Game.size.x / 2 + 150 * sin(2 * 0.4 * PI * elapsed)
-	$Sprite2D.position.y = Game.size.y / 2 + 100 * sin(2 * 0.2 *  PI * elapsed)
+	$Sprite2D.position.y = Game.size.y / 2 + 100 * sin(2 * 0.2 * PI * elapsed)

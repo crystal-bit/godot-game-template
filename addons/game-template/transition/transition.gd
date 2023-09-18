@@ -4,15 +4,15 @@
 class_name Transition
 extends CanvasLayer
 
-signal progress_bar_filled()
+signal progress_bar_filled
 signal transition_started(anim_name)
 signal transition_finished(anim_name)
 
-@onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var progress = $ColorRect/Progress
-
 var target_progress = 0
 var loading = false
+
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var progress = $ColorRect/Progress
 
 
 # Tells if transition is currently displayed
@@ -22,14 +22,14 @@ func is_displayed() -> bool:
 
 
 func is_transition_in_playing():
-	return anim.current_animation == 'transition-in' and anim.is_playing()
+	return anim.current_animation == "transition-in" and anim.is_playing()
 
 
 # appear
 func fade_in(params = {}):
 	progress.hide()
-	if params and params.get('show_progress_bar') != null:
-		if params.get('show_progress_bar') == true:
+	if params and params.get("show_progress_bar") != null:
+		if params.get("show_progress_bar") == true:
 			progress.show()
 	anim.play("transition-in")
 
@@ -38,13 +38,16 @@ func fade_in(params = {}):
 func fade_out():
 	if progress.visible and not progress.is_completed():
 		await self.progress_bar_filled
-	anim.connect("animation_finished", Callable(self, "_on_fade_out_finished").bind(), CONNECT_ONE_SHOT)
+	anim.connect(
+		"animation_finished", Callable(self, "_on_fade_out_finished").bind(), CONNECT_ONE_SHOT
+	)
 	anim.play("transition-out")
 
 
 func _on_fade_out_finished(cur_anim):
 	if cur_anim == "transition-out":
 		progress.bar.value = 0
+
 
 # progress_ratio: value between 0 and 1
 func _update_progress_bar(progress_ratio: float):
@@ -55,9 +58,9 @@ func _update_progress_bar(progress_ratio: float):
 	target_progress = progress_ratio
 
 
-func _process(delta):
+func _process(_delta):
 	if loading:
-		progress.bar.value += 0.01 * sign(target_progress - progress.bar.value) 
+		progress.bar.value += 0.01 * sign(target_progress - progress.bar.value)
 		if progress.bar.value > 0.99 and target_progress == 1.0:
 			loading = false
 			emit_signal("progress_bar_filled")

@@ -3,7 +3,7 @@ extends Node
 signal resource_loaded(res)
 signal resource_stage_loaded(progress_percentage)
 
-const SIMULATED_DELAY_MS = 32 # ms
+const SIMULATED_DELAY_MS = 32  # ms
 
 var thread: Thread
 var stages_amount: int
@@ -27,8 +27,8 @@ func _thread_load(path):
 #	stages_amount = ril.get_stage_count()
 	var res = null
 	var progress_arr = []
-	var loading_status # ThreadLoadStatus
-	
+	var loading_status  # ThreadLoadStatus
+
 	while true:
 		loading_status = ResourceLoader.load_threaded_get_status(path, progress_arr)
 		call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
@@ -42,7 +42,7 @@ func _thread_load(path):
 			print("Invalid resource: {0}".format(path))
 		else:
 			# loading ...
-			pass		
+			pass
 		OS.delay_msec(SIMULATED_DELAY_MS)
 	call_deferred("_thread_done", res)
 

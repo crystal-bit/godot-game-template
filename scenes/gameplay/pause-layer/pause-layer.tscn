@@ -33,6 +33,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3")
 
 [node name="ColorRect" type="ColorRect" parent="Pause"]
@@ -58,11 +60,11 @@ layout_mode = 2
 focus_mode = 2
 text = "RESUME"
 
-[node name="Main Menu" type="LinkButton" parent="Pause/VBoxOptions"]
+[node name="MainMenu" type="LinkButton" parent="Pause/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
 text = "MAIN MENU"
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="Pause/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
-[connection signal="pressed" from="Pause/VBoxOptions/Main Menu" to="." method="_on_Main_Menu_pressed"]
+[connection signal="pressed" from="Pause/VBoxOptions/MainMenu" to="." method="_on_main_menu_pressed"]

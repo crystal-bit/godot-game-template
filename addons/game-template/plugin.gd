@@ -6,6 +6,8 @@ func _enter_tree():
 	add_autoload_singleton("Utils", "res://addons/game-template/utils.gd")
 	add_autoload_singleton("Transitions", "res://addons/game-template/transition/transition.tscn")
 	add_autoload_singleton("Game", "res://addons/game-template/game.gd")
+
+
 #	if !ProjectSettings.has_setting("category/property_name"):
 #		ProjectSettings.set("category/property_name", 0)
 #	var property_info = {
@@ -16,6 +18,7 @@ func _enter_tree():
 #	}
 #	ProjectSettings.add_property_info(property_info)
 #
+
 
 func _exit_tree():
 	remove_autoload_singleton("Game")
