@@ -120,6 +120,31 @@ To learn more about all the features, read the [wiki](https://github.com/crystal
 $Sprite.position = Game.size / 2
 ```
 
+## `release.sh`: export games
+
+> NOTE: you can export games from Godot as usual. This is a optional script that exports Windows, Linux,OSX and HTML5 builds with a single command.
+
+Open your terminal in your project root, then:
+
+```sh
+./release.sh MyGameName # this assumes that you have a "godot" binary/alias in your $PATH
+```
+
+Check your builds in `builds/MyGameName/`.
+
+### `release.sh`: specify a Godot executable
+
+If you want to specify a specific Godot version to be used:
+
+```sh
+# EG: let's assume you have the Godot binary in your Downloads folder
+
+# linux:
+./release.sh MyGameName ~/Downloads/Godot_v4.1.1-stable_linux.x86_64
+# OSX:
+./release.sh MyGameName ~/Downloads/Godot.app/Contents/MacOs/Godot
+```
+
 ## Contributors
 
 Many features were implemented only thanks to the help of:

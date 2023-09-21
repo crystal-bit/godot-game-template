@@ -1,22 +1,36 @@
 #!/bin/sh
 
-GODOT_BIN="godot"
-BIN_NAME="game-name"
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 [--force] <EXPORT_NAME> [<GODOT_BIN>]"
+  exit 1
+fi
+
+FORCE_BUILD=false
+
+# Check for the --force parameter
+if [ "$1" == "--force" ]; then
+  FORCE_BUILD=true
+  shift
+fi
+
+EXPORT_NAME="$1"
+GODOT_BIN="${2:-godot}"
 
 # Check if the command is available
 if ! command -v "$GODOT_BIN" &> /dev/null; then
-  echo "Error: $GODOT_BIN is not available."
+  echo "Error: Godot binary not found at '$GODOT_BIN'"
   exit 1
 fi
 
 # Check for uncommitted changes or untracked files in the Git workspace
-if [ -n "$(git status --porcelain)" ]; then
-  echo "Error: There are uncommitted changes or untracked files in the Git workspace. Please commit or stash them before building."
+if [ "$FORCE_BUILD" != "true" ] && [ -n "$(git status --porcelain)" ]; then
+  echo "Error: There are uncommitted changes or untracked files in the Git workspace."
+  echo "Please commit/stash them before building. Or run the script with --force flag."
   exit 1
 fi
 
 # Export the game and redirect Godot output to a file
-run_godot() {
+export_game() {
   local export_preset="$1"
   local output_dir="$2"
   local build_name="$3"
@@ -31,12 +45,12 @@ run_godot() {
   # Create a log entry with date, time, and Git commit
   log_entry="$current_datetime - Git commit: $git_commit"
   
-  echo "Building $export_preset"
+  echo "Building $export_preset..."
 
   # Append the log entry to the build log file
-  echo "$log_entry" > "$logfile"
-  
   mkdir -p "$output_dir"
+  touch $logfile
+  echo "$log_entry" > "$logfile"
   
   $GODOT_BIN --headless --export-release "$export_preset" "$output_dir/$build_name" >> $logfile 2>&1
   
@@ -44,7 +58,7 @@ run_godot() {
   echo
 }
 
-run_godot "Linux/X11" "builds/linux" "$BIN_NAME.x86_64"
-run_godot "macOS" "builds/osx" "$BIN_NAME.dmg"
-run_godot "Windows Desktop" "builds/windows" "$BIN_NAME.exe"
-run_godot "Web" "builds/html5" "index.html"
+export_game "Linux/X11" "builds/$EXPORT_NAME/linux" "$EXPORT_NAME.x86_64"
+export_game "macOS" "builds/$EXPORT_NAME/osx" "$EXPORT_NAME.dmg"
+export_game "Windows Desktop" "builds/$EXPORT_NAME/windows" "$EXPORT_NAME.exe"
+export_game "Web" "builds/$EXPORT_NAME/html5" "index.html"
