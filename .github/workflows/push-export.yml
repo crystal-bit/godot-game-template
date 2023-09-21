@@ -3,10 +3,11 @@ on:
   push:
     branches:
       - main
+      - feature/godot4
       # - staging
       # - "feature/**"
 env:
-  GODOT_VERSION: 3.5
+  GODOT_VERSION: 4.1.1
   EXPORT_NAME: godot-game-template
   ITCH_IO: false #set to true if you want to enable automatic itch.io deploy
   RELEASE_ANDROID: false #set to  true if you want to enable automatic android release export
@@ -17,7 +18,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -28,7 +29,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+          godot -v --headless --export-release "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -52,7 +53,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -63,7 +64,7 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
-          godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+          godot -v --headless --export-release "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -87,7 +88,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -98,7 +99,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          godot -v --headless --export-release "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -131,7 +132,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -142,7 +143,7 @@ jobs:
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
+          godot -v --headless --export-release "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -165,7 +166,7 @@ jobs:
     name: Android Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
