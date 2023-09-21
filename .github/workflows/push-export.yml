@@ -14,7 +14,7 @@ env:
 
 jobs:
   export-windows:
-    if: true
+    if: false
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
@@ -49,7 +49,7 @@ jobs:
           PACKAGE: itch.zip
 
   export-linux:
-    if: true
+    if: false
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
@@ -84,7 +84,7 @@ jobs:
           PACKAGE: itch.zip
 
   export-web:
-    if: true
+    if: false
     name: Web Export
     runs-on: ubuntu-20.04
     container:
@@ -128,7 +128,7 @@ jobs:
           PACKAGE: itch.zip
 
   export-mac:
-    if: true
+    if: false
     name: Mac Export
     runs-on: ubuntu-20.04
     container:
@@ -176,13 +176,13 @@ jobs:
           mkdir -v -p ~/.config/godot/
           ls /root/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/android_sdk_path = "/usr/lib/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+          cp /root/.config/godot/editor_settings-4.tres ~/.config/godot/editor_settings-4.tres
+          echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-4.tres
+          echo 'export/android/android_sdk_path = "/usr/lib/android-sdk"' >> ~/.config/godot/editor_settings-4.tres
       - name: Android Debug Build
         run: |
           mkdir -v -p build/android
-          godot --verbose --export-debug "Android-CI-job (Do not edit)" ./build/android/$EXPORT_NAME.debug.apk
+          godot -v --headless --export-debug "Android-CI-job (Do not edit)" ./build/android/$EXPORT_NAME_debug.apk
       - name: Android Release Build
         if: ${{ env.RELEASE_ANDROID=='true' }}
         env:
@@ -194,7 +194,7 @@ jobs:
           sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg
           sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'$K8S_SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
           sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'$K8S_SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
-          godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk
+          godot --verbose --export "Android" ./build/android/$EXPORT_NAME_release.apk
       - uses: actions/upload-artifact@v3
         with:
           name: android
