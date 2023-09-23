@@ -12,10 +12,11 @@ script = ExtResource("2")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -244.5
-offset_top = 24.0
-offset_right = 244.5
-offset_bottom = 38.0
+offset_left = -308.0
+offset_top = 32.0
+offset_right = 308.0
+offset_bottom = 74.0
+grow_horizontal = 2
 theme = ExtResource("3")
 theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
 text = "Pause: ESC (keyboard) or START button (joypad)"
@@ -28,7 +29,6 @@ offset_bottom = 78.0
 texture_normal = ExtResource("4")
 
 [node name="Pause" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,15 +44,18 @@ anchor_bottom = 1.0
 color = Color(0.243137, 0.211765, 0.290196, 0.717647)
 
 [node name="VBoxOptions" type="VBoxContainer" parent="Pause"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -80.5
-offset_top = -100.0
+offset_top = -49.0
 offset_right = 80.5
-offset_bottom = 100.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="Resume" type="LinkButton" parent="Pause/VBoxOptions"]

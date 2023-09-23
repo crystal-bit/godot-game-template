@@ -20,9 +20,9 @@ config/version="0.0.1"
 
 [autoload]
 
-Game="*res://addons/game-template/game.gd"
-Transitions="*res://addons/game-template/transition/transition.tscn"
 Utils="*res://addons/game-template/utils.gd"
+Transitions="*res://addons/game-template/transition/transition.tscn"
+Game="*res://addons/game-template/game.gd"
 
 [category]
 
