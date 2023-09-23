@@ -13,10 +13,9 @@ func pre_start(params):
 			var val = params[key]
 			printt("", key, val)
 	$Sprite2D.position = Game.size / 2
-	await get_tree().create_timer(2).timeout
 
 
-# `start()` is called when the graphic transition ends.
+# `start()` is called after pre_start and after the graphic transition ends.
 func start():
 	print("gameplay.gd: start() called")
 

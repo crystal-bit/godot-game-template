@@ -29,7 +29,7 @@ func _ready():
 
 	if transitions:
 		_loader_mt.connect("resource_stage_loaded", transitions._on_resource_stage_loaded)
-	connect("change_started", Callable(self, "_on_change_started"))
+	connect("change_started", _on_change_started)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	var cur_scene: Node = get_tree().current_scene
 	_history.add(cur_scene.scene_file_path, {})
@@ -80,7 +80,7 @@ func change_scene_multithread(new_scene: String, params = {}):
 	_loading_start_time = Time.get_ticks_msec()
 	_transition_appear(params)
 	_loader_mt.connect("resource_loaded", _on_resource_loaded, CONNECT_ONE_SHOT)
-	_loader_mt.load_scene(new_scene)
+	_loader_mt.load_resource(new_scene)
 
 
 func _on_change_started(new_scene, params):

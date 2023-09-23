@@ -2,52 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://assets/ui-theme.tres" id="1"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
+[ext_resource type="Script" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="5"]
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("4")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/28/0 = Vector2(0, 0)
-cache/0/32/0/ascent = 0.0
-cache/0/32/0/descent = 0.0
-cache/0/32/0/underline_position = 0.0
-cache/0/32/0/underline_thickness = 0.0
-cache/0/32/0/scale = 1.0
-cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
-cache/0/32/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/32/0/kerning_overrides/28/0 = Vector2(0, 0)
-cache/0/24/0/ascent = 0.0
-cache/0/24/0/descent = 0.0
-cache/0/24/0/underline_position = 0.0
-cache/0/24/0/underline_thickness = 0.0
-cache/0/24/0/scale = 1.0
-cache/0/24/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/32/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/28/0 = Vector2(0, 0)
-cache/0/28/0/ascent = 0.0
-cache/0/28/0/descent = 0.0
-cache/0/28/0/underline_position = 0.0
-cache/0/28/0/underline_thickness = 0.0
-cache/0/28/0/scale = 1.0
-cache/0/28/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/28/0/kerning_overrides/32/0 = Vector2(0, 0)
-cache/0/28/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/28/0/kerning_overrides/28/0 = Vector2(0, 0)
-
-[sub_resource type="GDScript" id="1"]
-script/source = "extends Label
-
-
-"
+[ext_resource type="Script" path="res://scenes/menu/godot_version.gd" id="5_fdyjp"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -73,7 +30,8 @@ offset_bottom = -339.0
 
 [node name="Title" type="Label" parent="CenterContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("5")
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 60
 text = "Godot Game Template"
 uppercase = true
 
@@ -115,12 +73,13 @@ offset_bottom = -18.0
 [node name="GameVersion" type="Label" parent="Version"]
 layout_mode = 2
 text = "<x.y.z>"
+script = ExtResource("4_3hod2")
 
 [node name="GodotVersion" type="Label" parent="Version"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
 text = "<GodotVersion>"
-script = SubResource("1")
+script = ExtResource("5_fdyjp")
 
 [node name="Credits" type="VBoxContainer" parent="."]
 layout_mode = 0

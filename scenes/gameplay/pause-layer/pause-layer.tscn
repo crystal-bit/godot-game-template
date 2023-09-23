@@ -8,7 +8,7 @@
 process_mode = 3
 script = ExtResource("2")
 
-[node name="PressESCToOpenMenu" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

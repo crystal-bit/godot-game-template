@@ -13,10 +13,13 @@ func _ready() -> void:
 	thread = Thread.new() as Thread
 
 
-func load_scene(path):
-	var state = thread.start(Callable(self, "_thread_load").bind(path))
-	if state != OK:
-		print("Error while starting thread: " + str(state))
+func load_resource(path):
+	if ResourceLoader.has_cached(path):
+		return ResourceLoader.load(path)
+	else:
+		var state = thread.start(Callable(self, "_thread_load").bind(path))
+		if state != OK:
+			push_error("Error while starting thread: " + str(state))
 
 
 func _thread_load(path):
@@ -24,22 +27,20 @@ func _thread_load(path):
 	if status != OK:
 		push_error(status, "threaded resource failed")
 		return
-#	stages_amount = ril.get_stage_count()
 	var res = null
 	var progress_arr = []
-	var loading_status  # ThreadLoadStatus
 
 	while true:
-		loading_status = ResourceLoader.load_threaded_get_status(path, progress_arr)
-		call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
+		var loading_status = ResourceLoader.load_threaded_get_status(path, progress_arr)
 		if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
+			call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
 			res = ResourceLoader.load_threaded_get(path)
 			break
 		elif loading_status == ResourceLoader.THREAD_LOAD_FAILED:
-			print("There was an error loading")
+			push_error("Thread load failed for: {0}".format([path]))
 			break
 		elif loading_status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-			print("Invalid resource: {0}".format(path))
+			push_error("Thread invalid resource: {0}".format([path]))
 		else:
 			# loading ...
 			pass
