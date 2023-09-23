@@ -6,7 +6,8 @@
 .godot/
 
 # Builds/export directory
-builds
+builds/**/*
+!builds/.gdignore
 
 # Imported translations (automatically generated from CSV files)
 *.translation
