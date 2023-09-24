@@ -12,4 +12,3 @@ position = Vector2(523.993, 298.508)
 texture = ExtResource("1")
 
 [node name="PauseLayer" parent="." instance=ExtResource("2")]
-visible = false

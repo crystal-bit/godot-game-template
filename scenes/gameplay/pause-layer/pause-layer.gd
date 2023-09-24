@@ -1,8 +1,12 @@
 extends CanvasLayer
 
-@onready var pause := $Pause
+@onready var pause := $PauseOverlay
 @onready var pause_button := $PauseButton
-@onready var resume_option := $Pause/VBoxOptions/Resume
+@onready var resume_option := $PauseOverlay/VBoxOptions/Resume
+
+
+func _ready():
+	pause.hide()
 
 
 # when the node is removed from the tree (mostly because of a scene change)

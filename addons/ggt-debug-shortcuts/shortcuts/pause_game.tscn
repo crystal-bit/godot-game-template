@@ -11,8 +11,10 @@ func _ready():
 func _input(event):
 	if event.is_action_released(\"debug_pause_game\"):
 		get_tree().paused = !get_tree().paused
-		$CanvasLayer/PausedHint.visible = get_tree().paused
 
+
+func _process(delta):
+	$CanvasLayer/PausedHint.visible = get_tree().paused
 "
 
 [node name="PauseGame" type="Node"]

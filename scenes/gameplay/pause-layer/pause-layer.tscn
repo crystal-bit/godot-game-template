@@ -28,7 +28,7 @@ offset_right = 78.0
 offset_bottom = 78.0
 texture_normal = ExtResource("4")
 
-[node name="Pause" type="Control" parent="."]
+[node name="PauseOverlay" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,13 +37,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3")
 
-[node name="ColorRect" type="ColorRect" parent="Pause"]
+[node name="ColorRect" type="ColorRect" parent="PauseOverlay"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.243137, 0.211765, 0.290196, 0.717647)
 
-[node name="VBoxOptions" type="VBoxContainer" parent="Pause"]
+[node name="VBoxOptions" type="VBoxContainer" parent="PauseOverlay"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,16 +58,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Resume" type="LinkButton" parent="Pause/VBoxOptions"]
+[node name="Resume" type="LinkButton" parent="PauseOverlay/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
 text = "RESUME"
 
-[node name="MainMenu" type="LinkButton" parent="Pause/VBoxOptions"]
+[node name="MainMenu" type="LinkButton" parent="PauseOverlay/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
 text = "MAIN MENU"
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
-[connection signal="pressed" from="Pause/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
-[connection signal="pressed" from="Pause/VBoxOptions/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseOverlay/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="PauseOverlay/VBoxOptions/MainMenu" to="." method="_on_main_menu_pressed"]
