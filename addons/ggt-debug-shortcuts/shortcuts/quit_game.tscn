@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://gulo6hdwe6ug"]
+
+[sub_resource type="GDScript" id="GDScript_i83gm"]
+script/source = "extends Node
+
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.is_action_pressed(\"debug_quit_game\"):
+			get_tree().quit()
+"
+
+[node name="QuitGame" type="Node"]
+script = SubResource("GDScript_i83gm")

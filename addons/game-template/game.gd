@@ -14,12 +14,8 @@ var size:
 func _enter_tree() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # needed for "prevent_input_on_transitions" to work
 	if transitions:
-		transitions.connect(
-			"transition_started", Callable(self, "_on_Transitions_transition_started")
-		)
-		transitions.connect(
-			"transition_finished", Callable(self, "_on_Transitions_transition_finished")
-		)
+		transitions.connect("transition_started", _on_Transitions_transition_started)
+		transitions.connect("transition_finished", _on_Transitions_transition_finished)
 
 
 func _ready() -> void:

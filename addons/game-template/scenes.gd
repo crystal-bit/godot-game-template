@@ -55,8 +55,6 @@ func _set_new_scene(resource: PackedScene):
 	get_tree().current_scene = instanced_scn
 	if instanced_scn.has_method("pre_start"):
 		await instanced_scn.pre_start(_params)
-#		if (coroutine_state is GDScriptFunctionState) and (coroutine_state.is_valid()):
-#		await coroutine_state.completed
 	if transitions:
 		transitions.fade_out()
 	if transitions:

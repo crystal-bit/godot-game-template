@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctsbjmhftjw2e"]
+
+[sub_resource type="GDScript" id="GDScript_7flwt"]
+script/source = "extends Node
+
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.keycode == KEY_F and event.is_released():
+			if OS.is_debug_build():
+				if get_window().mode != Window.MODE_MAXIMIZED:
+					get_window().mode = Window.MODE_MAXIMIZED
+				else:
+					get_window().mode = Window.MODE_WINDOWED
+			else:
+				if get_window().mode != Window.MODE_FULLSCREEN:
+					get_window().mode = Window.MODE_FULLSCREEN
+				else:
+					get_window().mode = Window.MODE_WINDOWED
+"
+
+[node name="ToggleFullscreen" type="Node"]
+script = SubResource("GDScript_7flwt")
