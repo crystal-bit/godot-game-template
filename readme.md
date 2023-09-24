@@ -3,39 +3,35 @@
 > 🌟 You make games, the template handles the boring stuff.
 
 <p>
-<a href="https://godotengine.org/download">
-  <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-4.1-blue">
-</a>
+  <a href="https://godotengine.org/download">
+    <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-4.1-blue">
+  </a>
 
-<a href="https://github.com/crystal-bit/godot-game-template/releases">
-  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/crystal-bit/godot-game-template">
-</a>
-
-<!-- <a href="https://github.com/crystal-bit/godot-game-template/actions?query=workflow%3A%22godot-ci+export%22">
-  <img alt="GitHub workflow status" src="https://img.shields.io/github/workflow/status/crystal-bit/godot-game-template/godot-ci%20export?label=game-export">
-</a> -->
-
-<!-- <a href="https://github.com/crystal-bit/godot-game-template/wiki">
-  <img alt="GitHub wiki" src="https://img.shields.io/badge/%F0%9F%93%96-wiki-blueviolet">
-</a> -->
-
-<!-- <a href="https://crystalbit.itch.io/godot-game-template">
-  <img alt="Play store badge" src="https://img.shields.io/badge/HTML5-Itch.io-critical">
-</a> -->
-
-<!-- <a href="https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate">
-  <img alt="Play store badge" src="https://img.shields.io/badge/Android-PlayStore-green">
-</a> -->
+  <a href="https://github.com/crystal-bit/godot-game-template/releases">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/crystal-bit/godot-game-template">
+  </a>
 </p>
+
+**Godot Game Template** is a generic starter project for Godot games.
+
+Its main focus is to provide a solid base to build upon.
 
 # Get started
 
-1. 💻 [Create a new repo using this template](https://github.com/crystal-bit/godot-game-template/generate)
+You have 2 options:
+
+## 1. Get started with Github Templates:
+
+1. [Create a new repo using this template](https://github.com/crystal-bit/godot-game-template/generate)
 2. Clone the new repository locally
 3. Open the project in [Godot](https://godotengine.org/download/) (GDScript)
-4. Done
 
-Read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/) to learn more.
+## 2. Get started with a local project:
+
+1. Go to https://github.com/crystal-bit/godot-game-template/releases
+2. Download _Source code (zip)_
+3. Unzip the project
+4. Open the project in [Godot Engine](https://godotengine.org/download/) (GDScript) and create your game!
 
 ## Used by
 
@@ -48,31 +44,7 @@ Read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/) to lea
 
 _Get in contact if you want to be featured here!_
 
-# Features
-
-- **Continuos Integration**:
-
-  - Automatic desktop build (linux, windows, osx, HTML5)
-  - Automatic HTML5 deploy to Github pages
-  - Automatic HTML5 deploy to itch.io
-  - Automatic Android builds -->
-
-- **release.sh** script
-  - build Mac, Windows, Linux and HTML5 builds with a single command
-  - keep a logfile with the build info such as: build date, git commit hash, Godot version, complete log
-  - TODO: integration with https://itch.io/docs/butler/ https://github.com/crystal-bit/godot-game-template/issues/79
-- **Scenes loading**:
-  - graphic transitions (fade-in/out)
-  - Send parameters to the new scene
-  - Input prevention during scene changes
-  - You can still play individual scenes for quick development
-  - Multithreaded resource loading
-- **Game pause** handling
-- `.gitignore`
-- Follows official GDScript guidelines (tested with [gdlint](https://github.com/Scony/godot-gdscript-toolkit#gdscript-toolkit))
-- Compatible with other Godot addons
-
-# How to
+# How to...
 
 ## Change scene
 
@@ -112,38 +84,109 @@ func pre_start(params):
    # setup your scene here
 ```
 
-To learn more about all the features, read the [wiki](https://github.com/crystal-bit/godot-game-template/wiki/2.-Features).
+## \_ready() vs pre_start() vs start()
+
+They are called in this order:
+
+| method              | description                                                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `_ready()`          | gets called when the graphic transition covers the screen                                                                   |
+| `pre_start(params)` | gets called immediately after \_ready, it receives params passed via Game.change_scene(scene_path, params)                  |
+| `start`             | it's called as soon as the graphic transition finishes. It's a good place to activate gameplay logic, enemy AI, timers, ... |
+
+## Restart the current scene
+
+```gd
+Game.restart_scene() # old params will be reused
+```
+
+## Restart the current scene and override params
+
+```gd
+var new_params = {
+  "level": 5,
+}
+Game.restart_scene_with_params(new_params)
+```
 
 ## Center a Node2D into the viewport
 
 ```gd
 $Sprite.position = Game.size / 2
+# Game.size it's just a shortcut to  get_viewport().get_visible_rect().size
 ```
 
-## `release.sh`: export games
+# Conventions and project structure
 
-> NOTE: you can export games from Godot as usual. This is a optional script that exports Windows, Linux,OSX and HTML5 builds with a single command.
+- `assets/`
+  - Contains textures, sprites, sounds, music, fonts, ...
+- `builds/`
+  - output directory for game builds (ignored by .gitignore and .gdignore)
+- `scenes/`
+  - Contains Godot scenes (both entities, reusable scenes and "game screen" scenes)
+  - Scene folders can contain `.gd` scripts or resources used by the scene
 
-Open your terminal in your project root, then:
+Mostly inspired by the official [Godot Engine guidelines][l1]:
+
+- **snake_case** for files and folders (eg: game.gd, game.tscn)
+- **PascalCase** for node names (eg: Game, Player)
+
+[l1]: https://docs.godotengine.org/en/stable/getting_started/workflow/project_setup/project_organization.html#style-guide
+
+### Lower Case file names
+
+This convention avoids having filesystem issues on different platforms. Stick with it
+and it will save you time. Read more
+[here](https://docs.godotengine.org/en/stable/getting_started/workflow/project_setup/project_organization.html#case-sensitivity):
+
+> Windows and recent macOS versions use case-insensitive filesystems by default,
+> whereas Linux distributions use a case-sensitive filesystem by default. This
+> can cause issues after exporting a project, since Godot's PCK virtual
+> filesystem is case-sensitive. To avoid this, it's recommended to stick to
+> snake_case naming for all files in the project (and lowercase characters in
+> general).
+
+# Exports utilities
+
+## `release.sh`
+
+From your project root:
 
 ```sh
 ./release.sh MyGameName # this assumes that you have a "godot" binary/alias in your $PATH
 ```
 
-Check your builds in `builds/MyGameName/`.
-
-### `release.sh`: specify a Godot executable
-
-If you want to specify a specific Godot version to be used:
+Look inside the ./builds/ directory:
 
 ```sh
-# EG: let's assume you have the Godot binary in your Downloads folder
-
-# linux:
-./release.sh MyGameName ~/Downloads/Godot_v4.1.1-stable_linux.x86_64
-# OSX:
-./release.sh MyGameName ~/Downloads/Godot.app/Contents/MacOs/Godot
+builds
+└── MyGameName
+    ├── html5
+    │   ├── build.log # an export log + build datetime and git hash
+    │   ├── index.html
+    │   ├── ...
+    ├── linux
+    │   ├── MyGameName.x86_64
+    │   └── build.log
+    ├── osx
+    │   ├── MyGameName.dmg
+    │   └── build.log
+    └── windows
+        ├── MyGameName.exe
+        └── build.log
 ```
+
+# Contributing
+
+Development of new versions is made on the [`dev`](https://github.com/crystal-bit/godot-game-template/tree/dev) branch.
+
+If you want to help the project, create games and feel free to get in touch and report any issue.
+
+![Discord](https://img.shields.io/discord/686600734636376102?logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)
+
+You can also join [the Discord server](https://discord.gg/SA6S2Db) (`#godot-game-template` channel).
+
+Before adding new features please open an issue to discuss it with other contributors.
 
 ## Contributors
 
@@ -157,19 +200,7 @@ Many features were implemented only thanks to the help of:
 
 Also many tools were already available in the open source community, see the [Thanks](#thanks) section.
 
-## Contributing
-
-Development of new versions is made on the [`dev`](https://github.com/crystal-bit/godot-game-template/tree/dev) branch.
-
-If you want to help the project, create games and feel free to get in touch and report any issue.
-
-![Discord](https://img.shields.io/discord/686600734636376102?logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)
-
-You can also join [the Discord server](https://discord.gg/SA6S2Db) (`#godot-game-template` channel).
-
-Before adding new features please open an issue to discuss it with other contributors.
-
-## Thanks
+# Thanks
 
 - For support & inspiration:
   - All the [contributors](https://github.com/crystal-bit/godot-game-template/graphs/contributors)
