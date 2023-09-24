@@ -1,11 +1,6 @@
 extends Node
 
 
-func file_exists(path) -> bool:
-	var f = File.new()
-	return f.file_exists(path)
-
-
 # Reparent a node under a new parent.
 # Optionally updates the transform to mantain the current
 # position, scale and rotation values.

@@ -1,18 +1,12 @@
 extends CanvasLayer
 
-onready var pause := $Pause
-onready var pause_button := $PauseButton
-onready var resume_option := $Pause/VBoxOptions/Resume
-onready var label := $PressESCToOpenMenu
+@onready var pause := $PauseOverlay
+@onready var pause_button := $PauseButton
+@onready var resume_option := $PauseOverlay/VBoxOptions/Resume
 
 
 func _ready():
-	if OS.has_touchscreen_ui_hint():
-		label.visible = false
-	else:
-		# to hide the pause_button on desktop: un-comment the next line
-		# pause_button.hide()
-		pass
+	pause.hide()
 
 
 # when the node is removed from the tree (mostly because of a scene change)
@@ -27,7 +21,7 @@ func _unhandled_input(event):
 			resume()
 		else:
 			pause_game()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func resume():
@@ -45,11 +39,9 @@ func _on_Resume_pressed():
 	resume()
 
 
-func _on_Main_Menu_pressed():
-	Game.change_scene("res://scenes/menu/menu.tscn", {
-		'show_progress_bar': false
-	})
-
-
 func _on_PauseButton_pressed():
 	pause_game()
+
+
+func _on_main_menu_pressed():
+	Game.change_scene_to_file("res://scenes/menu/menu.tscn", {"show_progress_bar": false})

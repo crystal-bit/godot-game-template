@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5hm57d3waa77"]
+
+[sub_resource type="GDScript" id="GDScript_gxkwo"]
+script/source = "extends Node
+
+
+func _ready():
+	$CanvasLayer/PausedHint.visible = get_tree().paused
+
+
+func _input(event):
+	if event.is_action_released(\"debug_pause_game\"):
+		get_tree().paused = !get_tree().paused
+
+
+func _process(delta):
+	$CanvasLayer/PausedHint.visible = get_tree().paused
+"
+
+[node name="PauseGame" type="Node"]
+script = SubResource("GDScript_gxkwo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="PausedHint" type="Label" parent="CanvasLayer"]
+offset_right = 104.0
+offset_bottom = 26.0
+text = "TREE PAUSED"

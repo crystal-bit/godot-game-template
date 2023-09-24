@@ -5,9 +5,9 @@ on:
       godot_version:
         description: "Godot Version"
         required: true
-        default: "3.5"
+        default: "4.1.1"
       export_platform:
-        description: "Export Platform - all|windows|linux|web|macos|android"
+        description: "Export Platform - all|windows|linux|web|macos"
         required: true
         default: "all"
       export_folder:
@@ -18,10 +18,6 @@ on:
         description: "Export Name"
         required: true
         default: "godot-game-template"
-      release_android:
-        description: "Android Release Build"
-        required: false
-        default: "false"
       itch_io:
         description: "Itch.io Build"
         required: false
@@ -32,7 +28,6 @@ env:
   EXPORT_PLATFORM: ${{ github.event.inputs.export_platform }}
   EXPORT_FOLDER: ${{ github.event.inputs.export_folder }}
   EXPORT_NAME: ${{ github.event.inputs.export_name }}
-  RELEASE_ANDROID: ${{ github.event.inputs.release_android }}
   ITCH_IO: ${{ github.event.inputs.itch_io }}
 
 jobs:
@@ -41,7 +36,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: ${{ github.event.inputs.export_platform == 'windows' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -76,7 +71,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: ${{ github.event.inputs.export_platform == 'linux' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -111,7 +106,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: ${{ github.event.inputs.export_platform == 'web' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -155,7 +150,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: ${{ github.event.inputs.export_platform == 'macos' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:3.5
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -181,57 +176,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: mac
-          ITCH_GAME: ${{ secrets.ITCH_GAME }}
-          ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: itch.zip
-
-  export_android:
-    name: Android Export
-    runs-on: ubuntu-20.04
-    if: ${{ github.event.inputs.export_platform == 'android' || github.event.inputs.export_platform == 'all' }}
-    container:
-      image: barichello/godot-ci:3.5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mkdir -v -p ~/.config/godot/
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/android_sdk_path = "/usr/lib/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
-      - name: Android Debug Build
-        run: |
-          cd ${EXPORT_FOLDER}
-          mkdir -v -p build/android
-          godot --verbose --export-debug "Android-CI-job (Do not edit)" ./build/android/$EXPORT_NAME.debug.apk
-      - name: Android Release Build
-        if: ${{ env.RELEASE_ANDROID == 'true' }}
-        env:
-          K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
-          K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
-          K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD  }}
-        run: |
-          echo $K8S_SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore
-          sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg
-          sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'$K8S_SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
-          sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'$K8S_SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
-          cd ${EXPORT_FOLDER}
-          godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk
-      - uses: actions/upload-artifact@v1
-        with:
-          name: Android
-          path: ${{ env.EXPORT_FOLDER }}/build/android
-      - name: Zip Folder
-        run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/android
-      - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == 'true' }}
-        uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: android
           ITCH_GAME: ${{ secrets.ITCH_GAME }}
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: itch.zip

@@ -1,39 +1,50 @@
 extends Node
 
 signal resource_loaded(res)
-signal resource_stage_loaded(current_stage, total_stages)
+signal resource_stage_loaded(progress_percentage)
 
-const SIMULATED_DELAY_MS = 32 # ms
+const SIMULATED_DELAY_MS = 32  # ms
 
-var thread: Thread = null
+var thread: Thread
 var stages_amount: int
 
 
 func _ready() -> void:
-	thread = Thread.new()
+	thread = Thread.new() as Thread
 
 
-func load_scene(path):
-	var state = thread.start(self, "_thread_load", path)
-	if state != OK:
-		print("Error while starting thread: " + str(state))
+func load_resource(path):
+	if ResourceLoader.has_cached(path):
+		return ResourceLoader.load(path)
+	else:
+		var state = thread.start(Callable(self, "_thread_load").bind(path))
+		if state != OK:
+			push_error("Error while starting thread: " + str(state))
 
 
 func _thread_load(path):
-	var ril = ResourceLoader.load_interactive(path)
-	stages_amount = ril.get_stage_count()
+	var status = ResourceLoader.load_threaded_request(path)
+	if status != OK:
+		push_error(status, "threaded resource failed")
+		return
 	var res = null
+	var progress_arr = []
 
 	while true:
-		emit_signal("resource_stage_loaded", ril.get_stage(), stages_amount)
+		var loading_status = ResourceLoader.load_threaded_get_status(path, progress_arr)
+		if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
+			call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
+			res = ResourceLoader.load_threaded_get(path)
+			break
+		elif loading_status == ResourceLoader.THREAD_LOAD_FAILED:
+			push_error("Thread load failed for: {0}".format([path]))
+			break
+		elif loading_status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			push_error("Thread invalid resource: {0}".format([path]))
+		else:
+			# loading ...
+			pass
 		OS.delay_msec(SIMULATED_DELAY_MS)
-		var err = ril.poll()
-		if err == ERR_FILE_EOF:
-			res = ril.get_resource()
-			break
-		elif err != OK:
-			print("There was an error loading")
-			break
 	call_deferred("_thread_done", res)
 
 
@@ -41,11 +52,9 @@ func _thread_done(resource):
 	assert(resource)
 	# Always wait for threads to finish, this is required on Windows.
 	thread.wait_to_finish()
-	emit_signal("resource_stage_loaded", stages_amount, stages_amount)
-	# Instantiate new scene.
 	emit_signal("resource_loaded", resource)
 
 
 func _exit_tree() -> void:
-	if thread and thread.is_active():
+	if thread and thread.is_alive():
 		thread.wait_to_finish()

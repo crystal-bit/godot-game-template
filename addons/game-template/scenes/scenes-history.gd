@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const MAX_HISTORY_LENGTH = 5
 var _history = []
@@ -9,7 +9,7 @@ func add(scene_path: String, params = null):
 	data.path = scene_path
 	data.params = params
 	_history.push_front(data)
-	while(_history.size() > MAX_HISTORY_LENGTH):
+	while _history.size() > MAX_HISTORY_LENGTH:
 		_history.pop_back()
 
 

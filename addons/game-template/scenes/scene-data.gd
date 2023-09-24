@@ -1,5 +1,5 @@
-extends Reference
 class_name SceneData
+extends RefCounted
 
 var path: String = ""
 var params = null
