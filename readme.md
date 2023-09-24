@@ -146,7 +146,7 @@ and it will save you time. Read more
 > snake_case naming for all files in the project (and lowercase characters in
 > general).
 
-# Exports utilities
+# Export utilities
 
 ## `release.sh`
 
@@ -175,6 +175,20 @@ builds
         ├── MyGameName.exe
         └── build.log
 ```
+
+## Github Actions
+
+If you are using Github you can take advantage of:
+
+1. automatic exports for every commit push (see [push-export.yml][ci-push-export])
+2. manual exports via Github CI (see [dispatch-export.yml][ci-dispatch] )
+
+[ci-push-export]: ./.github/workflows/push-export.yml
+[ci-dispatch]: ./.github/workflows/push-export.yml
+
+You can read more on [Wiki - Continuos Integration][wiki_ci]
+
+[wiki_ci]: https://github.com/crystal-bit/godot-game-template/wiki/1.-Continuous-integration-(via-GitHub-Actions)
 
 # Contributing
 
