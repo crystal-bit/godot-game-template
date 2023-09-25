@@ -11,7 +11,7 @@ env:
 
 jobs:
   export-windows:
-    if: false
+    if: true
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
@@ -46,7 +46,7 @@ jobs:
           PACKAGE: itch.zip
 
   export-linux:
-    if: false
+    if: true
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
@@ -81,7 +81,7 @@ jobs:
           PACKAGE: itch.zip
 
   export-web:
-    if: false
+    if: true
     name: Web Export
     runs-on: ubuntu-20.04
     container:
@@ -125,7 +125,7 @@ jobs:
           PACKAGE: itch.zip
 
   export-mac:
-    if: true
+    if: false # currently broken, see https://github.com/crystal-bit/godot-game-template/issues/82
     name: Mac Export
     runs-on: ubuntu-20.04
     container:
