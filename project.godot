@@ -20,10 +20,11 @@ config/version="0.0.1"
 
 [autoload]
 
-Utils="*res://addons/game-template/utils.gd"
-Transitions="*res://addons/game-template/transition/transition.tscn"
-Game="*res://addons/game-template/game.gd"
 DebugShortcuts="*res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn"
+Game="*res://addons/ggt-core/game.gd"
+Transitions="*res://addons/ggt-core/transition/transition.tscn"
+Scenes="*res://addons/ggt-core/scenes/scenes.gd"
+Utils="*res://addons/ggt-core/utils/utils.gd"
 
 [category]
 
@@ -36,7 +37,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/game-template/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
+enabled=PackedStringArray("res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
 
 [input]
 

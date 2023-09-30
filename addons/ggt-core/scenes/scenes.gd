@@ -6,7 +6,6 @@
 #   `Game.change_scene(new_scene, params)`.
 # 2. `start()`: called when the scene transition is finished and when the
 #  gameplay input is unlocked
-class_name Scenes
 extends Node
 
 signal change_started
@@ -17,16 +16,13 @@ const MINIMUM_TRANSITION_DURATION = 300  # ms
 var _params = {} # params caching
 var _loading_start_time = 0
 
-@onready var transitions: Transition = get_node_or_null("/root/Transitions")
-@onready var _history = preload("res://addons/game-template/scenes/scenes-history.gd").new()
+@onready var transitions = get_node("/root/Transitions")
+@onready var _history = preload("res://addons/ggt-core/scenes/scenes-history.gd").new()
 @onready
-var _loader_mt = preload("res://addons/game-template/scenes/resource_multithread_loader.gd").new()
+var _loader_mt = preload("res://addons/ggt-core/utils/resource_multithread_loader.gd").new()
 
 
 func _ready():
-	_loader_mt.name = "ResourceLoaderMultithread"
-	add_child(_loader_mt)
-
 	if transitions:
 		_loader_mt.connect("resource_stage_loaded", transitions._on_resource_stage_loaded)
 	connect("change_started", _on_change_started)

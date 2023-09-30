@@ -1,19 +1,17 @@
-extends Node
+extends RefCounted
 
 signal resource_loaded(res)
 signal resource_stage_loaded(progress_percentage)
 
-const SIMULATED_DELAY_MS = 32  # ms
+const SIMULATED_DELAY_MS = 32
 
-var thread: Thread
+var thread
 var stages_amount: int
 
 
-func _ready() -> void:
-	thread = Thread.new() as Thread
-
-
 func load_resource(path):
+	if thread == null:
+		thread = Thread.new()
 	if ResourceLoader.has_cached(path):
 		return ResourceLoader.load(path)
 	else:
@@ -55,6 +53,6 @@ func _thread_done(resource):
 	emit_signal("resource_loaded", resource)
 
 
-func _exit_tree() -> void:
-	if thread and thread.is_alive():
-		thread.wait_to_finish()
+#func _exit_tree():
+#	if thread and thread.is_alive():
+#		thread.wait_to_finish()

@@ -12,7 +12,8 @@ func _ready():
 # when the node is removed from the tree (mostly because of a scene change)
 func _exit_tree() -> void:
 	# disable pause
-	get_tree().paused = false
+#	get_tree().paused = false
+	pass
 
 
 func _unhandled_input(event):

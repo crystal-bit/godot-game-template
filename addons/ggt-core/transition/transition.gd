@@ -1,21 +1,33 @@
 # Transitions.
 # You can tweak transition speed and appearance, just make sure to
 # update `is_displayed`.
-class_name Transition
 extends CanvasLayer
 
 signal progress_bar_filled
 signal transition_started(anim_name)
 signal transition_finished(anim_name)
 
-var target_progress: float = 0.0
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var progress: Control = $ColorRect/Progress
 
+var target_progress: float = 0.0
+var prevent_input_on_transitions = null
+var pause_scenes_on_transitions = null
+
 
 func _ready():
 	set_process(false)
+	load_plugin_config()
+
+
+func load_plugin_config():
+	var conf = ConfigFile.new()
+	var err = conf.load("res://addons/ggt-core/plugin.cfg")
+	if err != OK:
+		push_error("Error while loading plugin config")
+	prevent_input_on_transitions = conf.get_value("plugin", "prevent_input_on_transitions")
+	pause_scenes_on_transitions = conf.get_value("plugin", "pause_scenes_on_transitions")
 
 
 # Tells if transition is currently displayed/active
@@ -75,8 +87,19 @@ func _on_resource_stage_loaded(progress_percentage: float):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "transition-out":
 		emit_signal("transition_finished", anim_name)
+		if pause_scenes_on_transitions:
+			get_tree().paused = false
 
 
 func _on_AnimationPlayer_animation_started(anim_name):
 	if anim_name == "transition-in":
 		emit_signal("transition_started", anim_name)
+		if pause_scenes_on_transitions:
+			get_tree().paused = true
+
+
+# Prevents all inputs while a graphic transition is playing.
+func _input(_event: InputEvent):
+	if prevent_input_on_transitions and is_displayed():
+		# prevent all input events
+		get_viewport().set_input_as_handled()
