@@ -40,7 +40,7 @@ func _thread_load(path):
 		elif loading_status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 			push_error("Thread invalid resource: {0}".format([path]))
 		else:
-			# loading ...
+			call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
 			pass
 		OS.delay_msec(SIMULATED_DELAY_MS)
 	call_deferred("_thread_done", res)
