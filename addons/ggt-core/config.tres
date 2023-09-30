@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dhl5vgchbcsoc"]
+
+[ext_resource type="Script" path="res://addons/ggt-core/config.gd" id="1_awcn2"]
+
+[resource]
+script = ExtResource("1_awcn2")
+pause_scenes_on_transitions = true
+prevent_input_on_transitions = true
+transitions_minimum_duration_ms = 300.0
+max_history_length = 5

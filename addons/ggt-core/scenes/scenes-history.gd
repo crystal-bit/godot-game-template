@@ -1,6 +1,6 @@
 extends RefCounted
 
-const MAX_HISTORY_LENGTH = 5
+var config = preload("res://addons/ggt-core/config.tres")
 var _history = []
 
 
@@ -9,7 +9,7 @@ func add(scene_path: String, params = null):
 	data.path = scene_path
 	data.params = params
 	_history.push_front(data)
-	while _history.size() > MAX_HISTORY_LENGTH:
+	while _history.size() > config.max_history_length:
 		_history.pop_back()
 
 

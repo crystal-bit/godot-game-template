@@ -8,7 +8,7 @@ func _enter_tree():
 
 func _enable_plugin():
 	add_autoload_singleton("Game", "res://addons/ggt-core/game.gd")
-	add_autoload_singleton("Transitions", "res://addons/ggt-core/transition/transition.tscn")
+	add_autoload_singleton("Transitions", "res://addons/ggt-core/transitions/transitions.tscn")
 	add_autoload_singleton("Scenes", "res://addons/ggt-core/scenes/scenes.gd")
 	add_autoload_singleton("Utils", "res://addons/ggt-core/utils/utils.gd")
 

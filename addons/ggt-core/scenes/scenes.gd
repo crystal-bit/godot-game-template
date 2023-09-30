@@ -11,8 +11,6 @@ extends Node
 signal change_started
 signal change_finished
 
-const MINIMUM_TRANSITION_DURATION = 300  # ms
-
 var _params = {} # params caching
 var _loading_start_time = 0
 
@@ -20,6 +18,7 @@ var _loading_start_time = 0
 @onready var _history = preload("res://addons/ggt-core/scenes/scenes-history.gd").new()
 @onready
 var _loader_mt = preload("res://addons/ggt-core/utils/resource_multithread_loader.gd").new()
+var config = preload("res://addons/ggt-core/config.tres")
 
 
 func _ready():
@@ -89,6 +88,6 @@ func _on_resource_loaded(resource):
 		"{scn} loaded in {elapsed}ms".format({"scn": resource.resource_path, "elapsed": load_time})
 	)
 	# artificially wait some time in order to have a gentle scene transition
-	if transitions and load_time < MINIMUM_TRANSITION_DURATION:
-		await get_tree().create_timer((MINIMUM_TRANSITION_DURATION - load_time) / 1000.0).timeout
+	if transitions and load_time < config.transitions_minimum_duration_ms:
+		await get_tree().create_timer((config.transitions_minimum_duration_ms - load_time) / 1000.0).timeout
 	_set_new_scene(resource)
