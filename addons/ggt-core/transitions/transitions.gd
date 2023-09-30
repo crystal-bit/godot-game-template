@@ -6,6 +6,7 @@ extends CanvasLayer
 signal progress_bar_filled
 signal transition_started(anim_name)
 signal transition_finished(anim_name)
+signal transition_covered_screen
 
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -58,9 +59,10 @@ func _update_progress_bar(progress_ratio: float):
 	target_progress = progress_ratio
 
 
-func _process(_delta):
-	progress.bar.value += 0.01 * sign(target_progress - progress.bar.value)
+func _process(delta):
+	progress.bar.value = move_toward(progress.bar.value, target_progress, delta)
 	if progress.bar.value > 0.99 and target_progress == 1.0:
+		await get_tree().create_timer(.4).timeout
 		emit_signal("progress_bar_filled")
 		set_process(false)
 
@@ -78,6 +80,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		emit_signal("transition_finished", anim_name)
 		if config.pause_scenes_on_transitions:
 			get_tree().paused = false
+	elif anim_name == "transition-in":
+		emit_signal("transition_covered_screen")
 
 
 func _on_AnimationPlayer_animation_started(anim_name):

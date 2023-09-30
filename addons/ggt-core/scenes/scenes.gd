@@ -73,6 +73,7 @@ func change_scene_multithread(new_scene: String, params = {}):
 	_loading_start_time = Time.get_ticks_msec()
 	_transition_appear(params)
 	_loader_mt.connect("resource_loaded", _on_resource_loaded, CONNECT_ONE_SHOT)
+	await transitions.transition_covered_screen
 	_loader_mt.load_resource(new_scene)
 
 
