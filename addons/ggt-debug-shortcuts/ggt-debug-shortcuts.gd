@@ -12,14 +12,12 @@ const default_debug_shortcuts = {
 
 
 func _enter_tree():
-	if OS.is_debug_build():
-		register_input_mappings(func(): save_project_settings())
+	register_input_mappings(func(): save_project_settings())
 
 
 func _enable_plugin():
-	if OS.is_debug_build():
-		add_autoload_singleton("DebugShortcuts", "res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn")
-		register_input_mappings(func(): save_project_settings())
+	add_autoload_singleton("DebugShortcuts", "res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn")
+	register_input_mappings(func(): save_project_settings())
 
 
 func _exit_tree():
@@ -52,14 +50,12 @@ func register_input_mappings(on_project_settings_changed: Callable):
 	for k in default_debug_shortcuts:
 		var v = default_debug_shortcuts[k]
 		if ProjectSettings.has_setting(k):
-#			push_warning("{0} shortcut already set in ProjectSettings, skipping...".format([k]))
 			pass # leave user configured action
 		else:
 			dirty = true
 			ProjectSettings.set_setting(k, create_input_action(v)) # set default value
 	if dirty:
 		if on_project_settings_changed is Callable:
-			print("saving projsettings")
 			on_project_settings_changed.call()
 
 
