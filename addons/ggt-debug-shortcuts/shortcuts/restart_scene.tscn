@@ -8,11 +8,11 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.is_action_pressed(\"debug_restart_game\"):
 			var ggt_game_autoload = get_node_or_null(\"/root/Game\")
+			# if \"ggt-core\" addon is enabled
 			if ggt_game_autoload:
 				ggt_game_autoload.restart_scene()
 			else:
 				get_tree().reload_current_scene()
-				print(\"/root/Game not found \")
 "
 
 [node name="RestartCurrentScene" type="Node"]
