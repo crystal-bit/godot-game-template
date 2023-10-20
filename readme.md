@@ -146,6 +146,8 @@ and it will save you time. Read more
 > snake_case naming for all files in the project (and lowercase characters in
 > general).
 
+See also [this PR](https://github.com/godotengine/godot/pull/82957/files) that adds `is_case_sensitive()`.
+
 # Export utilities
 
 ## `release.sh`
