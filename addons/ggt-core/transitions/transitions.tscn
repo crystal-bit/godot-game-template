@@ -1,12 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://82fiitkfc6wn"]
 
 [ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1"]
-[ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2"]
 [ext_resource type="Script" path="res://addons/ggt-core/transitions/progress.gd" id="3"]
-[ext_resource type="Script" path="res://addons/ggt-core/transitions/transitions/transitions.gd" id="4"]
+[ext_resource type="Script" path="res://addons/ggt-core/transitions/transitions.gd" id="4"]
 
 [sub_resource type="FontFile" id="4"]
-fallbacks = Array[Font]([ExtResource("4_acliu")])
+fallbacks = Array[Font]([ExtResource("1")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -208,7 +207,7 @@ _data = {
 [node name="Transitions" type="CanvasLayer"]
 process_mode = 3
 layer = 100
-script = ExtResource("1_frf46")
+script = ExtResource("4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
