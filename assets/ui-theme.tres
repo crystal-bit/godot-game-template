@@ -1,7 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ducfept6pmkkm"]
-
-[ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1"]
-
-[resource]
-default_font = ExtResource("1")
-default_font_size = 28

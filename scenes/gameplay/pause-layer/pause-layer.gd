@@ -1,12 +1,38 @@
 extends CanvasLayer
 
-@onready var pause := $PauseOverlay
-@onready var pause_button := $PauseButton
-@onready var resume_option := $PauseOverlay/VBoxOptions/Resume
+@onready var pause := self
+@onready var pause_button := $MarginContainer/Control/PauseButton
+@onready var resume_option := $MarginContainer/Control/VBoxOptions/Resume
+@onready var label = $MarginContainer/Control/Label
+@onready var pause_options = $MarginContainer/Control/VBoxOptions
+@onready var color_rect = $ColorRect
+
+@onready var nodes_grp1 = [pause_button, label] # should be visible during gamemplay and hidden during pause
+@onready var nodes_grp2 = [pause_options, color_rect] # should be visible only in pause menu
 
 
 func _ready():
-	pause.hide()
+	pause_hide()
+
+
+func pause_show():
+	for n in nodes_grp1:
+		print("hiding ", n.name)
+		n.hide()
+	for n in nodes_grp2:
+		n.show()
+
+
+func pause_hide():
+	for n in nodes_grp1:
+		if n:
+			print("showing ", n.name)
+			n.show()
+
+	for n in nodes_grp2:
+		if n:
+			print("hiding ", n.name)
+			n.hide()
 
 
 # when the node is removed from the tree (mostly because of a scene change)
@@ -27,13 +53,13 @@ func _unhandled_input(event):
 
 func resume():
 	get_tree().paused = false
-	pause.hide()
+	pause_hide()
 
 
 func pause_game():
 	resume_option.grab_focus()
 	get_tree().paused = true
-	pause.show()
+	pause_show()
 
 
 func _on_Resume_pressed():

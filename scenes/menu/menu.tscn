@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2gocuhw2o7py"]
+[gd_scene load_steps=5 format=3 uid="uid://c2gocuhw2o7py"]
 
-[ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://assets/ui-theme.tres" id="1"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
 [ext_resource type="Script" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="5"]
@@ -13,108 +12,134 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1")
 script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.176471, 0.682353, 0.647059, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -339.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Title" type="Label" parent="CenterContainer"]
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = -8.0
+offset_bottom = -339.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MarginContainer/Control/CenterContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4")
 theme_override_font_sizes/font_size = 60
 text = "Godot Game Template"
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -34.0
-offset_right = 100.0
-offset_bottom = 130.0
+offset_left = -104.0
+offset_top = -30.0
+offset_right = 96.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "START"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
 text = "EXIT"
 
-[node name="Version" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="Version" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -90.0
-offset_right = 198.0
-offset_bottom = -18.0
+offset_top = -50.0
+offset_right = 122.0
+grow_vertical = 0
 
-[node name="GameVersion" type="Label" parent="Version"]
+[node name="GameVersion" type="Label" parent="MarginContainer/Control/Version"]
 layout_mode = 2
+theme_type_variation = &"LabelSmall"
 text = "<x.y.z>"
 script = ExtResource("4_3hod2")
 
-[node name="GodotVersion" type="Label" parent="Version"]
+[node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version"]
 layout_mode = 2
+theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
 text = "<GodotVersion>"
 script = ExtResource("5_fdyjp")
 
-[node name="Credits" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="Credits" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -147.0
-offset_top = -90.0
-offset_right = -16.0
-offset_bottom = -16.0
+offset_left = -86.0
+offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="MadeByLabel" type="Label" parent="Credits"]
+[node name="MadeByLabel" type="Label" parent="MarginContainer/Control/Credits"]
 layout_mode = 2
+theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "made by:"
+text = "made by: ..."
 
-[node name="Developer1" type="Label" parent="Credits"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
-text = "Crystal Bit community"
-
-[node name="Developer2" type="Label" parent="Credits"]
+[node name="Developer1" type="Label" parent="MarginContainer/Control/Credits"]
 visible = false
 layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
+
+[node name="Developer2" type="Label" parent="MarginContainer/Control/Credits"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
 text = "Developer 2"
 
-[node name="Developer3" type="Label" parent="Credits"]
+[node name="Developer3" type="Label" parent="MarginContainer/Control/Credits"]
 visible = false
 layout_mode = 2
+theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
 text = "Developer 3"
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

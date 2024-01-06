@@ -1,11 +1,14 @@
 extends Control
 
+@onready var btn_play = $MarginContainer/Control/VBoxContainer/PlayButton
+@onready var btn_exit = $MarginContainer/Control/VBoxContainer/ExitButton
+
 
 func _ready():
 	# needed for gamepads to work
-	$VBoxContainer/PlayButton.grab_focus()
+	btn_play.grab_focus()
 	if OS.has_feature('HTML5'):
-		$VBoxContainer/ExitButton.queue_free() # exit button dosn't make sense on HTML5
+		btn_exit.queue_free() # exit button dosn't make sense on HTML5
 
 
 func _on_PlayButton_pressed() -> void:

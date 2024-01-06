@@ -39,6 +39,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
 
+[gui]
+
+theme/custom="res://resources/theme/theme-main.tres"
+
 [input]
 
 pause={

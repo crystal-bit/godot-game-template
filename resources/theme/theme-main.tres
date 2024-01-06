@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ducfept6pmkkm"]
+
+[ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1_6yttj"]
+
+[resource]
+default_font = ExtResource("1_6yttj")
+default_font_size = 20
+LabelSmall/base_type = &"Label"
+LabelSmall/font_sizes/font_size = 16
+MarginContainer/constants/margin_bottom = 32
+MarginContainer/constants/margin_left = 32
+MarginContainer/constants/margin_right = 32
+MarginContainer/constants/margin_top = 32

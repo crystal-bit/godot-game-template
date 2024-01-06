@@ -10,7 +10,7 @@ signal transition_covered_screen
 
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var progress: Control = $ColorRect/Progress
+@onready var progress: Control = $ColorRect/MarginContainer/Progress
 
 var target_progress: float = 0.0
 var config = preload("res://addons/ggt-core/config.tres")

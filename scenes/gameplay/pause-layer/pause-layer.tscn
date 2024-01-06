@@ -1,73 +1,76 @@
 [gd_scene load_steps=4 format=3 uid="uid://barl4q1kugrmm"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/pause-layer/pause-layer.gd" id="2"]
-[ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://assets/ui-theme.tres" id="3"]
-[ext_resource type="Texture2D" uid="uid://byniue2cdd2yv" path="res://assets/pause_button.png" id="4"]
+[ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://resources/theme/theme-main.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://byniue2cdd2yv" path="res://scenes/gameplay/pause-layer/pause_button.png" id="4"]
 
 [node name="PauseLayer" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -308.0
-offset_top = 32.0
-offset_right = 308.0
-offset_bottom = 74.0
-grow_horizontal = 2
-theme = ExtResource("3")
-theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
-text = "Pause: ESC (keyboard) or START button (joypad)"
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.243137, 0.211765, 0.290196, 0.717647)
 
-[node name="PauseButton" type="TextureButton" parent="."]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 78.0
-offset_bottom = 78.0
-texture_normal = ExtResource("4")
-
-[node name="PauseOverlay" type="Control" parent="."]
-layout_mode = 3
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3")
 
-[node name="ColorRect" type="ColorRect" parent="PauseOverlay"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0.243137, 0.211765, 0.290196, 0.717647)
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
 
-[node name="VBoxOptions" type="VBoxContainer" parent="PauseOverlay"]
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/Control"]
+layout_mode = 1
+offset_right = 42.0
+offset_bottom = 42.0
+size_flags_horizontal = 0
+texture_normal = ExtResource("4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxOptions" type="VBoxContainer" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.5
-offset_top = -49.0
-offset_right = 80.5
-offset_bottom = 49.0
+offset_left = -58.0
+offset_top = -38.0
+offset_right = 58.0
+offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Resume" type="LinkButton" parent="PauseOverlay/VBoxOptions"]
+[node name="Resume" type="LinkButton" parent="MarginContainer/Control/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
 text = "RESUME"
 
-[node name="MainMenu" type="LinkButton" parent="PauseOverlay/VBoxOptions"]
+[node name="MainMenu" type="LinkButton" parent="MarginContainer/Control/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
 text = "MAIN MENU"
 
-[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
-[connection signal="pressed" from="PauseOverlay/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
-[connection signal="pressed" from="PauseOverlay/VBoxOptions/MainMenu" to="." method="_on_main_menu_pressed"]
+[node name="Label" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -222.0
+offset_right = 222.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
+text = "Pause: ESC (keyboard) or START button (joypad)"
+
+[connection signal="pressed" from="MarginContainer/Control/PauseButton" to="." method="_on_PauseButton_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxOptions/MainMenu" to="." method="_on_main_menu_pressed"]
