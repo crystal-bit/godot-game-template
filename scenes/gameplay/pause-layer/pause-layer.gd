@@ -17,7 +17,6 @@ func _ready():
 
 func pause_show():
 	for n in nodes_grp1:
-		print("hiding ", n.name)
 		n.hide()
 	for n in nodes_grp2:
 		n.show()
@@ -26,20 +25,11 @@ func pause_show():
 func pause_hide():
 	for n in nodes_grp1:
 		if n:
-			print("showing ", n.name)
 			n.show()
 
 	for n in nodes_grp2:
 		if n:
-			print("hiding ", n.name)
 			n.hide()
-
-
-# when the node is removed from the tree (mostly because of a scene change)
-func _exit_tree() -> void:
-	# disable pause
-#	get_tree().paused = false
-	pass
 
 
 func _unhandled_input(event):
