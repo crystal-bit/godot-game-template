@@ -194,8 +194,6 @@ You can read more on [Wiki - Continuos Integration][wiki_ci]
 
 # Contributing
 
-Development of new versions is made on the [`dev`](https://github.com/crystal-bit/godot-game-template/tree/dev) branch.
-
 If you want to help the project, create games and feel free to get in touch and report any issue.
 
 ![Discord](https://img.shields.io/discord/686600734636376102?logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)
