@@ -37,7 +37,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
+enabled=PackedStringArray("res://addons/coi_serviceworker/plugin.cfg", "res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
 
 [gui]
 
