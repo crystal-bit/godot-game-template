@@ -5,7 +5,7 @@ on:
       - main
       # - "feature/**"
 env:
-  GODOT_VERSION: 4.1.1
+  GODOT_VERSION: 4.2.1
   EXPORT_NAME: godot-game-template
   ITCH_IO: false #set to true if you want to enable automatic itch.io deploy
 
@@ -15,7 +15,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.1.1
+      image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -50,7 +50,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.1.1
+      image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -85,7 +85,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.1.1
+      image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -132,7 +132,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.1.1
+      image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
