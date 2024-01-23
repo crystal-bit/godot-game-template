@@ -32,6 +32,7 @@ layout_mode = 1
 offset_right = 42.0
 offset_bottom = 42.0
 size_flags_horizontal = 0
+mouse_filter = 1
 texture_normal = ExtResource("4")
 ignore_texture_size = true
 stretch_mode = 0
@@ -55,11 +56,13 @@ theme_override_constants/separation = 20
 [node name="Resume" type="LinkButton" parent="MarginContainer/Control/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
+mouse_filter = 1
 text = "RESUME"
 
 [node name="MainMenu" type="LinkButton" parent="MarginContainer/Control/VBoxOptions"]
 layout_mode = 2
 focus_mode = 2
+mouse_filter = 1
 text = "MAIN MENU"
 
 [node name="Label" type="Label" parent="MarginContainer/Control"]
