@@ -48,7 +48,7 @@ jobs:
         run: |
           cd ${EXPORT_FOLDER}
           mkdir -v -p build/windows
-          godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+          godot -v --export-release "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -83,7 +83,7 @@ jobs:
         run: |
           cd ${EXPORT_FOLDER}
           mkdir -v -p build/linux
-          godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+          godot -v --export-release "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -118,7 +118,7 @@ jobs:
         run: |
           cd ${EXPORT_FOLDER}
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          godot -v --export-release "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -162,7 +162,7 @@ jobs:
         run: |
           cd ${EXPORT_FOLDER}
           mkdir -v -p build/mac
-          godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
+          godot -v --export-release "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
