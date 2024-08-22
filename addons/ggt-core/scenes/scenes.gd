@@ -31,6 +31,8 @@ func _ready():
 	# if playing a specific scene
 	if ProjectSettings.get("application/run/main_scene") != cur_scene.scene_file_path:
 		# call pre_start and start method to ensure compatibility with "Play Scene"
+		if not cur_scene.is_node_ready():
+			await cur_scene.ready
 		if cur_scene.has_method("pre_start"):
 			cur_scene.pre_start({})
 		if cur_scene.has_method("start"):
