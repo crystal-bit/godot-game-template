@@ -211,6 +211,7 @@ Many features were implemented only thanks to the help of:
 - [Andrea1141](https://github.com/Andrea1141)
 - [vini-guerrero](https://github.com/vini-guerrero)
 - [idbrii](https://github.com/idbrii)
+- [jrassa](https://github.com/jrassa) 
 
 Also many tools were already available in the open source community, see the [Thanks](#thanks) section.
 
