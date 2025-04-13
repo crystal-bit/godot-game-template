@@ -12,7 +12,7 @@ func pre_start(params):
 	if params:
 		for key in params:
 			var val = params[key]
-			printt("", key, val)
+			print("   ", key, " = ", val)
 	sprite_2d.position = Game.size / 2
 
 

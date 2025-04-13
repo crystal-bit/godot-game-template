@@ -27,4 +27,3 @@ func restart_scene_with_params(override_params):
 
 func get_size():
 	return get_viewport().get_visible_rect().size
-
