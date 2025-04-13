@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dhl5vgchbcsoc"]
 
-[ext_resource type="Script" path="res://addons/ggt-core/config.gd" id="1_awcn2"]
+[ext_resource type="Script" uid="uid://citmpdypfk2vn" path="res://addons/ggt-core/config.gd" id="1_awcn2"]
 
 [resource]
 script = ExtResource("1_awcn2")

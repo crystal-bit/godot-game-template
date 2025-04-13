@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2gocuhw2o7py"]
 
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
-[ext_resource type="Script" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
-[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="5"]
-[ext_resource type="Script" path="res://scenes/menu/godot_version.gd" id="5_fdyjp"]
+[ext_resource type="Script" uid="uid://dfnwymtygg1to" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
+[ext_resource type="Script" uid="uid://cvc42inud8fxx" path="res://scenes/menu/menu.gd" id="5"]
+[ext_resource type="Script" uid="uid://baky6bgu7psf2" path="res://scenes/menu/godot_version.gd" id="5_fdyjp"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3

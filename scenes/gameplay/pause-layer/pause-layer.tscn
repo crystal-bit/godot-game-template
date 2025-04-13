@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://barl4q1kugrmm"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/pause-layer/pause-layer.gd" id="2"]
+[ext_resource type="Script" uid="uid://do7kkb4ijqk5p" path="res://scenes/gameplay/pause-layer/pause-layer.gd" id="2"]
 [ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://resources/theme/theme-main.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://byniue2cdd2yv" path="res://scenes/gameplay/pause-layer/pause_button.png" id="4"]
 
