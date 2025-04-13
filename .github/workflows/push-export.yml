@@ -28,7 +28,7 @@ jobs:
           mkdir -v -p builds/windows
           godot --headless --export-release "Windows Desktop" ./builds/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows
           path: builds/windows
@@ -63,7 +63,7 @@ jobs:
           mkdir -v -p builds/linux
           godot -v --headless --export-release "Linux/X11" ./builds/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux
           path: builds/linux
@@ -101,7 +101,7 @@ jobs:
         run: |
           wget https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.min.js -O ./builds/web/coi-serviceworker.min.js
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: web
           path: builds/web
@@ -145,7 +145,7 @@ jobs:
           mkdir -v -p builds/mac
           godot --headless -v --export-release "macOS" ./builds/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mac
           path: builds/mac
