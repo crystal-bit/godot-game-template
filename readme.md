@@ -41,8 +41,7 @@ You have 2 options:
 | ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                          | 3.x   | **Defending Todot** (2020)          | [HTML5](https://crystal-bit.github.io/defending-todot/), [GitHub](https://github.com/crystal-bit/defending-todot)                                                                                                      |
 | ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw)     | 3.x   | **Karooto No Gase** (2021)          | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                                                                            |
 | ![Godot Game Template Demo](https://play-lh.googleusercontent.com/aOVexQckoyjN2WJp_puq8ifTr2TnWwJ-cNw6iflcH0IpQYp04m_ChTd0jwkCKalz5wVM=s100-rw) | 3.x   | **demo-godot-game-template** (2021) | [Android](https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate), [GitHub](https://github.com/crystal-bit/demo-godot-game-template)                                                               |
-
-_Get in contact if you want to be featured here!_
+| ![Pizza Poison Logo](https://private-user-images.githubusercontent.com/6860637/433166580-b24215b4-37bd-403a-9e5c-44b1daecff8b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ1Nzc3MTEsIm5iZiI6MTc0NDU3NzQxMSwicGF0aCI6Ii82ODYwNjM3LzQzMzE2NjU4MC1iMjQyMTViNC0zN2JkLTQwM2EtOWU1Yy00NGIxZGFlY2ZmOGIucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDQxMyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTA0MTNUMjA1MDExWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MDk3YjE5Y2Y1ODU2ZmY5MzEzZjgxMjhhYmJjYjJkZWZkOTdlODhkYjJjNWMwNTVkNGE0NWM4MjJhOGRiZjk0OCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.CuDiVZLvjJo3hDpP46NBtKjTblru8ZOiASv-zni0_2M)                                                                                                                                           | 4.4   | **Pizza Poison** (2025)             | [Itch.io](https://spesknight.itch.io/pizza-poison)                                                                                                                                                                     |
 
 # How to...
 
@@ -211,7 +210,7 @@ Many features were implemented only thanks to the help of:
 - [Andrea1141](https://github.com/Andrea1141)
 - [vini-guerrero](https://github.com/vini-guerrero)
 - [idbrii](https://github.com/idbrii)
-- [jrassa](https://github.com/jrassa) 
+- [jrassa](https://github.com/jrassa)
 
 Also many tools were already available in the open source community, see the [Thanks](#thanks) section.
 
