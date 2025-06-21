@@ -19,8 +19,6 @@ Provides a solid base for quick iterations.
 It worked well when used by small teams in game jams, but it should be generic
 enough to work for mid sized teams as well.
 
-Easily customizable and extendable for jams or larger projects
-
 ## Used by
 
 | Logo                                                                                                                                        | Godot | Title                      | Link                                                                                                                                                                                                                   |
@@ -85,7 +83,7 @@ You have 2 options:
 ## Change scene
 
 ```gdscript
-Game.change_scene("res://scenes/gameplay/gameplay.tscn")
+GGT.change_scene("res://scenes/gameplay/gameplay.tscn")
 ```
 
 ![change_scene](https://user-images.githubusercontent.com/6860637/162567110-026c1979-6237-4255-bb2a-97815fc4b0c4.gif)
@@ -93,7 +91,7 @@ Game.change_scene("res://scenes/gameplay/gameplay.tscn")
 ## Change scene and show progress bar
 
 ```gdscript
-Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
+GGT.change_scene("res://scenes/gameplay/gameplay.tscn", {
   "show_progress_bar": true
 })
 ```
@@ -107,7 +105,7 @@ var params = {
   "level": 4,
   "skin": "dark"
 }
-Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
+GGT.change_scene("res://scenes/gameplay/gameplay.tscn", params)
 ```
 
 Nodes in the loaded scene can read params with:
@@ -116,7 +114,7 @@ Nodes in the loaded scene can read params with:
 # gameplay.gd
 
 func _ready():
-    var params = Scenes.get_current_scene_data().params
+    var params = GGT.get_current_scene_data().params
     print(params.level) # 4
     print(params.skin)  # 'dark'
    # setup your scene here
@@ -132,8 +130,8 @@ can use this approach:
 # gameplay.gd
 
 func _ready() -> void:
-    if Scenes.is_changing_scene(): # this will be false for the starting scene or if you start the scene with "Run current scene" or F6 shortcut during development
-		    await Scenes.change_finished
+    if GGT.is_changing_scene(): # this will be false for the starting scene or if you start the scene with "Run current scene" or F6 shortcut during development
+		    await GGT.change_finished
 
     # activate your game logic here 
     pass
@@ -142,7 +140,7 @@ func _ready() -> void:
 ## Restart the current scene
 
 ```gd
-Game.restart_scene() # old params will be reused
+GGT.restart_scene() # old params will be reused
 ```
 
 ## Restart the current scene and override params
@@ -151,14 +149,7 @@ Game.restart_scene() # old params will be reused
 var new_params = {
   "level": 5,
 }
-Game.restart_scene_with_params(new_params)
-```
-
-## Center a Node2D into the viewport
-
-```gd
-$Sprite.position = Game.size / 2
-# Game.size it's just a shortcut to  get_viewport().get_visible_rect().size
+GGT.restart_scene_with_params(new_params)
 ```
 
 # addons/ggt-debug-shortcuts

@@ -18,10 +18,8 @@ config/icon="res://assets/sprites/icon.png"
 
 [autoload]
 
-DebugShortcuts="*res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn"
-Game="*res://addons/ggt-core/game.gd"
-Transitions="*res://addons/ggt-core/transitions/transitions.tscn"
-Scenes="*res://addons/ggt-core/scenes/scenes.gd"
+GGT="*res://addons/ggt-core/ggt.gd"
+GGT_DebugShortcuts="*res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn"
 
 [category]
 

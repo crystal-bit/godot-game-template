@@ -6,6 +6,9 @@
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -204,7 +207,7 @@ _data = {
 &"transparent": SubResource("8")
 }
 
-[node name="Transitions" type="CanvasLayer"]
+[node name="GGT_Transitions" type="CanvasLayer"]
 process_mode = 3
 layer = 100
 script = ExtResource("4")
@@ -250,7 +253,7 @@ max_value = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_y1dc8")
+&"": SubResource("AnimationLibrary_y1dc8")
 }
 autoplay = "transparent"
 

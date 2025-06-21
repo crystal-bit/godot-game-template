@@ -13,9 +13,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action_pressed("ggt_debug_quit_game"):
 			get_tree().quit()
 		elif event.is_action_pressed("ggt_debug_restart_scene"):
-			var ggt_game_autoload = get_node_or_null("/root/Game")
+			var ggt = get_node_or_null("/root/GGT")
 			# if "ggt-core" addon is enabled
-			if ggt_game_autoload:
-				ggt_game_autoload.restart_scene()
+			if ggt:
+				ggt.restart_scene()
 			else:
 				get_tree().reload_current_scene()
