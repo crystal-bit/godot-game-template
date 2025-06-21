@@ -12,9 +12,56 @@
   </a>
 </p>
 
-**Godot Game Template** is a generic starter project for Godot games.
+**Godot Game Template**, also GGT in short, is a simple generic starter project for Godot games.
 
-Its main focus is to provide a solid base to build upon.
+Provides a solid base for quick iterations.
+
+It worked well when used by small teams in game jams, but it should be generic
+enough to work for mid sized teams as well.
+
+Easily customizable and extendable for jams or larger projects
+
+## Used by
+
+| Logo                                                                                                                                        | Godot | Title                      | Link                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ----- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s100-rw)        | 3.4   | **YouAreUto** (2019)       | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone), [GitHub](https://github.com/YouAreUto/YouAreUto) |
+| ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                      | 3.2.3 | **Defending Todot** (2020) | [HTML5](https://crystal-bit.github.io/defending-todot/), [GitHub](https://github.com/crystal-bit/defending-todot)                                                                                                      |
+| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw) | 3.x   | **Karooto No Gase** (2021) | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                                                                            |
+| ![Pizza Poison Logo](https://github.com/user-attachments/assets/8f794de0-dcf8-4f8f-b29c-f1c619ba51d2)                                       | 4.3   | **Pizza Poison** (2025)    | [Itch.io](https://spesknight.itch.io/pizza-poison)                                                                                                                                                                     |
+| ![Pangolick Quest](https://github.com/user-attachments/assets/80bc19b6-8911-40ad-9214-90f84f9d7dc9)                                         | 4.4.1 | **Pangolick Quest** (2025) | [Itch.io](https://havbit.itch.io/pangolick-quest)                                                                                                                                                                      |
+
+# Features Overview
+
+GGT is composed of multiple parts:
+
+1.  **ggt-core** addon
+2.  **ggt-shortcuts** addon
+3.  Godot project boilerplate (this repository)
+
+**ggt-core** provides:
+
+- Scene management with transitions and optional progress bar
+- Parameter passing between scenes
+- Multithreaded scene loading
+  - single threaded loading fallback for web exports
+
+**ggt-shortcuts** provides:
+
+- Debug shortcuts mapped to keyboard keys for restart (R), pause (P), quit (Q)
+  - if you need those keys for your game, you can easily update the Godot
+    Input Map to whatever you like
+- Automatic shortcuts removal for release builds
+
+The godot project boilerplate provides:
+
+- GitHub Actions workflows for automatic builds+web deploy on Github Pages after each commit
+  - or you can use manual workflow dispatch
+  - or you can use a local `release.sh` script to export multiple targets (Windows, Linux, Mac, ...) with a single command
+  - or you can export manually from Godot as usual
+- A project structure that follows Godot best practices and naming conventions
+- Placeholder menu and gameplay scenes with support for keyboard, gamepad or touch inputs
+- A preconfigured a global theme for control nodes. Tweak `resources/theme/theme-main.tres` and every control nodes will inherit from it
 
 # Get started
 
@@ -32,16 +79,6 @@ You have 2 options:
 2. Download _Source code (zip)_
 3. Unzip the project
 4. Open the project in [Godot Engine](https://godotengine.org/download/) (GDScript) and create your game!
-
-## Used by
-
-| Logo                                                                                                                                            | Godot | Title                               | Link                                                                                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s100-rw)            | 3.x   | **YouAreUto** (2019)                | [Android](https://play.google.com/store/apps/details?id=com.youare.uto), [iOS](https://apps.apple.com/app/brain-game-teaser-youareuto/id1590561597#?platform=iphone), [GitHub](https://github.com/YouAreUto/YouAreUto) |
-| ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                          | 3.x   | **Defending Todot** (2020)          | [HTML5](https://crystal-bit.github.io/defending-todot/), [GitHub](https://github.com/crystal-bit/defending-todot)                                                                                                      |
-| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw)     | 3.x   | **Karooto No Gase** (2021)          | [Android](https://play.google.com/store/apps/details?id=org.calalinta.karootonogase), [Itch.io](https://calalinta.itch.io/)                                                                                            |
-| ![Godot Game Template Demo](https://play-lh.googleusercontent.com/aOVexQckoyjN2WJp_puq8ifTr2TnWwJ-cNw6iflcH0IpQYp04m_ChTd0jwkCKalz5wVM=s100-rw) | 3.x   | **demo-godot-game-template** (2021) | [Android](https://play.google.com/store/apps/details?id=org.crystalbit.godottemplate), [GitHub](https://github.com/crystal-bit/demo-godot-game-template)                                                               |
-| ![Pizza Poison Logo](https://github.com/user-attachments/assets/8f794de0-dcf8-4f8f-b29c-f1c619ba51d2)                                                                                                                                           | 4.3   | **Pizza Poison** (2025)             | [Itch.io](https://spesknight.itch.io/pizza-poison)                                                                                                                                                                     |
 
 # How to...
 
@@ -66,10 +103,9 @@ Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
 ## Change scene and pass parameters
 
 ```gd
-# you can pass whatever value you like: int, float, dictionary, ...
 var params = {
   "level": 4,
-  "skin": 'dark'
+  "skin": "dark"
 }
 Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
 ```
@@ -115,12 +151,28 @@ $Sprite.position = Game.size / 2
 # Game.size it's just a shortcut to  get_viewport().get_visible_rect().size
 ```
 
+# addons/ggt-debug-shortcuts
+
+`addons/ggt-debug-shortcuts` is enabled by default and it builds on top of `ggt-core`.
+
+By default it will set these input actions to the project:
+
+| action                    | key   | description                                         |
+| ------------------------- | ----- | --------------------------------------------------- |
+| "ggt_debug_restart_scene" | KEY_R | Restart the current scene, with the same parameters |
+| "ggt_debug_pause_game"    | KEY_P | Pause the tree (useful for quick debug)             |
+| "ggt_debug_quit_game"     | KEY_Q | Closes the game                                     |
+
+You can change, remove or add shortcuts in [debug_shortcuts.gd](./addons/ggt-debug-shortcuts/debug_shortcuts.gd).
+
+**These shortcuts work in the editor and in debug builds and are automatically removed on release builds.**
+
 # Conventions and project structure
 
 - `assets/`
   - Contains textures, sprites, sounds, music, fonts, ...
 - `builds/`
-  - output directory for game builds (ignored by .gitignore and .gdignore)
+  - output directory for game builds generated via `release.sh` (ignored by .gitignore and .gdignore)
 - `scenes/`
   - Contains Godot scenes (both entities, reusable scenes and "game screen" scenes)
   - Scene folders can contain `.gd` scripts or resources used by the scene
@@ -146,6 +198,15 @@ and it will save you time. Read more
 > general).
 
 See also [this PR](https://github.com/godotengine/godot/pull/82957/files) that adds `is_case_sensitive()`.
+
+### Trim whitespaces on save
+
+If every developer on the team is using the built-in Godot Engine text editor I strongly suggest
+to activate this option:
+
+- Editor -> Editor Settings -> Text Editor/Behavioud -> Trim Trailing Whitespace on Save
+
+It avoids whitespace changes that may add noise in team work. 
 
 # Export utilities
 
