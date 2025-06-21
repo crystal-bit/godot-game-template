@@ -5,7 +5,7 @@ extends EditorPlugin
 # this will be loaded only on the first plugin activation. If you want to
 # change the KEYS than use Project -> Project Settings -> Input Map
 const default_debug_shortcuts = {
-	"input/debug_restart_game": KEY_R,
+	"input/debug_restart_scene": KEY_R,
 	"input/debug_pause_game": KEY_P,
 	"input/debug_quit_game": KEY_Q
 }

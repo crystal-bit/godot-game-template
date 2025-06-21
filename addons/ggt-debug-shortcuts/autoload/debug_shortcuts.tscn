@@ -1,20 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwudswealbjw5"]
+[gd_scene load_steps=2 format=3 uid="uid://dwudswealbjw5"]
 
 [ext_resource type="Script" uid="uid://cwg070drxkjf2" path="res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.gd" id="1_h8jbq"]
-[ext_resource type="PackedScene" uid="uid://b5hm57d3waa77" path="res://addons/ggt-debug-shortcuts/shortcuts/pause_game.tscn" id="2_in6k6"]
-[ext_resource type="PackedScene" uid="uid://gulo6hdwe6ug" path="res://addons/ggt-debug-shortcuts/shortcuts/quit_game.tscn" id="2_pto5j"]
-[ext_resource type="PackedScene" uid="uid://ctsbjmhftjw2e" path="res://addons/ggt-debug-shortcuts/shortcuts/toggle_fullscreen.tscn" id="3_o3see"]
-[ext_resource type="PackedScene" uid="uid://ce7ecoqd7usa0" path="res://addons/ggt-debug-shortcuts/shortcuts/restart_scene.tscn" id="4_40m28"]
 
 [node name="DebugShortcuts" type="Node"]
 process_mode = 3
 editor_description = "Node automatically removed on release builds."
 script = ExtResource("1_h8jbq")
-
-[node name="PauseGame" parent="." instance=ExtResource("2_in6k6")]
-
-[node name="QuitGame" parent="." instance=ExtResource("2_pto5j")]
-
-[node name="ToggleFullscreen" parent="." instance=ExtResource("3_o3see")]
-
-[node name="RestartCurrentScene" parent="." instance=ExtResource("4_40m28")]
