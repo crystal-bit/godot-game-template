@@ -1,7 +1,7 @@
 extends RefCounted
 
 const config = preload("res://addons/ggt-core/config.tres")
-var _history = []
+var _history: Array[GGT_SceneData] = []
 
 
 func add(scene_path: String, params = null):

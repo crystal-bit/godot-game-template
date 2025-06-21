@@ -84,7 +84,7 @@ You have 2 options:
 
 ## Change scene
 
-```gd
+```gdscript
 Game.change_scene("res://scenes/gameplay/gameplay.tscn")
 ```
 
@@ -92,7 +92,7 @@ Game.change_scene("res://scenes/gameplay/gameplay.tscn")
 
 ## Change scene and show progress bar
 
-```gd
+```gdscript
 Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
   "show_progress_bar": true
 })
@@ -102,7 +102,7 @@ Game.change_scene("res://scenes/gameplay/gameplay.tscn", {
 
 ## Change scene and pass parameters
 
-```gd
+```gdscript
 var params = {
   "level": 4,
   "skin": "dark"
@@ -110,24 +110,34 @@ var params = {
 Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
 ```
 
-```gd
+Nodes in the loaded scene can read params with:
+
+```gdscript
 # gameplay.gd
 
-func pre_start(params):
-   print(params.level) # 4
-   print(params.skin) # 'dark'
+func _ready():
+    var params = Scenes.get_current_scene_data().params
+    print(params.level) # 4
+    print(params.skin)  # 'dark'
    # setup your scene here
 ```
 
-## \_ready() vs pre_start() vs start()
+## Await scene transition to finish
 
-They are called in this order:
+Note: all the tree is already paused during scene transitions, but if you need to
+wait for the graphic transition to completely disappear before calling some code you 
+can use this approach:
 
-| method              | description                                                                                                                 |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `_ready()`          | gets called when the graphic transition covers the screen                                                                   |
-| `pre_start(params)` | gets called immediately after \_ready, it receives params passed via Game.change_scene(scene_path, params)                  |
-| `start`             | it's called as soon as the graphic transition finishes. It's a good place to activate gameplay logic, enemy AI, timers, ... |
+```gdscript
+# gameplay.gd
+
+func _ready() -> void:
+    if Scenes.is_changing_scene(): # this will be false for the starting scene or if you start the scene with "Run current scene" or F6 shortcut during development
+		    await Scenes.change_finished
+
+    # activate your game logic here 
+    pass
+```
 
 ## Restart the current scene
 

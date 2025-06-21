@@ -10,18 +10,18 @@ func change_scene_to_file(new_scene: String, params = {}):
 	if not ResourceLoader.exists(new_scene):
 		push_error("Scene resource not found: ", new_scene)
 		return
-	Scenes.change_scene_multithread(new_scene, params)  # multi-thread
+	Scenes.change_scene_multithread(new_scene, params) # automatic fallback to single-thread for web exports
 
 
 # Restart the current scene
 func restart_scene():
-	var scene_data = Scenes.get_last_loaded_scene_data()
+	var scene_data = Scenes.get_current_scene_data()
 	change_scene_to_file(scene_data.path, scene_data.params)
 
 
 # Restart the current scene, but use given params
 func restart_scene_with_params(override_params):
-	var scene_data = Scenes.get_last_loaded_scene_data()
+	var scene_data = Scenes.get_current_scene_data()
 	change_scene_to_file(scene_data.path, override_params)
 
 
