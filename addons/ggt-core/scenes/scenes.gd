@@ -39,16 +39,16 @@ func _ready():
 			cur_scene.start()
 
 
-func get_last_loaded_scene_data() -> SceneData:
+func get_last_loaded_scene_data() -> GGT_SceneData:
 	return _history.get_last_loaded_scene_data()
 
 
 func _set_new_scene(resource: PackedScene):
 	var current_scene = get_tree().current_scene
 	current_scene.queue_free()
-	await current_scene.tree_exited  # wait for the current scene to be fully removed
-	var instanced_scn: Node = resource.instantiate()  # triggers _init
-	get_tree().root.add_child(instanced_scn)  # triggers _ready
+	await current_scene.tree_exited # wait for the current scene to be fully removed
+	var instanced_scn: Node = resource.instantiate() # triggers _init
+	get_tree().root.add_child(instanced_scn) # triggers _ready
 	get_tree().current_scene = instanced_scn
 	if instanced_scn.has_method("pre_start"):
 		await instanced_scn.pre_start(_params)
@@ -86,7 +86,7 @@ func _on_change_started(new_scene, params):
 func _on_resource_loaded(resource):
 	if transitions and transitions.is_transition_in_playing():
 		await transitions.anim.animation_finished
-	var load_time = Time.get_ticks_msec() - _loading_start_time  # ms
+	var load_time = Time.get_ticks_msec() - _loading_start_time # ms
 	print(
 		"{scn} loaded in {elapsed}ms".format({"scn": resource.resource_path, "elapsed": load_time})
 	)

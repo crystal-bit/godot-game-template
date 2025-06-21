@@ -1,4 +1,4 @@
-class_name SceneData
+class_name GGT_SceneData
 extends RefCounted
 
 var path: String = ""

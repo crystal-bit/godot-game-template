@@ -8,6 +8,7 @@ const SIMULATED_DELAY_MS = 32
 var thread
 var stages_amount: int
 
+
 func load_resource(path):
 	if OS.has_feature("web"):
 		_handle_load(path, true)
