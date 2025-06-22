@@ -8,7 +8,8 @@ const default_debug_shortcuts = {
 	"input/ggt_debug_restart_scene": KEY_R,
 	"input/ggt_debug_pause_game": KEY_P,
 	"input/ggt_debug_quit_game": KEY_Q,
-	"input/ggt_debug_speedup_game": KEY_SHIFT
+	"input/ggt_debug_speedup_game": KEY_SHIFT,
+	"input/ggt_debug_step_frame": KEY_PERIOD
 }
 
 

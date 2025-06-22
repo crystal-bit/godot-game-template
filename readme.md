@@ -157,12 +157,13 @@ GGT.restart_scene_with_params(new_params)
 
 By default it will set these input actions to the project:
 
-| action                    | key       | description                                          |
-| ------------------------- | --------- | ---------------------------------------------------- |
-| "ggt_debug_restart_scene" | KEY_R     | Restarts the current scene, with the same parameters |
-| "ggt_debug_pause_game"    | KEY_P     | Pauses the tree                                      |
-| "ggt_debug_quit_game"     | KEY_Q     | Closes the game                                      |
-| "ggt_debug_speedup_game"  | KEY_SHIFT | Sets Engine.time_scale to 2 while holding key        |
+| action                    | key        | description                                                  |
+| ------------------------- | ---------- | ------------------------------------------------------------ |
+| "ggt_debug_pause_game"    | KEY_P      | Pauses the tree                                              |
+| "ggt_debug_step_frame"    | KEY_PERIOD | It advances 1 process_frame and 1 physics_frame during pause |
+| "ggt_debug_restart_scene" | KEY_R      | Restarts the current scene, with the same parameters         |
+| "ggt_debug_quit_game"     | KEY_Q      | Closes the game                                              |
+| "ggt_debug_speedup_game"  | KEY_SHIFT  | Sets Engine.time_scale to 2 while holding key                |
 
 You can change, remove or add shortcuts in [debug_shortcuts.gd](./addons/ggt-debug-shortcuts/autoload/debug_shortcuts.gd).
 

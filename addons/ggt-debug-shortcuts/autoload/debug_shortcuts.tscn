@@ -4,5 +4,7 @@
 
 [node name="DebugShortcuts" type="Node"]
 process_mode = 3
+process_priority = -1
+process_physics_priority = -1
 editor_description = "Node automatically removed on release builds."
 script = ExtResource("1_h8jbq")
