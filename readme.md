@@ -160,11 +160,11 @@ By default it will set these input actions to the project:
 | action                    | key       | description                                          |
 | ------------------------- | --------- | ---------------------------------------------------- |
 | "ggt_debug_restart_scene" | KEY_R     | Restarts the current scene, with the same parameters |
-| "ggt_debug_pause_game"    | KEY_P     | Pauses the tree (useful for quick debug)             |
+| "ggt_debug_pause_game"    | KEY_P     | Pauses the tree                                      |
 | "ggt_debug_quit_game"     | KEY_Q     | Closes the game                                      |
-| "ggt_debug_speedup_game"  | KEY_SHIFT | Sets Engine.time_scale to 2                          |
+| "ggt_debug_speedup_game"  | KEY_SHIFT | Sets Engine.time_scale to 2 while holding key        |
 
-You can change, remove or add shortcuts in [debug_shortcuts.gd](./addons/ggt-debug-shortcuts/debug_shortcuts.gd).
+You can change, remove or add shortcuts in [debug_shortcuts.gd](./addons/ggt-debug-shortcuts/autoload/debug_shortcuts.gd).
 
 **These shortcuts work in the editor and in debug builds and are automatically removed on release builds.**
 
@@ -216,26 +216,26 @@ It avoids whitespace changes that may add noise in team work.
 From your project root:
 
 ```sh
-./release.sh MyGameName # this assumes that you have a "godot" binary/alias in your $PATH
+./release.sh # this assumes that you have a "godot" binary/alias in your $PATH
 ```
 
 Look inside the ./builds/ directory:
 
 ```sh
 builds
-└── MyGameName
+└── ProjectName
     ├── html5
     │   ├── build.log # an export log + build datetime and git hash
     │   ├── index.html
     │   ├── ...
     ├── linux
-    │   ├── MyGameName.x86_64
+    │   ├── ProjectName.x86_64
     │   └── build.log
     ├── osx
-    │   ├── MyGameName.dmg
+    │   ├── ProjectName.dmg
     │   └── build.log
     └── windows
-        ├── MyGameName.exe
+        ├── ProjectName.exe
         └── build.log
 ```
 
