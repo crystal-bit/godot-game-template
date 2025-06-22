@@ -19,3 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				ggt.restart_scene()
 			else:
 				get_tree().reload_current_scene()
+		elif event.is_action_pressed("ggt_debug_speedup_game"):
+			Engine.time_scale = 2 # if your gameplay changes timescale, then you probably want to create a time scale manager script to avoid issues
+		elif event.is_action_released("ggt_debug_speedup_game"):
+			Engine.time_scale = 1

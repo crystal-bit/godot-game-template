@@ -7,7 +7,8 @@ extends EditorPlugin
 const default_debug_shortcuts = {
 	"input/ggt_debug_restart_scene": KEY_R,
 	"input/ggt_debug_pause_game": KEY_P,
-	"input/ggt_debug_quit_game": KEY_Q
+	"input/ggt_debug_quit_game": KEY_Q,
+	"input/ggt_debug_speedup_game": KEY_SHIFT
 }
 
 
@@ -16,7 +17,7 @@ func _enter_tree():
 
 
 func _enable_plugin():
-	add_autoload_singleton("DebugShortcuts", "res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn")
+	add_autoload_singleton("GGT_DebugShortcuts", "res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn")
 	register_input_mappings(func(): save_project_settings())
 
 
@@ -25,7 +26,7 @@ func _exit_tree():
 
 
 func _disable_plugin():
-	remove_autoload_singleton("DebugShortcuts")
+	remove_autoload_singleton("GGT_DebugShortcuts")
 	unregister_input_mappings()
 	save_project_settings()
 

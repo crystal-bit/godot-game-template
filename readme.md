@@ -21,13 +21,13 @@ enough to work for mid sized teams as well.
 
 ## Used by
 
-| Logo                                                                                                                                        | Godot | Title                      | Platforms                                                                                                                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ----- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s100-rw)        | 3.4   | **YouAreUto** (2019)       | Android, iOS, [GitHub](https://github.com/YouAreUto/YouAreUto) |
-| ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                      | 3.2.3 | **Defending Todot** (2020) | [HTML5](https://crystal-bit.github.io/defending-todot/), [GitHub](https://github.com/crystal-bit/defending-todot)                                                                                                      |
-| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw) | 3.x   | **Karooto No Gase** (2021) | Android, HTML5 [Itch.io](https://calalinta.itch.io/)                                                                                            |
-| ![Pizza Poison Logo](https://github.com/user-attachments/assets/8f794de0-dcf8-4f8f-b29c-f1c619ba51d2)                                       | 4.3   | **Pizza Poison** (2025)    | [Itch.io](https://spesknight.itch.io/pizza-poison)                                                                                                                                                                     |
-| <img src="https://github.com/user-attachments/assets/80bc19b6-8911-40ad-9214-90f84f9d7dc9" alt="Pangolick Quest icon" width=100 />                                         | 4.4.1 | **Pangolick Quest** (2025) | HTML5 [Itch.io](https://havbit.itch.io/pangolick-quest)                                                                                                                                                                      |
+| Logo                                                                                                                                        | Godot | Title                      | Platforms                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ----- | -------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| ![YouAreUto icon](https://play-lh.googleusercontent.com/lL54YNps-UPuDONDHfy3pmn8_aVUZGMorHJcDArimJWCQKjjNax0QMxpiAWCc5PUPbU=s100-rw)        | 3.4   | **YouAreUto** (2019)       | Android, iOS, [GitHub](https://github.com/YouAreUto/YouAreUto)                                                    |
+| ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                      | 3.2.3 | **Defending Todot** (2020) | [HTML5](https://crystal-bit.github.io/defending-todot/), [GitHub](https://github.com/crystal-bit/defending-todot) |
+| ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw) | 3.x   | **Karooto No Gase** (2021) | Android, HTML5 [Itch.io](https://calalinta.itch.io/)                                                              |
+| ![Pizza Poison Logo](https://github.com/user-attachments/assets/8f794de0-dcf8-4f8f-b29c-f1c619ba51d2)                                       | 4.3   | **Pizza Poison** (2025)    | [Itch.io](https://spesknight.itch.io/pizza-poison)                                                                |
+| <img src="https://github.com/user-attachments/assets/80bc19b6-8911-40ad-9214-90f84f9d7dc9" alt="Pangolick Quest icon" width=100 />          | 4.4.1 | **Pangolick Quest** (2025) | HTML5 [Itch.io](https://havbit.itch.io/pangolick-quest)                                                           |
 
 # Features Overview
 
@@ -46,7 +46,7 @@ GGT is composed of multiple parts:
 
 **ggt-shortcuts** provides:
 
-- Debug shortcuts mapped to keyboard keys for restart (R), pause (P), quit (Q)
+- Debug shortcuts mapped to keyboard keys for restart (R), pause frame (P), speed up time scale (SHIFT), quit (Q)
   - if you need those keys for your game, you can easily update the Godot
     Input Map to whatever you like
 - Automatic shortcuts removal for release builds
@@ -123,7 +123,7 @@ func _ready():
 ## Await scene transition to finish
 
 Note: all the tree is already paused during scene transitions, but if you need to
-wait for the graphic transition to completely disappear before calling some code you 
+wait for the graphic transition to completely disappear before calling some code you
 can use this approach:
 
 ```gdscript
@@ -132,7 +132,7 @@ can use this approach:
 func _ready() -> void:
     if GGT.is_changing_scene(): # this will be false for the starting scene or if you start the scene with "Run current scene" or F6 shortcut during development
         await GGT.change_finished
-    # activate your game logic here 
+    # activate your game logic here
     pass
 ```
 
@@ -157,11 +157,12 @@ GGT.restart_scene_with_params(new_params)
 
 By default it will set these input actions to the project:
 
-| action                    | key   | description                                         |
-| ------------------------- | ----- | --------------------------------------------------- |
-| "ggt_debug_restart_scene" | KEY_R | Restart the current scene, with the same parameters |
-| "ggt_debug_pause_game"    | KEY_P | Pause the tree (useful for quick debug)             |
-| "ggt_debug_quit_game"     | KEY_Q | Closes the game                                     |
+| action                    | key       | description                                          |
+| ------------------------- | --------- | ---------------------------------------------------- |
+| "ggt_debug_restart_scene" | KEY_R     | Restarts the current scene, with the same parameters |
+| "ggt_debug_pause_game"    | KEY_P     | Pauses the tree (useful for quick debug)             |
+| "ggt_debug_quit_game"     | KEY_Q     | Closes the game                                      |
+| "ggt_debug_speedup_game"  | KEY_SHIFT | Sets Engine.time_scale to 2                          |
 
 You can change, remove or add shortcuts in [debug_shortcuts.gd](./addons/ggt-debug-shortcuts/debug_shortcuts.gd).
 
@@ -204,9 +205,9 @@ See also [this PR](https://github.com/godotengine/godot/pull/82957/files) that a
 If every developer on the team is using the built-in Godot Engine text editor I strongly suggest
 to activate this option:
 
-- Editor -> Editor Settings -> Text Editor/Behavioud -> Trim Trailing Whitespace on Save
+- Editor -> Editor Settings -> Text Editor/Behaviour -> Trim Trailing Whitespace on Save
 
-It avoids whitespace changes that may add noise in team work. 
+It avoids whitespace changes that may add noise in team work.
 
 # Export utilities
 
