@@ -1,4 +1,4 @@
-![game-template-overview](https://user-images.githubusercontent.com/6860637/101258948-24c35c80-3726-11eb-8c64-7a201e945f73.png)
+![game-template-overview](https://github.com/user-attachments/assets/a89a031c-f880-45f6-ac84-4450c8bb4a22)
 
 > 🌟 You make games, the template handles the boring stuff.
 
@@ -27,8 +27,7 @@ enough to work for mid sized teams as well.
 | ![Defending Todot icon](https://imgur.com/Bn10XAf.png)                                                                                      | 3.2.3 | **Defending Todot** (2020) | [HTML5](https://crystal-bit.github.io/defending-todot/), [GitHub](https://github.com/crystal-bit/defending-todot) |
 | ![Karooto No Gase icon](https://play-lh.googleusercontent.com/sWgjV9dJxa1jKina0mNbU3fGmqA4zuqtRWXfhn_dfEK6reW90GH1uz0wsai1SG898bOZ=s100-rw) | 3.x   | **Karooto No Gase** (2021) | Android, HTML5 [Itch.io](https://calalinta.itch.io/)                                                              |
 | ![Pizza Poison Logo](https://github.com/user-attachments/assets/8f794de0-dcf8-4f8f-b29c-f1c619ba51d2)                                       | 4.3   | **Pizza Poison** (2025)    | [Itch.io](https://spesknight.itch.io/pizza-poison)                                                                |
-| <img src="https://github.com/user-attachments/assets/80bc19b6-8911-40ad-9214-90f84f9d7dc9" alt="Pangolick Quest icon" width=100 />          | 4.4.1 | **Pangolick Quest** (2025) | HTML5 [Itch.io](https://havbit.itch.io/pangolick-quest)                                                           |
-
+| <img src="https://github.com/user-attachments/assets/80bc19b6-8911-40ad-9214-90f84f9d7dc9" alt="Pangolick Quest icon" width=100 />          | 4.4.1 | **Pangolick Quest** (2025) | HTML5, Windows, Linux, OSX [Itch.io](https://havbit.itch.io/pangolick-quest)                                                           |
 # Features Overview
 
 GGT is composed of multiple parts:
@@ -53,7 +52,7 @@ GGT is composed of multiple parts:
 
 The godot project boilerplate provides:
 
-- GitHub Actions workflows for automatic builds+web deploy on Github Pages after each commit
+- GitHub Actions workflows for automatic builds+web deploy on Github Pages after each commit (thanks to [aBARICHELLO/godot-ci](https://github.com/aBARICHELLO/godot-ci))
   - or you can use manual workflow dispatch
   - or you can use a local `release.sh` script to export multiple targets (Windows, Linux, Mac, ...) with a single command
   - or you can export manually from Godot as usual
