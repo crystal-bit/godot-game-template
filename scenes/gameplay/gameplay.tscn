@@ -1,14 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=5 format=3 uid="uid://4fyoq8npekf0"]
 
-[ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://barl4q1kugrmm" path="res://scenes/gameplay/pause-layer/pause-layer.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dqbyamotcr34" path="res://assets/sprites/cards/Deck.png" id="4_m3hu3"]
+[ext_resource type="Script" uid="uid://cc2eswgbls7mb" path="res://addons/godot_card_layout/layouts/hand_layout/gcard_hand_layout.gd" id="4_q64rj"]
 [ext_resource type="Script" uid="uid://b83omkj4aqsph" path="res://scenes/gameplay/gameplay.gd" id="5"]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource("5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1")
-
 [node name="PauseLayer" parent="." instance=ExtResource("2")]
 visible = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 221.0
+offset_top = -2.0
+offset_right = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+
+[node name="GCardHandLayout" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_q64rj")
+dynamic_radius_factor = 400.0
+hovered_scale = Vector2(1.3, 1.3)
+hover_relative_position = Vector2(0, -100)
+enable_dragging = true
+dragging_scale = Vector2(1.5, 1.5)
+metadata/_custom_type_script = "uid://cc2eswgbls7mb"
+
+[node name="Deck" type="TextureButton" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -283.0
+offset_right = 204.0
+offset_bottom = -18.0
+grow_vertical = 0
+texture_normal = ExtResource("4_m3hu3")
+
+[node name="Label" type="Label" parent="Deck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tap the Deck"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="pressed" from="Deck" to="." method="_on_deck_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

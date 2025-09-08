@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5ljudnke55b2"]
+
+[ext_resource type="Script" uid="uid://dttf2su8tb1od" path="res://scenes/components/card.gd" id="1_phura"]
+[ext_resource type="Texture2D" uid="uid://qnpxpux56l2x" path="res://assets/sprites/cards/aksyon-cards.png" id="1_xk85y"]
+[ext_resource type="Texture2D" uid="uid://bi7p35x4jkcfl" path="res://assets/sprites/cards/gabay-card.png" id="3_80wep"]
+[ext_resource type="Texture2D" uid="uid://ctd534pdhdmlc" path="res://assets/sprites/cards/collective-effort.png" id="3_dq8eh"]
+[ext_resource type="Texture2D" uid="uid://b54f7epnqtcry" path="res://assets/sprites/cards/kaalaman-card.png" id="4_rwy07"]
+[ext_resource type="Texture2D" uid="uid://bgxjn1pu74pj5" path="res://assets/sprites/cards/default-cards.png" id="5_rwy07"]
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_phura")
+type = "gabay"
+art = ExtResource("3_dq8eh")
+background_aksyon = ExtResource("1_xk85y")
+background_gabay = ExtResource("3_80wep")
+background_kaalaman = ExtResource("4_rwy07")
+background_default = ExtResource("5_rwy07")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 422.0
+offset_bottom = 648.0
+texture = ExtResource("1_xk85y")
+expand_mode = 3
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 41.0
+offset_right = 370.0
+offset_bottom = 100.0
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 135.0
+offset_right = 389.0
+offset_bottom = 380.0
+texture = ExtResource("3_dq8eh")
+expand_mode = 3
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 419.0
+offset_right = 374.0
+offset_bottom = 550.0
+text = "Description Here"
+autowrap_mode = 3

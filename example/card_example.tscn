@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c871odxcp2l05"]
+
+[ext_resource type="Texture2D" uid="uid://ci8gojvqa6y1k" path="res://icon.svg" id="1_bv68t"]
+[ext_resource type="Texture2D" uid="uid://cdmxt8mu6jqhn" path="res://example/resource/sprites/card_example.svg" id="2_x5rw8"]
+
+[node name="Card" type="TextureRect"]
+offset_right = 80.0
+offset_bottom = 120.0
+pivot_offset = Vector2(40, 2.08165e-12)
+mouse_filter = 0
+texture = ExtResource("2_x5rw8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 9.0
+offset_right = 25.0
+offset_bottom = 59.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("1_bv68t")
+expand_mode = 1
+stretch_mode = 4

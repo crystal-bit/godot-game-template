@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5yfvdlqr8giu"]
+
+[ext_resource type="Script" path="res://addons/godot_card_layout/layouts/hand_layout/gcard_hand_layout.gd" id="1_u2yyo"]
+[ext_resource type="PackedScene" uid="uid://c871odxcp2l05" path="res://example/card_example.tscn" id="2_hudwu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GCardHandLayout" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 281.0
+offset_top = 182.0
+offset_right = 321.0
+offset_bottom = 222.0
+script = ExtResource("1_u2yyo")
+hovered_index = 1
+
+[node name="GCard2" parent="GCardHandLayout" instance=ExtResource("2_hudwu")]
+layout_mode = 0
+offset_left = -118.217
+offset_top = 6.15582
+offset_right = -38.2203
+offset_bottom = 118.156
+rotation = -0.15708
+
+[node name="GCard3" parent="GCardHandLayout" instance=ExtResource("2_hudwu")]
+layout_mode = 0
+offset_left = -39.2295
+offset_top = -18.4587
+offset_right = 40.7764
+offset_bottom = 93.541
+scale = Vector2(1.1, 1.1)
+
+[node name="GCard4" parent="GCardHandLayout" instance=ExtResource("2_hudwu")]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 120.0
+
+[node name="GCard5" parent="GCardHandLayout" instance=ExtResource("2_hudwu")]
+layout_mode = 0
+offset_left = 79.2296
+offset_top = 1.54132
+offset_right = 159.23
+offset_bottom = 113.541
+rotation = 0.0785398
+
+[node name="GCard6" parent="GCardHandLayout" instance=ExtResource("2_hudwu")]
+layout_mode = 0
+offset_left = 118.217
+offset_top = 6.15582
+offset_right = 198.217
+offset_bottom = 118.156
+rotation = 0.15708

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="godot-game-template"
+config/name="bayanihan-spire-template"
 config/version="0.0.1"
 run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.4")
@@ -32,7 +32,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
+enabled=PackedStringArray("res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg", "res://addons/godot_card_layout/plugin.cfg")
 
 [gui]
 
@@ -82,4 +82,5 @@ ggt_debug_step_frame={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=3
 textures/vram_compression/import_etc2_astc=true

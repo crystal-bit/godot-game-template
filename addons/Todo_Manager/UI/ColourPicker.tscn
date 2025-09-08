@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bie1xn8v1kd66"]
+
+[ext_resource type="Script" path="res://addons/Todo_Manager/ColourPicker.gd" id="1"]
+
+[node name="TODOColour" type="HBoxContainer"]
+offset_right = 105.0
+offset_bottom = 31.0
+script = ExtResource("1")
+metadata/_edit_use_custom_anchors = false
+
+[node name="Label" type="Label" parent="."]
+offset_top = 4.0
+offset_right = 1.0
+offset_bottom = 27.0
+
+[node name="TODOColourPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(40, 0)
+offset_left = 65.0
+offset_right = 105.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
