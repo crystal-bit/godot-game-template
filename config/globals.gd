@@ -6,6 +6,7 @@ var MAX_BAYANIHAN_SPIRIT := 10
 var STARTING_HAND_SIZE := 5
 var EXHAUSTION_PENALTY := 2 # Resilience lost per undrawn card
 var ACTIVE_CARD: Variant # Currently played card
+var CURRENT_BAYANIHAN_SPIRIT := MAX_BAYANIHAN_SPIRIT
 
 # --- Deck System (from GDD) ---
 var STARTING_DECK_SIZE := 8 # To be balanced

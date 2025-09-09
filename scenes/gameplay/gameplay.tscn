@@ -67,12 +67,12 @@ offset_top = -62.5
 offset_right = 305.0
 offset_bottom = 57.5
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gh441")
 metadata/_edit_group_ = true
 
 [node name="ActiveCard" type="TextureRect" parent="CanvasLayer/Control/CardDropBox/PanelContainer"]
 layout_mode = 2
-mouse_filter = 2
 expand_mode = 1
 
 [node name="Deck" type="TextureButton" parent="CanvasLayer/Control"]
@@ -182,7 +182,7 @@ grow_vertical = 2
 rotation = 0.785398
 scale = Vector2(2, 2)
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/BayanihanSpirit"]
+[node name="Spirit" type="Label" parent="CanvasLayer/Control/BayanihanSpirit"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -197,12 +197,13 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.785398
 theme_override_font_sizes/font_size = 30
-text = "0/0"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
 [connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="gui_input" from="CanvasLayer/Control/CardDropBox/PanelContainer/ActiveCard" to="." method="_on_active_card_gui_input"]
 [connection signal="pressed" from="CanvasLayer/Control/Deck" to="." method="_on_deck_pressed"]
 [connection signal="card_dragging_finished" from="CanvasLayer/Control/GCardHandLayout" to="." method="_on_g_card_hand_layout_card_dragging_finished"]
