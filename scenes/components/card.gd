@@ -1,9 +1,11 @@
 extends Control
 
+var card_config = preload("res://config/card_config.gd").new()
+
 @export var title: String = "Title Here"
 @export var description: String = "Description Here"
 @export_enum("aksyon", "gabay", "kaalaman") var type: int
-
+@export var cardId: String
 @export var art: Texture2D
 @export var background_aksyon: Texture2D
 @export var background_gabay: Texture2D
@@ -13,6 +15,11 @@ extends Control
 @export var effect: Dictionary
 @export var flavorText: String
 
+#func _get_drag_data(at_position) -> Dictionary:
+	#var preview = TextureRect.new()
+	#preview.texture = self.texture
+	#set_drag_preview(preview)
+	#return card_config.get_card(cardId)
 
 func _ready() -> void:
 	if type == 0:

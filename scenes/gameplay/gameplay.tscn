@@ -1,11 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=9 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="PackedScene" uid="uid://barl4q1kugrmm" path="res://scenes/gameplay/pause-layer/pause-layer.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://cmcfpe4qvtxm4" path="res://assets/sprites/environment/forest.png" id="3_q64rj"]
+[ext_resource type="Script" uid="uid://dsxuujko2psys" path="res://scenes/gameplay/card_drop_box.gd" id="4_gh441"]
 [ext_resource type="Texture2D" uid="uid://dqbyamotcr34" path="res://assets/sprites/cards/Deck.png" id="4_m3hu3"]
 [ext_resource type="Script" uid="uid://cc2eswgbls7mb" path="res://addons/godot_card_layout/layouts/hand_layout/gcard_hand_layout.gd" id="4_q64rj"]
 [ext_resource type="Script" uid="uid://b83omkj4aqsph" path="res://scenes/gameplay/gameplay.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://b7aa3ii6qeid7" path="res://scenes/components/bayanihan_spirit.tscn" id="6_0w2j2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh441"]
+bg_color = Color(0.40833, 0.408329, 0.408329, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="Gameplay" type="Node"]
 script = ExtResource("5")
@@ -32,6 +40,40 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
+
+[node name="CardDropBox" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.0
+offset_top = -128.0
+offset_right = 566.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_gh441")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CardDropBox"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -62.5
+offset_right = 305.0
+offset_bottom = 57.5
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gh441")
+metadata/_edit_group_ = true
+
+[node name="ActiveCard" type="TextureRect" parent="CanvasLayer/Control/CardDropBox/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
 
 [node name="Deck" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -163,3 +205,4 @@ vertical_alignment = 1
 
 [connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Control/Deck" to="." method="_on_deck_pressed"]
+[connection signal="card_dragging_finished" from="CanvasLayer/Control/GCardHandLayout" to="." method="_on_g_card_hand_layout_card_dragging_finished"]

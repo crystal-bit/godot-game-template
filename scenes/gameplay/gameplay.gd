@@ -4,7 +4,7 @@ var card_scene = preload("res://scenes/components/card.tscn")
 var cards_list = []
 var current_cards = 0
 var max_cards = 0  # Will be set in _ready()
-var initial_hand_size = 2
+var initial_hand_size = 4
 
 
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 	# Load deck and set max_cards
 	var deck = card_config.get_starter_deck("basic")
 	
-	var collection = []	
+	var collection = []
 
 	deck.map(func(cardset) -> void:
 		for i in cardset["quantity"]:
@@ -26,6 +26,7 @@ func _ready() -> void:
 	for i in range(max_cards):
 		var card_instance = card_scene.instantiate()
 		card_instance.title = collection[i].name
+		card_instance.cardId =  collection[i].id
 		card_instance.description = collection[i].description
 		card_instance.type = collection[i].type
 		card_instance.cost = collection[i].cost
@@ -95,3 +96,23 @@ func remove_card(card_node: Node) -> void:
 		current_cards = max(0, current_cards - 1)
 	else:
 		push_warning("Card node not found in hand layout.")
+
+
+func _on_g_card_hand_layout_card_dragging_finished(card, index):
+	Globals.ACTIVE_CARD = card
+	print("Active card set to: ", Globals.ACTIVE_CARD)
+	print("Card mouse position: ", card.get_local_mouse_position())
+	# check if the card mouse position is inside the $CanvasLayer/Control/CardDropBox
+	var drop_box = $CanvasLayer/Control/CardDropBox
+	var mouse_pos = drop_box.get_global_transform().affine_inverse().xform(get_viewport().get_mouse_position())
+	var drop_box_rect = Rect2(Vector2.ZERO, drop_box.get_size())
+	if drop_box_rect.has_point(mouse_pos):
+		print("Card dropped inside the drop box!")
+		$CanvasLayer/Control/CardDropBox/PanelContainer/ActiveCard.texture = Globals.ACTIVE_CARD.art
+		# Here you can add logic to handle the card being played
+		remove_card(card)
+	else:
+		print("Card dropped outside the drop box.")
+	# Reset ACTIVE_CARD after handling
+	Globals.ACTIVE_CARD = null
+	print("Active card reset to: ", Globals.ACTIVE_CARD)
