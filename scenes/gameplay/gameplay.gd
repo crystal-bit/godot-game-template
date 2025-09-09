@@ -4,7 +4,7 @@ var card_scene = preload("res://scenes/components/card.tscn")
 var cards_list = []
 var current_cards = 0
 var max_cards = 0  # Will be set in _ready()
-var initial_hand_size = 5
+var initial_hand_size = 2
 
 
 
@@ -80,7 +80,12 @@ func add_card() -> void:
 	current_cards += 1
 
 func _on_deck_pressed() -> void:
-	$CanvasLayer/Timer.start()
+	if current_cards < initial_hand_size:
+		$CanvasLayer/Timer.start()
+	elif current_cards < max_cards:
+		add_card()
+	else:
+		print("No more cards to draw.")
 
 func remove_card(card_node: Node) -> void:
 	var hand_layout = $CanvasLayer/Control/GCardHandLayout

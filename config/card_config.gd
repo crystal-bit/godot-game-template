@@ -95,17 +95,21 @@ var config = {
 		"basic": [
 			{ "cardId": "collective-effort", "quantity": 2 },
 			{ "cardId": "divine-shield", "quantity": 2 },
-			{ "cardId": "people-resolve", "quantity": 2 }
+			{ "cardId": "people-resolve", "quantity": 2 },
+			{ "cardId": "evacuation-order", "quantity": 1 },
+			{ "cardId": "sagip-bahay", "quantity": 1 }
 		],
 		"defensive": [
 			{ "cardId": "divine-shield", "quantity": 2 },
 			{ "cardId": "evacuation-order", "quantity": 2 },
-			{ "cardId": "sagip-bahay", "quantity": 2 }
+			{ "cardId": "sagip-bahay", "quantity": 2 },
+			{ "cardId": "collective-effort", "quantity": 1 }
 		],
 		"tactical": [
 			{ "cardId": "collective-effort", "quantity": 2 },
 			{ "cardId": "people-resolve", "quantity": 2 },
-			{ "cardId": "evacuation-order", "quantity": 2 }
+			{ "cardId": "evacuation-order", "quantity": 2 },
+			{ "cardId": "divine-shield", "quantity": 1 }
 		]
 	},
 	"cardEffects": {
