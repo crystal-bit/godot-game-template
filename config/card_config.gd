@@ -94,7 +94,7 @@ var config = {
 	"starterDecks": {
 		"basic": [
 			{ "cardId": "collective-effort", "quantity": 2 },
-			{ "cardId": "divine-shield", "quantity": 2 },
+			{ "cardId": "divine-shield", "quantity": 1 },
 			{ "cardId": "people-resolve", "quantity": 2 },
 			{ "cardId": "evacuation-order", "quantity": 1 },
 			{ "cardId": "sagip-bahay", "quantity": 1 }

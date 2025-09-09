@@ -311,3 +311,4 @@ func _on_child_gui_input(event:InputEvent, card:Control):
 				card.z_index = 2
 			_dragging_index = -100
 			_reset_positions_if_in_tree()
+

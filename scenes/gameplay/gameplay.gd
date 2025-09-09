@@ -15,10 +15,9 @@ func _ready() -> void:
 	
 	var collection = []
 
-	deck.map(func(cardset) -> void:
-		for i in cardset["quantity"]:
+	for cardset in deck:
+		for _i in range(cardset["quantity"]):
 			collection.append(card_config.get_card(cardset["cardId"]))
-	)
 	
 	max_cards = collection.size()
 	
@@ -66,18 +65,32 @@ func add_card() -> void:
 		print("Maximum number of cards reached!")
 		$CanvasLayer/Timer.stop()
 		return
-		
-	# Create a new card instance
+
 	var card_index = current_cards % cards_list.size()
-	var new_card = cards_list[card_index].duplicate()
-	
-	# Add the card to the scene
+	var card_data = cards_list[card_index]
+	var new_card = card_scene.instantiate()
+
+	# Set card properties
+	new_card.title = card_data.title
+	new_card.cardId = card_data.cardId
+	new_card.description = card_data.description
+	new_card.type = card_data.type
+	new_card.cost = card_data.cost
+	new_card.effect = card_data.effect
+	new_card.flavorText = card_data.flavorText
+	new_card.pivot_offset = Vector2(0, 20)
+	new_card.art = card_data.art
+
 	$CanvasLayer/Control/GCardHandLayout.add_child(new_card)
-	
-	# Position will be handled by the layout
 	new_card.visible = true
-	
-	# Increment the card counter
+
+	# Fix anchors and set size deferred to avoid override
+	new_card.anchor_left = 0
+	new_card.anchor_right = 0
+	new_card.anchor_top = 0
+	new_card.anchor_bottom = 0
+	new_card.set_deferred("size", Vector2(400, 650))
+
 	current_cards += 1
 
 func _on_deck_pressed() -> void:
@@ -90,7 +103,7 @@ func _on_deck_pressed() -> void:
 
 func remove_card(card_node: Node) -> void:
 	var hand_layout = $CanvasLayer/Control/GCardHandLayout
-	if hand_layout.has_node(card_node.get_path()):
+	if is_instance_valid(card_node) and card_node.get_parent() == hand_layout:
 		hand_layout.remove_child(card_node)
 		card_node.queue_free()
 		current_cards = max(0, current_cards - 1)
@@ -104,7 +117,7 @@ func _on_g_card_hand_layout_card_dragging_finished(card, index):
 	print("Card mouse position: ", card.get_local_mouse_position())
 	# check if the card mouse position is inside the $CanvasLayer/Control/CardDropBox
 	var drop_box = $CanvasLayer/Control/CardDropBox
-	var mouse_pos = drop_box.get_global_transform().affine_inverse().xform(get_viewport().get_mouse_position())
+	var mouse_pos = get_viewport().get_mouse_position() - drop_box.global_position
 	var drop_box_rect = Rect2(Vector2.ZERO, drop_box.get_size())
 	if drop_box_rect.has_point(mouse_pos):
 		print("Card dropped inside the drop box!")
@@ -115,4 +128,3 @@ func _on_g_card_hand_layout_card_dragging_finished(card, index):
 		print("Card dropped outside the drop box.")
 	# Reset ACTIVE_CARD after handling
 	Globals.ACTIVE_CARD = null
-	print("Active card reset to: ", Globals.ACTIVE_CARD)
