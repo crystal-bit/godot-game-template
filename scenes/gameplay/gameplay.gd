@@ -4,6 +4,7 @@ var card_scene = preload("res://scenes/components/card.tscn")
 var cards_list = []
 var current_cards = 0
 var max_cards = 0  # Will be set in _ready()
+var initial_hand_size = 5
 
 
 
@@ -52,11 +53,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	$CanvasLayer/Control/Deck/DeckCount.text = str(max_cards - current_cards)
 
 
 func _on_timer_timeout() -> void:
-	if current_cards < max_cards:
+	if current_cards < initial_hand_size:
 		add_card()
 
 func add_card() -> void:
@@ -80,3 +81,12 @@ func add_card() -> void:
 
 func _on_deck_pressed() -> void:
 	$CanvasLayer/Timer.start()
+
+func remove_card(card_node: Node) -> void:
+	var hand_layout = $CanvasLayer/Control/GCardHandLayout
+	if hand_layout.has_node(card_node.get_path()):
+		hand_layout.remove_child(card_node)
+		card_node.queue_free()
+		current_cards = max(0, current_cards - 1)
+	else:
+		push_warning("Card node not found in hand layout.")

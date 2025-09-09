@@ -26,3 +26,4 @@ func _ready() -> void:
 	$MarginContainer/VBoxContainer/MarginContainer2/Title.text = title
 	$MarginContainer/VBoxContainer/Art.texture = art
 	$MarginContainer/VBoxContainer/MarginContainer/Description.text = description
+	$Cost.text = str(cost)

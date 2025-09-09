@@ -71,3 +71,28 @@ autowrap_mode = 3
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -154.0
+offset_top = -69.0
+offset_right = -52.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="Label" parent="Cost"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 3.0
+offset_right = 149.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "🔥"
+horizontal_alignment = 1
+vertical_alignment = 1

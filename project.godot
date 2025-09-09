@@ -20,6 +20,7 @@ config/icon="res://assets/sprites/icon.png"
 
 GGT="*res://addons/ggt-core/ggt.gd"
 GGT_DebugShortcuts="*res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn"
+Globals="*res://config/globals.gd"
 
 [category]
 

@@ -10,7 +10,7 @@ var config = {
 			"cost": 1,
 			"description": "All of your cards played this turn that target threats have their effects doubled against the chosen threat.",
 			"effect": {
-				"boost": 2,				
+				"boost": 2
 			},
 			"flavorText": "Sama-samang pagkilos, mas malakas na epekto.",
 			"art": "collective-effort.png"
@@ -22,7 +22,7 @@ var config = {
 			"cost": 1,
 			"description": "The community's resilience gem cannot drop below 1 for the next turn.",
 			"effect": {
-				"protected": 1,		
+				"protected": 1
 			},
 			"flavorText": "",
 			"art": "divine-shield.png"
@@ -32,7 +32,7 @@ var config = {
 			"name": "Evacuation Order",
 			"type": 1,
 			"cost": 1,
-			"description": "Pospones incoming threats damage by 1 for the next turn.",
+			"description": "Postpones incoming threat damage by 1 for the next turn.",
 			"effect": {
 				"damageDelay": 1
 			},
@@ -44,7 +44,7 @@ var config = {
 			"name": "People Resolve",
 			"type": 2,
 			"cost": 1,
-			"description": "The player gains an additional action this turn. All cards cost 0 Bayanihan Spirit.",
+			"description": "Gain an additional action this turn. All cards cost 0 Bayanihan Spirit.",
 			"effect": {
 				"addTurn": 1,
 				"handCost": 0
@@ -57,12 +57,38 @@ var config = {
 			"name": "Sagip Bahay",
 			"type": 1,
 			"cost": 1,
-			"description": "Gives the resilience gem a reinforced state for the next turn - making it immune to damage for 1 turn.",
+			"description": "Gives the resilience gem a reinforced state for the next turn, making it immune to damage for 1 turn.",
 			"effect": {
 				"reinforced": 1
 			},
 			"flavorText": "",
 			"art": "sagip-bahay.png"
+		},
+		# Threat Hazards (from GDD)
+		{
+			"id": "rubble",
+			"name": "Rubble",
+			"type": 0,
+			"cost": 0,
+			"description": "Hazard. A useless card that clogs your deck. Some threats punish you for holding Rubble.",
+			"effect": {
+				"hazard": 1
+			},
+			"flavorText": "Mga guho ng lindol, sagabal sa pagbangon.",
+			"art": "rubble.png"
+		},
+		{
+			"id": "soot",
+			"name": "Soot",
+			"type": 0,
+			"cost": 0,
+			"description": "Hazard. Cannot be exhausted. Clogs your deck.",
+			"effect": {
+				"hazard": 1,
+				"cannotExhaust": 1
+			},
+			"flavorText": "Abo ng bulkan, di matanggal-tanggal.",
+			"art": "soot.png"
 		}
 	],
 	"starterDecks": {
@@ -124,7 +150,7 @@ var config = {
 			"color": "blue"
 		},
 		"reinforced": {
-			"description": "Gives the resilience gem a reinforced state for the next turn - making it immune to damage for 1 turn.",
+			"description": "Gives the resilience gem a reinforced state for the next turn, making it immune to damage for 1 turn.",
 			"icon": "shield",
 			"color": "blue"
 		},
@@ -139,26 +165,41 @@ var config = {
 			"color": "yellow"
 		},
 		"damageDelay": {
-			"description": "Pospones incoming threats damage by 1 for the next turn.",
+			"description": "Postpones incoming threat damage by 1 for the next turn.",
 			"icon": "clock",
 			"color": "purple"
+		},
+		"hazard": {
+			"description": "A useless card that clogs your deck. Some threats punish you for holding Hazards.",
+			"icon": "skull",
+			"color": "gray"
+		},
+		"cannotExhaust": {
+			"description": "This card cannot be exhausted or removed from your deck during the event.",
+			"icon": "lock",
+			"color": "gray"
 		}
 	},
 	"cardTypeConfig": {
-		"gabay": {
-			"color": "from-blue-600 to-blue-800",
+		"tulong": {
+			"color": "green",
 			"icon": "shield",
-			"description": "Cards focused on preventing and mitigating disaster damage"
+			"description": "Reactive defense; restoring Resilience or Blocking damage."
 		},
 		"aksyon": {
-			"color": "from-red-600 to-red-800",
-			"icon": "zap",
-			"description": "Cards for actively responding to and combating disasters"
+			"color": "blue",
+			"icon": "toolkit",
+			"description": "Proactive problem-solving; removing debuffs or deck pollution."
 		},
 		"kaalaman": {
-			"color": "from-green-600 to-green-800",
-			"icon": "plus",
-			"description": "Cards that provide energy, healing, and card draw"
+			"color": "yellow",
+			"icon": "mind",
+			"description": "Strategy and manipulation; drawing cards, seeing future Intents."
+		},
+		"gabay": {
+			"color": "red",
+			"icon": "heartbeat",
+			"description": "High-cost, high-impact, tide-turning effects."
 		}
 	}
 }
