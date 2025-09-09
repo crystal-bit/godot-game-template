@@ -1,26 +1,46 @@
 extends Node
-
-# Preload textures at compile time
-const CARD_TEXTURES = {
-	"card1": preload("res://assets/sprites/cards/Collective Effort.png"),
-	"card2": preload("res://assets/sprites/cards/Divine Shield.png"),
-	"card3": preload("res://assets/sprites/cards/Evacuation Order.png"),
-	"card4": preload("res://assets/sprites/cards/People Resolve.png"),
-	"card5": preload("res://assets/sprites/cards/Sagip-Bahay.png")
-}
-
+var card_config = preload("res://config/card_config.gd").new()
+var card_scene = preload("res://scenes/components/card.tscn")
 var cards_list = []
-var card:TextureRect
-var max_cards = 5
 var current_cards = 0
+var max_cards = 0  # Will be set in _ready()
+
+
 
 func _ready() -> void:
-	# Initialize cards list with preloaded textures
-	for i in range(1, 6):
-		cards_list.append({
-			"name": "card" + str(i),
-			"texture": CARD_TEXTURES["card" + str(i)]
-		})
+	
+	# Load deck and set max_cards
+	var deck = card_config.get_starter_deck("basic")
+	
+	var collection = []	
+
+	deck.map(func(cardset) -> void:
+		for i in cardset["quantity"]:
+			collection.append(card_config.get_card(cardset["cardId"]))
+	)
+	
+	max_cards = collection.size()
+	
+	# Initialize cards list
+	for i in range(max_cards):
+		var card_instance = card_scene.instantiate()
+		card_instance.title = collection[i].name
+		card_instance.description = collection[i].description
+		card_instance.type = collection[i].type
+		card_instance.cost = collection[i].cost
+		card_instance.effect = collection[i].effect
+		card_instance.flavorText = collection[i].flavorText
+		card_instance.size = Vector2(400, 650)
+		card_instance.pivot_offset = Vector2(0, 20)
+		
+		# Try to load card art, use default if not found
+		var image_path = "res://assets/sprites/cards/" + collection[i].art
+		if ResourceLoader.exists(image_path):
+			card_instance.art = load(image_path) as Texture2D
+		else:
+			push_warning("Image not found: " + image_path)
+		
+		cards_list.append(card_instance)
 
 	var scene_data = GGT.get_current_scene_data()
 	print("GGT/Gameplay: scene params are ", scene_data.params)
@@ -42,30 +62,21 @@ func _on_timer_timeout() -> void:
 func add_card() -> void:
 	if current_cards >= max_cards:
 		print("Maximum number of cards reached!")
-		$Timer.stop()
+		$CanvasLayer/Timer.stop()
 		return
-	
-	# Create a new TextureRect for the card
-	var new_card = TextureRect.new()
-	
-	# Set card properties
-	new_card.name = "Card_" + str(current_cards + 1)
-	new_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	new_card.custom_minimum_size = Vector2(205.0, 330.0)
-	new_card.pivot_offset = Vector2(80.0, 0.0)
-	
-	# Set the preloaded texture
-	new_card.texture = cards_list[current_cards % cards_list.size()]["texture"]
+		
+	# Create a new card instance
+	var card_index = current_cards % cards_list.size()
+	var new_card = cards_list[card_index].duplicate()
 	
 	# Add the card to the scene
-	$Control/GCardHandLayout.add_child(new_card)
+	$CanvasLayer/Control/GCardHandLayout.add_child(new_card)
 	
-	# Position the card (you might want to adjust this based on your layout needs)
-	new_card.position = Vector2(100 + (current_cards * 50), 100)
+	# Position will be handled by the layout
+	new_card.visible = true
 	
 	# Increment the card counter
 	current_cards += 1
 
-
 func _on_deck_pressed() -> void:
-	$Timer.start()
+	$CanvasLayer/Timer.start()

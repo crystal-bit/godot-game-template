@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=7 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="PackedScene" uid="uid://barl4q1kugrmm" path="res://scenes/gameplay/pause-layer/pause-layer.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cmcfpe4qvtxm4" path="res://assets/sprites/environment/forest.png" id="3_q64rj"]
 [ext_resource type="Texture2D" uid="uid://dqbyamotcr34" path="res://assets/sprites/cards/Deck.png" id="4_m3hu3"]
 [ext_resource type="Script" uid="uid://cc2eswgbls7mb" path="res://addons/godot_card_layout/layouts/hand_layout/gcard_hand_layout.gd" id="4_q64rj"]
 [ext_resource type="Script" uid="uid://b83omkj4aqsph" path="res://scenes/gameplay/gameplay.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://b7aa3ii6qeid7" path="res://scenes/components/bayanihan_spirit.tscn" id="6_0w2j2"]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource("5")
@@ -11,28 +13,66 @@ script = ExtResource("5")
 [node name="PauseLayer" parent="." instance=ExtResource("2")]
 visible = false
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Forest" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(580, 176)
+scale = Vector2(1.185, 1.185)
+texture = ExtResource("3_q64rj")
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 0.1
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 221.0
-offset_top = -2.0
-offset_right = -143.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
 
-[node name="GCardHandLayout" type="Control" parent="Control"]
+[node name="Deck" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -154.0
+offset_right = 212.0
+offset_bottom = 111.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_m3hu3")
+metadata/_edit_group_ = true
+
+[node name="DeckCount" type="Label" parent="CanvasLayer/Control/Deck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GCardHandLayout" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = 104.0
+offset_right = -176.0
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.6, 0.6)
 script = ExtResource("4_q64rj")
 dynamic_radius_factor = 400.0
 hovered_scale = Vector2(1.3, 1.3)
@@ -41,30 +81,85 @@ enable_dragging = true
 dragging_scale = Vector2(1.5, 1.5)
 metadata/_custom_type_script = "uid://cc2eswgbls7mb"
 
-[node name="Deck" type="TextureButton" parent="."]
+[node name="ButtonEndDay" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -254.0
+offset_top = -194.0
+offset_right = -17.0
+offset_bottom = -126.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "End Day"
+
+[node name="ButtonPass" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -254.0
+offset_top = -105.0
+offset_right = -17.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Pass, Rest, Regroup"
+
+[node name="BayanihanSpirit" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -283.0
-offset_right = 204.0
-offset_bottom = -18.0
+offset_left = 12.0
+offset_top = -238.0
+offset_right = 109.0
+offset_bottom = -145.0
 grow_vertical = 0
-texture_normal = ExtResource("4_m3hu3")
+rotation = -0.785398
+metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="Deck"]
+[node name="BayanihanSpirit" parent="CanvasLayer/Control/BayanihanSpirit" instance=ExtResource("6_0w2j2")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.8969
+offset_top = -67.7131
+offset_right = 52.8969
+offset_bottom = -26.7131
 grow_horizontal = 2
 grow_vertical = 2
-text = "Tap the Deck"
+rotation = 0.785398
+scale = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/BayanihanSpirit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -26.5
+offset_right = 45.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+theme_override_font_sizes/font_size = 30
+text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
-[connection signal="pressed" from="Deck" to="." method="_on_deck_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/Deck" to="." method="_on_deck_pressed"]

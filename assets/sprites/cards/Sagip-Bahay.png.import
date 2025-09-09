@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb348id4kdikx"
-path="res://.godot/imported/Sagip-Bahay.png-c0c2bd18942c8bb4cb585ba137846202.ctex"
+uid="uid://cc3askuyyi3iq"
+path="res://.godot/imported/sagip-Bahay.png-4e010fd8705f5bd9c73ebc0ce262c198.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cards/Sagip-Bahay.png"
-dest_files=["res://.godot/imported/Sagip-Bahay.png-c0c2bd18942c8bb4cb585ba137846202.ctex"]
+source_file="res://assets/sprites/cards/sagip-Bahay.png"
+dest_files=["res://.godot/imported/sagip-Bahay.png-4e010fd8705f5bd9c73ebc0ce262c198.ctex"]
 
 [params]
 

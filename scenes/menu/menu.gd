@@ -1,4 +1,4 @@
-	extends Control
+extends Control
 
 @onready var btn_play = $MarginContainer/Control/VBoxContainer/PlayButton
 @onready var btn_exit = $MarginContainer/Control/VBoxContainer/ExitButton

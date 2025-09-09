@@ -1,52 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://82fiitkfc6wn"]
+[gd_scene load_steps=12 format=3 uid="uid://82fiitkfc6wn"]
 
 [ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1"]
 [ext_resource type="Script" uid="uid://c8ru70vkpmvyy" path="res://addons/ggt-core/transitions/progress.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://b7aa3ii6qeid7" path="res://scenes/components/bayanihan_spirit.tscn" id="3_fhb1u"]
 [ext_resource type="Script" uid="uid://cqeuawll14hnl" path="res://addons/ggt-core/transitions/transitions.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://bjtvsgloac5ps" path="res://assets/sprites/ui/ember.png" id="4_fhb1u"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mcnah"]
-atlas = ExtResource("4_fhb1u")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03rgt"]
-atlas = ExtResource("4_fhb1u")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7wdf"]
-atlas = ExtResource("4_fhb1u")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhlu4"]
-atlas = ExtResource("4_fhb1u")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6byqk"]
-atlas = ExtResource("4_fhb1u")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_d338s"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mcnah")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03rgt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r7wdf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lhlu4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6byqk")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("1")])
@@ -278,25 +235,8 @@ layout_mode = 2
 mouse_filter = 2
 script = ExtResource("3")
 
-[node name="Ember" type="Control" parent="ColorRect/MarginContainer/Progress"]
+[node name="BayanihanSpirit" parent="ColorRect/MarginContainer/Progress" instance=ExtResource("3_fhb1u")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -218.0
-offset_top = -32.0
-offset_right = -176.0
-offset_bottom = 9.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect/MarginContainer/Progress/Ember"]
-position = Vector2(19, 16)
-sprite_frames = SubResource("SpriteFrames_d338s")
-autoplay = "default"
-speed_scale = 2.0
 
 [node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer/Progress"]
 modulate = Color(1, 1, 1, 0)

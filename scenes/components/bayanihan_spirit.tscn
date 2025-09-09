@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7aa3ii6qeid7"]
+
+[ext_resource type="Texture2D" uid="uid://bjtvsgloac5ps" path="res://assets/sprites/ui/ember.png" id="1_lxijt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcnah"]
+atlas = ExtResource("1_lxijt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03rgt"]
+atlas = ExtResource("1_lxijt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7wdf"]
+atlas = ExtResource("1_lxijt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhlu4"]
+atlas = ExtResource("1_lxijt")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6byqk"]
+atlas = ExtResource("1_lxijt")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d338s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcnah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03rgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7wdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhlu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6byqk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BayanihanSpirit" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -32.0
+offset_right = -176.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, 16)
+sprite_frames = SubResource("SpriteFrames_d338s")
+autoplay = "default"
+speed_scale = 2.0

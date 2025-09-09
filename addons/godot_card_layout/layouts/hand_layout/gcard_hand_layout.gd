@@ -72,10 +72,13 @@ signal card_dragging_finished(card:Control, index:int)
 
 var gcard_hand_layout_service := GCardHandLayoutService.new()
 var _reset_position_tween:Tween
-var _mouse_in:bool = false
-var _dragging_card:Control
-var _dragging_index:int = -100
+var _dragging_card:Control = null
 var _dragging_mouse_position:Vector2
+var _dragging_index:int = -100
+var _mouse_in:bool = false
+var _hovered_card:Control = null
+# Dictionary to store original z-indices
+var _original_z_indices:Dictionary = {}
 
 func _ready():
 	_dragging_index = -100
@@ -250,11 +253,25 @@ func _on_child_mouse_entered():
 	if _dragging_card:
 		return
 	_mouse_in = true
+	var card = get_child(get_children().find(get_viewport().gui_get_focus_owner()))
+	if card:
+		# Store original z-index if not already stored
+		if not _original_z_indices.has(card):
+			_original_z_indices[card] = card.z_index
+		# Set new z-index for hover
+		card.z_index = 2  # Higher than default but lower than dragging
+		_hovered_card = card
 
 func _on_child_mouse_exited():
 	if _dragging_card:
 		return
 	_mouse_in = false
+	var card = get_child(get_children().find(get_viewport().gui_get_focus_owner()))
+	if card and _original_z_indices.has(card):
+		# Restore original z-index
+		card.z_index = _original_z_indices[card]
+		_original_z_indices.erase(card)
+	_hovered_card = null
 
 func _on_child_order_changed():
 	_setup_cards()
@@ -266,20 +283,31 @@ func _on_child_gui_input(event:InputEvent, card:Control):
 	if event is InputEventMouseButton:
 		var mouse_button_event = event as InputEventMouseButton
 		if card.get_parent() != self:
-			_dragging_index == -1
+			_dragging_index = -1
 		else:
 			_dragging_index = get_children().find(card)
 		if mouse_button_event.pressed && mouse_button_event.button_index == MOUSE_BUTTON_LEFT:
+			# Store original z-index if not already stored
+			if not _original_z_indices.has(card):
+				_original_z_indices[card] = card.z_index
 			_dragging_card = card
 			_dragging_mouse_position = card.get_local_mouse_position()
-			_dragging_card.z_index = 1
+			_dragging_card.z_index = 3  # Highest z-index when dragging
 			hovered_index = -1 #Set hover index without trigger relayout
 			card_dragging_started.emit(_dragging_card, _dragging_index)
 			_reset_positions_if_in_tree()
 		elif !mouse_button_event.pressed && mouse_button_event.button_index == MOUSE_BUTTON_LEFT:
 			assert(_dragging_card == card)
 			_dragging_card = null
-			card.z_index = 0
+			# Restore original z-index when dropped
+			if _original_z_indices.has(card):
+				card.z_index = _original_z_indices[card]
+				_original_z_indices.erase(card)
 			card_dragging_finished.emit(card, _dragging_index)
+			# After dropping, if mouse is still over the card, set hover z-index
+			if _mouse_in and _hovered_card == card:
+				if not _original_z_indices.has(card):
+					_original_z_indices[card] = card.z_index
+				card.z_index = 2
 			_dragging_index = -100
 			_reset_positions_if_in_tree()
