@@ -43,4 +43,3 @@ Threats have a streamlined set of skills that represent their core identity. The
   * `Lava Flow` (Escalating): Deals 6 damage. This damage is permanently increased by 2 every time this action is used during this Event.  
   * `Ashfall` (Pollution): Adds 1 "Soot" (a Hazard card) to the player's Draw Pile. "Soot" cannot be Exhausted.  
   * `Pyroclastic Cloud` (Burst): Deals medium damage (e.g., 10 damage) and adds 2 "Soot" cards to the Used Pile.
-

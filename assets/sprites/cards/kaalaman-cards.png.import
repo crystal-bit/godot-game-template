@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b54f7epnqtcry"
-path="res://.godot/imported/kaalaman-cards.png-ce0c83397a165c3853c8c94fece71553.ctex"
+uid="uid://c8gogwp2v22x8"
+path="res://.godot/imported/kaalaman-cards.PNG-f370603fc75254feead15a454b50fca8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cards/kaalaman-cards.png"
-dest_files=["res://.godot/imported/kaalaman-cards.png-ce0c83397a165c3853c8c94fece71553.ctex"]
+source_file="res://assets/sprites/cards/kaalaman-cards.PNG"
+dest_files=["res://.godot/imported/kaalaman-cards.PNG-f370603fc75254feead15a454b50fca8.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

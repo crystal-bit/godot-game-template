@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5ljudnke55b2"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ljudnke55b2"]
 
 [ext_resource type="Script" uid="uid://dttf2su8tb1od" path="res://scenes/components/card.gd" id="1_phura"]
-[ext_resource type="Texture2D" uid="uid://qnpxpux56l2x" path="res://assets/sprites/cards/aksyon-cards.png" id="1_xk85y"]
-[ext_resource type="Texture2D" uid="uid://bi7p35x4jkcfl" path="res://assets/sprites/cards/gabay-cards.png" id="3_80wep"]
 [ext_resource type="Texture2D" uid="uid://ctd534pdhdmlc" path="res://assets/sprites/cards/collective-effort.png" id="3_dq8eh"]
-[ext_resource type="Texture2D" uid="uid://b54f7epnqtcry" path="res://assets/sprites/cards/kaalaman-cards.png" id="4_rwy07"]
-[ext_resource type="Texture2D" uid="uid://bgxjn1pu74pj5" path="res://assets/sprites/cards/default-cards.png" id="5_rwy07"]
+[ext_resource type="Texture2D" uid="uid://cdhwfeqjlc2yj" path="res://assets/sprites/cards/aksyon-cards.PNG" id="4_mcnob"]
+[ext_resource type="Texture2D" uid="uid://gwxpbbkwuos6" path="res://assets/sprites/cards/gabay-cards.PNG" id="5_enl7w"]
+[ext_resource type="Texture2D" uid="uid://c8gogwp2v22x8" path="res://assets/sprites/cards/kaalaman-cards.PNG" id="6_xc2we"]
+[ext_resource type="Texture2D" uid="uid://cnfoqgtpkvnrq" path="res://assets/sprites/cards/rubble (1).png" id="7_mcnob"]
+[ext_resource type="Texture2D" uid="uid://dt6v00b13xm5t" path="res://assets/sprites/cards/tulong-cards.PNG" id="7_uv6hx"]
+[ext_resource type="Texture2D" uid="uid://c0a2ma77p00jw" path="res://assets/sprites/ui/spirit.png" id="9_enl7w"]
 
 [node name="Card" type="TextureRect"]
 anchors_preset = 15
@@ -14,14 +16,15 @@ anchor_bottom = 1.0
 offset_right = -737.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_xk85y")
+texture = ExtResource("4_mcnob")
 script = ExtResource("1_phura")
 type = 1
 art = ExtResource("3_dq8eh")
-background_aksyon = ExtResource("1_xk85y")
-background_gabay = ExtResource("3_80wep")
-background_kaalaman = ExtResource("4_rwy07")
-background_default = ExtResource("5_rwy07")
+background_aksyon = ExtResource("4_mcnob")
+background_gabay = ExtResource("5_enl7w")
+background_kaalaman = ExtResource("6_xc2we")
+background_tulong = ExtResource("7_uv6hx")
+background_default = ExtResource("7_mcnob")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -45,6 +48,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Card Name"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -66,6 +70,8 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 text = "Description Here"
+horizontal_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 3
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
@@ -77,22 +83,20 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -154.0
-offset_top = -69.0
-offset_right = -52.0
+offset_left = -342.0
+offset_top = 392.0
+offset_right = -240.0
+offset_bottom = 461.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Icon" type="Label" parent="Cost"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 3.0
-offset_right = 149.0
-offset_bottom = 72.0
-theme_override_font_sizes/font_size = 50
-text = "🔥"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Icon" type="TextureRect" parent="Cost"]
+layout_mode = 2
+offset_left = -20.0
+offset_top = 17.0
+offset_right = 25.0
+offset_bottom = 57.0
+texture = ExtResource("9_enl7w")

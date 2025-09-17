@@ -43,7 +43,7 @@ signal card_dragging_finished(card:Control, index:int)
 ## The cards to the left of the hovered card move to the left, the cards to the right move to the right.[br][br]
 @export var hover_padding := 40.0: set = _set_hover_padding
 ## The scale of the card when it is hovered.
-@export var hovered_scale := Vector2(1.1, 1.1): set = _set_hovered_scale
+@export var hovered_scale := Vector2(1.01, 1.01): set = _set_hovered_scale
 ## The relative position of the card when being hovered.
 @export var hover_relative_position := Vector2(0, -20): set = _set_hover_relative_position
 
@@ -311,4 +311,3 @@ func _on_child_gui_input(event:InputEvent, card:Control):
 				card.z_index = 2
 			_dragging_index = -100
 			_reset_positions_if_in_tree()
-

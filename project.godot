@@ -12,8 +12,8 @@ config_version=5
 
 config/name="bayanihan-spire-template"
 config/version="0.0.1"
-run/main_scene="res://scenes/menu/menu.tscn"
-config/features=PackedStringArray("4.4")
+run/main_scene="uid://c2gocuhw2o7py"
+config/features=PackedStringArray("4.5")
 config/icon="res://assets/sprites/icon.png"
 
 [autoload]

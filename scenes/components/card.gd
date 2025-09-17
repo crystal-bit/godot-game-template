@@ -4,12 +4,13 @@ var card_config = preload("res://config/card_config.gd").new()
 
 @export var title: String = "Title Here"
 @export var description: String = "Description Here"
-@export_enum("aksyon", "gabay", "kaalaman") var type: int
+@export_enum("aksyon", "gabay", "kaalaman", "tulong") var type: int
 @export var cardId: String
 @export var art: Texture2D
 @export var background_aksyon: Texture2D
 @export var background_gabay: Texture2D
 @export var background_kaalaman: Texture2D
+@export var background_tulong: Texture2D
 @export var background_default: Texture2D
 @export var cost: int
 @export var effect: Dictionary
@@ -28,6 +29,8 @@ func _ready() -> void:
 		self.texture = background_gabay
 	elif type == 2:
 		self.texture = background_kaalaman
+	elif type == 3:
+		self.texture = background_tulong
 	else:
 		self.texture = background_default
 	$MarginContainer/VBoxContainer/MarginContainer2/Title.text = title

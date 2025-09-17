@@ -88,8 +88,8 @@
 * **Drill 1: The Basics:** Teaches Resilience, Spirit, and playing basic **Tulong** cards to gain Block against a simple telegraphed attack.  
 * **Drill 2: Proactive Solutions:** The Threat introduces junk "Hazard" cards (e.g., "Rubble"). The player learns about deck pollution and is guided to use an **Aksyon** card to solve it.  
 * **Drill 3: The Core Choice:** The player's deck is intentionally depleted. They are guided into a situation where they must use the **"Rest & Regroup"** action to avoid the **Exhaustion** mechanic, learning the game's most crucial strategic decision.  
-    
-    
+	
+	
   Version Update Tracker:  
   **GDD Version 0.6.0**
 
@@ -112,5 +112,3 @@ This update was crucial for clarifying and committing to the roguelike deckbuild
 
 * **Defined "Consequence of Losing" (Section 2.2):** We explicitly stated that losing a run means losing the deck built during that run and the player's position on the map.  
 * **Clarified the Roguelike Model (Section 3.2):** This new section clearly defines the difference between the temporary, **run-specific deck** and the player's permanent **Global Card Pool**, explaining how players start each run with a basic deck and build it up from their collection. This solidifies the game as a true roguelike deckbuilder.
-
-
