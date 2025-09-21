@@ -129,7 +129,7 @@ can use this approach:
 
 func _ready() -> void:
     if GGT.is_changing_scene(): # this will be false for the starting scene or if you start the scene with "Run current scene" or F6 shortcut during development
-        await GGT.change_finished
+        await GGT.scene_transition_finished
     # activate your game logic here
     pass
 ```

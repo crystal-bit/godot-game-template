@@ -1,7 +1,7 @@
 extends Node
 
-signal change_started
-signal change_finished
+signal scene_transition_started
+signal scene_transition_finished
 
 const _GGT_Transitions = preload("res://addons/ggt-core/transitions/transitions.tscn")
 const _config = preload("res://addons/ggt-core/config.tres")
@@ -33,7 +33,7 @@ func change_scene(new_scene: String, params = {}):
 		push_error("Scene resource not found: ", new_scene)
 		return
 	_changing_scene = true
-	emit_signal("change_started", new_scene, params)
+	emit_signal("scene_transition_started", new_scene, params)
 	_history.add(new_scene, params)
 	_loading_start_time = Time.get_ticks_msec()
 	_transition_appear(params)
@@ -62,7 +62,7 @@ func _set_new_scene(resource: PackedScene):
 	get_tree().change_scene_to_packed(resource)
 	_transitions.fade_out()
 	await _transitions.anim.animation_finished
-	emit_signal("change_finished")
+	emit_signal("scene_transition_finished")
 	_loading_start_time = 0
 	_changing_scene = false
 

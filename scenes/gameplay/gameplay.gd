@@ -11,7 +11,7 @@ func _ready() -> void:
 	sprite_2d.position = get_viewport().get_visible_rect().size / 2
 
 	if GGT.is_changing_scene(): # this will be false if starting the scene with "Run current scene" or F6 shortcut
-		await GGT.change_finished
+		await GGT.scene_transition_finished
 
 	print("GGT/Gameplay: scene transition animation finished")
 
