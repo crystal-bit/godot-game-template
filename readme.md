@@ -46,8 +46,7 @@ GGT is composed of multiple parts:
 **ggt-shortcuts** provides:
 
 - Debug shortcuts mapped to keyboard keys for restart (R), pause frame (P), advance frame (.), speed up time scale (SHIFT), quit (Q)
-  - if you need those keys for your game, you can easily update the Godot
-    Input Map to whatever you like
+  - easily configurable via Godot Input Map
 - Automatic shortcuts removal for release builds
 
 The godot project boilerplate provides:
