@@ -8,3 +8,18 @@ process_priority = -1
 process_physics_priority = -1
 editor_description = "Node automatically removed on release builds."
 script = ExtResource("1_h8jbq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4096
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -44.0
+offset_right = 56.0
+offset_bottom = -16.0
+grow_vertical = 0
+vertical_alignment = 2

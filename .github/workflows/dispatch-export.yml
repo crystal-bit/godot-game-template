@@ -5,7 +5,7 @@ on:
       godot_version:
         description: "Godot Version"
         required: true
-        default: "4.4.1"
+        default: "4.5"
       export_platform:
         description: "Export Platform - all|windows|linux|web|macos"
         required: true
@@ -33,10 +33,10 @@ env:
 jobs:
   export_windows:
     name: Windows Export
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: ${{ github.event.inputs.export_platform == 'windows' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -70,10 +70,10 @@ jobs:
 
   export_linux:
     name: Linux Export
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: ${{ github.event.inputs.export_platform == 'linux' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -105,10 +105,10 @@ jobs:
 
   export_web:
     name: Web Export
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: ${{ github.event.inputs.export_platform == 'web' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -151,10 +151,10 @@ jobs:
 
   export_mac:
     name: Mac Export
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: ${{ github.event.inputs.export_platform == 'macos' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
