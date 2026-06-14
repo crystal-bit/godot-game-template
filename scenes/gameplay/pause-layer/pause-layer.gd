@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+@export var settings_menu: PanelContainer
+@export var margin_container: MarginContainer
+
 @onready var pause := self
 @onready var pause_button := $MarginContainer/Control/PauseButton
 @onready var resume_option := $MarginContainer/Control/VBoxOptions/Resume
@@ -62,3 +65,15 @@ func _on_PauseButton_pressed():
 
 func _on_main_menu_pressed():
 	GGT.change_scene("res://scenes/menu/menu.tscn", {"show_progress_bar": false})
+
+
+func _on_settings_pressed() -> void:
+	settings_menu.show()
+
+
+func _on_settings_menu_visibility_changed() -> void:
+	margin_container.visible = !settings_menu.visible
+
+
+func _on_settings_menu_confirm_button_clicked() -> void:
+	settings_menu.hide()

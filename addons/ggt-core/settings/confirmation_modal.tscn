@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b8y8u6k8j8p8"]
+
+[ext_resource type="Script" uid="uid://umnufqxdcx3o" path="res://objects/ui/confirmation_modal.gd" id="1_script"]
+
+[node name="ConfirmationModal" type="ColorRect" unique_id=2109052131 node_paths=PackedStringArray("label", "confirm_button", "cancel_button")]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+script = ExtResource("1_script")
+label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Label")
+confirm_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton")
+cancel_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=28791456]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1229673226]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1445125233]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1296826699]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1052729136]
+layout_mode = 2
+text = "Are you sure?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=300517040]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=316094959]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "No"
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=39673274]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Yes"

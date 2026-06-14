@@ -1,0 +1,133 @@
+# LANGUAGE translation for godot-game-template for the following files:
+# res://scenes/menu/menu.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: godot-game-template\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: scenes/menu/menu.tscn
+msgid "Godot Game Template"
+msgstr ""
+
+#: scenes/menu/menu.tscn
+msgid "START"
+msgstr "INIZIA"
+
+#: scenes/menu/menu.tscn scenes/gameplay/pause-layer/pause-layer.tscn
+msgid "SETTINGS"
+msgstr "IMPOSTAZIONI"
+
+#: scenes/menu/menu.tscn
+msgid "EXIT"
+msgstr "ESCI"
+
+#: scenes/menu/menu.tscn
+msgid "made by: "
+msgstr "fatto da: "
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "GAME"
+msgstr "GIOCO"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Language"
+msgstr "Lingua"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "AUDIO"
+msgstr "AUDIO"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Volume/Master"
+msgstr ""
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Volume/SFX"
+msgstr ""
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Volume/Music"
+msgstr "Volume/Musica"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "GRAPHICS"
+msgstr "GRAFICA"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Resolution scale"
+msgstr "Scala Risoluzione"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Fullscreen"
+msgstr "Schermo intero"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "VSync"
+msgstr ""
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "FPS Limit Active"
+msgstr "Limite FPS Attivo"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "FPS Limit"
+msgstr "Limite FPS"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Cancel"
+msgstr "Cancella"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Reset default"
+msgstr "Resetta a default"
+
+#: addons/ggt-core/settings/settings_menu.tscn
+msgctxt "menu"
+msgid "Confirm"
+msgstr "Conferma"
+
+#: scenes/gameplay/pause-layer/pause-layer.tscn
+msgid "RESUME"
+msgstr "RIPRENDI"
+
+#: scenes/gameplay/pause-layer/pause-layer.tscn
+msgid "MAIN MENU"
+msgstr "MENÙ PRINCIPALE"
+
+#: scenes/gameplay/pause-layer/pause-layer.tscn
+msgid "Pause: ESC (keyboard) or START button (joypad)"
+msgstr "Pausa: ESC (tastiera) oppure pulsante START (joypad) "
+
+msgid "godot-game-template"
+msgstr ""

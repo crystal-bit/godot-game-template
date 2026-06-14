@@ -1,0 +1,278 @@
+[gd_scene format=3 uid="uid://c2jxemjmao00b"]
+
+[ext_resource type="Script" uid="uid://d0v8k80aietn" path="res://addons/ggt-core/settings/settings_menu.gd" id="1_25law"]
+[ext_resource type="PackedScene" uid="uid://b8y8u6k8j8p8" path="res://addons/ggt-core/settings/confirmation_modal.tscn" id="3_modal"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r8yej"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_y1o0p"]
+font_size = 32
+
+[node name="SettingsMenu" type="PanelContainer" unique_id=190195239 node_paths=PackedStringArray("sound_master_slider", "sound_sfx_slider", "sound_music_slider", "resolution_scale_slider", "resolution_scale_value", "v_sync_checkbox", "fps_limit_enabled_checkbox", "fps_limit_2", "fps_limit_slider", "fps_limit_label", "fullscreen_checkbox", "locale_option_button", "reset_confirmation_dialog", "cancel_confirmation_dialog", "cancel_button")]
+offset_right = 353.0
+offset_bottom = 707.0
+script = ExtResource("1_25law")
+sound_master_slider = NodePath("MarginContainer/VBox/VolumeMaster/HSlider")
+sound_sfx_slider = NodePath("MarginContainer/VBox/VolumeSFX/HSlider")
+sound_music_slider = NodePath("MarginContainer/VBox/Volume3/SoundMusicSlider")
+resolution_scale_slider = NodePath("MarginContainer/VBox/GfxRes/HBoxContainer/ResolutionScaleSlider")
+resolution_scale_value = NodePath("MarginContainer/VBox/GfxRes/HBoxContainer/ResolutionScaleValue")
+v_sync_checkbox = NodePath("MarginContainer/VBox/GfxVSync/VSyncCheckbox")
+fps_limit_enabled_checkbox = NodePath("MarginContainer/VBox/FPSLimit/FPSLimitEnabledCheckbox")
+fps_limit_2 = NodePath("MarginContainer/VBox/FPSLimit2")
+fps_limit_slider = NodePath("MarginContainer/VBox/FPSLimit2/HBoxContainer/FPSLimitSlider")
+fps_limit_label = NodePath("MarginContainer/VBox/FPSLimit2/HBoxContainer/FPSLimitLabel")
+fullscreen_checkbox = NodePath("MarginContainer/VBox/Fullscreen/FullscreenCheckbox")
+locale_option_button = NodePath("MarginContainer/VBox/Language/LocaleOptionButton")
+reset_confirmation_dialog = NodePath("MarginContainer/VBox/ResetConfirmationDialog")
+cancel_confirmation_dialog = NodePath("MarginContainer/VBox/CancelConfirmationDialog")
+cancel_button = NodePath("MarginContainer/VBox/HBoxContainer/HBoxContainer/SettingsCancelButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1411647293]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer" unique_id=1313122932]
+layout_mode = 2
+
+[node name="LabelSettings" type="Label" parent="MarginContainer/VBox" unique_id=778602813]
+layout_mode = 2
+translation_context = &"menu"
+text = "Settings"
+label_settings = SubResource("LabelSettings_r8yej")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBox" unique_id=1444596185]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="LabelGame" type="Label" parent="MarginContainer/VBox" unique_id=1524525901]
+layout_mode = 2
+translation_context = &"menu"
+text = "GAME"
+label_settings = SubResource("LabelSettings_y1o0p")
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="Control" parent="MarginContainer/VBox" unique_id=34763276]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Language" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=336382435]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Language" unique_id=1910880852]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "Language"
+
+[node name="LocaleOptionButton" type="OptionButton" parent="MarginContainer/VBox/Language" unique_id=1580246318]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HSeparator5" type="Control" parent="MarginContainer/VBox" unique_id=1832025905]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelAudio" type="Label" parent="MarginContainer/VBox" unique_id=1524525900]
+layout_mode = 2
+translation_context = &"menu"
+text = "AUDIO"
+label_settings = SubResource("LabelSettings_y1o0p")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="Control" parent="MarginContainer/VBox" unique_id=34763275]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VolumeMaster" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=336382434]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/VolumeMaster" unique_id=1910880851]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "Volume/Master"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBox/VolumeMaster" unique_id=1580246317]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+min_value = -80.0
+max_value = 6.0
+
+[node name="VolumeSFX" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1104014225]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/VolumeSFX" unique_id=628754786]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "Volume/SFX"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBox/VolumeSFX" unique_id=667410231]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+min_value = -80.0
+max_value = 6.0
+
+[node name="Volume3" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=2072543838]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Volume3" unique_id=1496475620]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "Volume/Music"
+
+[node name="SoundMusicSlider" type="HSlider" parent="MarginContainer/VBox/Volume3" unique_id=251186799]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+min_value = -80.0
+max_value = 6.0
+
+[node name="HSeparator3" type="Control" parent="MarginContainer/VBox" unique_id=1832025904]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelGraphics" type="Label" parent="MarginContainer/VBox" unique_id=262705939]
+layout_mode = 2
+translation_context = &"menu"
+text = "GRAPHICS"
+label_settings = SubResource("LabelSettings_y1o0p")
+horizontal_alignment = 1
+
+[node name="GfxRes" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=2085811889]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/GfxRes" unique_id=1370347764]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "Resolution scale"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox/GfxRes" unique_id=1761079247]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="ResolutionScaleSlider" type="HSlider" parent="MarginContainer/VBox/GfxRes/HBoxContainer" unique_id=1757909015]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 0.1
+tick_count = 5
+
+[node name="ResolutionScaleValue" type="Label" parent="MarginContainer/VBox/GfxRes/HBoxContainer" unique_id=1209477800]
+layout_mode = 2
+
+[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=965735602 groups=["settings_desktop_only"]]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Fullscreen" unique_id=585260555]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "Fullscreen"
+
+[node name="FullscreenCheckbox" type="CheckButton" parent="MarginContainer/VBox/Fullscreen" unique_id=2047407959]
+layout_mode = 2
+
+[node name="GfxVSync" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=799432458 groups=["settings_desktop_only"]]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/GfxVSync" unique_id=1771294107]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "VSync"
+
+[node name="VSyncCheckbox" type="CheckButton" parent="MarginContainer/VBox/GfxVSync" unique_id=1943154806]
+layout_mode = 2
+
+[node name="FPSLimit" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=685382272]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/FPSLimit" unique_id=595383995]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "FPS Limit Active"
+
+[node name="FPSLimitEnabledCheckbox" type="CheckButton" parent="MarginContainer/VBox/FPSLimit" unique_id=1815907446]
+layout_mode = 2
+
+[node name="FPSLimit2" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1397360736]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/FPSLimit2" unique_id=750606493]
+layout_mode = 2
+size_flags_horizontal = 3
+translation_context = &"menu"
+text = "FPS Limit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox/FPSLimit2" unique_id=1832437780]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="FPSLimitSlider" type="HSlider" parent="MarginContainer/VBox/FPSLimit2/HBoxContainer" unique_id=248185798]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 60.0
+max_value = 240.0
+value = 60.0
+tick_count = 10
+
+[node name="FPSLimitLabel" type="Label" parent="MarginContainer/VBox/FPSLimit2/HBoxContainer" unique_id=386372384]
+auto_translate_mode = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+translation_context = &"menu"
+text = "60"
+
+[node name="Expand" type="Control" parent="MarginContainer/VBox" unique_id=1065938865]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1720438291]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBox/HBoxContainer" unique_id=160021146]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox/HBoxContainer" unique_id=810831582]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SettingsCancelButton" type="Button" parent="MarginContainer/VBox/HBoxContainer/HBoxContainer" unique_id=991942150]
+layout_mode = 2
+translation_context = &"menu"
+text = "Cancel"
+
+[node name="SettingsResetButton" type="Button" parent="MarginContainer/VBox/HBoxContainer/HBoxContainer" unique_id=2067842246]
+layout_mode = 2
+translation_context = &"menu"
+text = "Reset default"
+
+[node name="SettingsConfirmButton" type="Button" parent="MarginContainer/VBox/HBoxContainer/HBoxContainer" unique_id=99809660]
+layout_mode = 2
+translation_context = &"menu"
+text = "Confirm"
+
+[node name="ResetConfirmationDialog" parent="MarginContainer/VBox" unique_id=2067842247 instance=ExtResource("3_modal")]
+visible = false
+layout_mode = 2
+
+[node name="CancelConfirmationDialog" parent="MarginContainer/VBox" unique_id=991942151 instance=ExtResource("3_modal")]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBox/HBoxContainer/HBoxContainer/SettingsCancelButton" to="." method="_on_settings_cancel_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBox/HBoxContainer/HBoxContainer/SettingsResetButton" to="." method="_on_settings_reset_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBox/HBoxContainer/HBoxContainer/SettingsConfirmButton" to="." method="_on_settings_confirm_button_pressed"]

@@ -4,7 +4,7 @@
 
 <p>
   <a href="https://godotengine.org/download">
-    <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-4.5-blue">
+    <img alt="Godot Download badge" src="https://img.shields.io/badge/godot-4.7-blue">
   </a>
 
   <a href="https://github.com/crystal-bit/godot-game-template/releases">
@@ -42,6 +42,11 @@ GGT is composed of multiple parts:
 - Parameter passing between scenes
 - Multithreaded scene loading
   - single threaded loading fallback for web exports
+- Settings for audio volume for Master/SFX/BGM buses, language selection, resolution scale, vsync and other things
+  - settings menu accessible via menu and gameplay pause screen
+  - settings persisted via Godot's ConfigFile
+- gettext (.pot) localization setup with 2 languages (English, Italian). Feel free to add new languages via PR
+  - bash script to sync all .po files with a single command 
 
 **ggt-shortcuts** provides:
 

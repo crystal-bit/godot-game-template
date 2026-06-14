@@ -18,8 +18,9 @@ config/icon="res://assets/sprites/icon.png"
 
 [autoload]
 
-GGT="*res://addons/ggt-core/ggt.gd"
 GGT_DebugShortcuts="*res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn"
+GGT="*uid://cg0wu8g5j7s4w"
+GGT_GameConfig="*uid://16licpbm1tux"
 
 [category]
 
@@ -27,7 +28,9 @@ property_name=1
 
 [display]
 
-window/stretch/mode="2d"
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [editor_plugins]
@@ -79,6 +82,11 @@ ggt_debug_step_frame={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":46,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://resources/localization/it.po")
+locale/translations_pot_files=PackedStringArray("res://scenes/menu/menu.tscn", "res://addons/ggt-core/settings/settings_menu.tscn", "res://scenes/gameplay/pause-layer/pause-layer.tscn")
 
 [rendering]
 

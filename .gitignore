@@ -11,6 +11,8 @@ builds/**/*
 
 # Imported translations (automatically generated from CSV files)
 *.translation
+*.po~
+*tmp.mo.*
 
 # OSX 
 .DS_Store

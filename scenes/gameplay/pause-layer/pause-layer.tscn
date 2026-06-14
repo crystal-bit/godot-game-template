@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://do7kkb4ijqk5p" path="res://scenes/gameplay/pause-layer/pause-layer.gd" id="2"]
 [ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://resources/theme/theme-main.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://byniue2cdd2yv" path="res://scenes/gameplay/pause-layer/pause_button.png" id="4"]
+[ext_resource type="PackedScene" uid="uid://c2jxemjmao00b" path="res://addons/ggt-core/settings/settings_menu.tscn" id="4_5vvpd"]
 
-[node name="PauseLayer" type="CanvasLayer" unique_id=2102314706]
+[node name="PauseLayer" type="CanvasLayer" unique_id=2102314706 node_paths=PackedStringArray("settings_menu", "margin_container")]
 process_mode = 3
 script = ExtResource("2")
+settings_menu = NodePath("SettingsMenu")
+margin_container = NodePath("MarginContainer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1775438163]
 visible = false
@@ -61,6 +64,12 @@ focus_mode = 2
 mouse_filter = 1
 text = "RESUME"
 
+[node name="Settings" type="LinkButton" parent="MarginContainer/Control/VBoxOptions" unique_id=518304220]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 1
+text = "SETTINGS"
+
 [node name="MainMenu" type="LinkButton" parent="MarginContainer/Control/VBoxOptions" unique_id=2093393243]
 layout_mode = 2
 focus_mode = 2
@@ -80,6 +89,23 @@ theme = ExtResource("3")
 theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
 text = "Pause: ESC (keyboard) or START button (joypad)"
 
+[node name="SettingsMenu" parent="." unique_id=190195239 instance=ExtResource("4_5vvpd")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.0
+offset_top = -385.5
+offset_right = 426.0
+offset_bottom = 385.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="MarginContainer/Control/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxOptions/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxOptions/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxOptions/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="confirm_button_clicked" from="SettingsMenu" to="." method="_on_settings_menu_confirm_button_clicked"]
+[connection signal="visibility_changed" from="SettingsMenu" to="." method="_on_settings_menu_visibility_changed"]
