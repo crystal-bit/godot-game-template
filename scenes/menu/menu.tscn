@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://c2gocuhw2o7py"]
 
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
-[ext_resource type="Script" uid="uid://dfnwymtygg1to" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
 [ext_resource type="Script" uid="uid://cvc42inud8fxx" path="res://scenes/menu/menu.gd" id="5"]
-[ext_resource type="Script" uid="uid://baky6bgu7psf2" path="res://scenes/menu/godot_version.gd" id="5_fdyjp"]
 
 [node name="Menu" type="Control" unique_id=1641158152]
 layout_mode = 3
@@ -80,28 +78,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
 text = "EXIT"
-
-[node name="Version" type="VBoxContainer" parent="MarginContainer/Control" unique_id=299361195]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -50.0
-offset_right = 122.0
-grow_vertical = 0
-
-[node name="GameVersion" type="Label" parent="MarginContainer/Control/Version" unique_id=236930421]
-layout_mode = 2
-theme_type_variation = &"LabelSmall"
-text = "<x.y.z>"
-script = ExtResource("4_3hod2")
-
-[node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version" unique_id=667189368]
-layout_mode = 2
-theme_type_variation = &"LabelSmall"
-theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
-text = "<GodotVersion>"
-script = ExtResource("5_fdyjp")
 
 [node name="Credits" type="VBoxContainer" parent="MarginContainer/Control" unique_id=1729305012]
 layout_mode = 1

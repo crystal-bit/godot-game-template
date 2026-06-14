@@ -25,7 +25,10 @@ func _ready():
 
 
 func get_current_scene_data() -> GGT_SceneData:
-	return _history.get_last_loaded_scene_data()
+	if _history:
+		return _history.get_last_loaded_scene_data()
+	else:
+		return GGT_SceneData.new()
 
 
 func change_scene(new_scene: String, params = {}):
@@ -76,7 +79,7 @@ func _on_resource_loaded(resource):
 		await _transitions.anim.animation_finished
 	var load_time = Time.get_ticks_msec() - _loading_start_time # ms
 	print(
-		"GGT: {scn} loaded in {elapsed}ms".format({"scn": resource.resource_path, "elapsed": load_time})
+		"[GGT] {scn} loaded in {elapsed}ms".format({"scn": resource.resource_path, "elapsed": load_time})
 	)
 	# artificially wait some time in order to have a gentle scene transition
 	if load_time < _config.transitions_minimum_duration_ms:

@@ -3,6 +3,8 @@
 [ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1"]
 [ext_resource type="Script" uid="uid://c8ru70vkpmvyy" path="res://addons/ggt-core/transitions/progress.gd" id="3"]
 [ext_resource type="Script" uid="uid://cqeuawll14hnl" path="res://addons/ggt-core/transitions/transitions.gd" id="4"]
+[ext_resource type="Script" uid="uid://dfnwymtygg1to" path="res://scenes/menu/game_version.gd" id="4_mcnah"]
+[ext_resource type="Script" uid="uid://baky6bgu7psf2" path="res://scenes/menu/godot_version.gd" id="5_03rgt"]
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("1")])
@@ -101,7 +103,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="6"]
 resource_name = "transition-in"
-length = 0.3
+length = 0.35
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -110,8 +112,8 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Color(0.0862745, 0.0862745, 0.0862745, 0), Color(0.0862745, 0.0862745, 0.0862745, 1)]
 }
@@ -122,8 +124,8 @@ tracks/1/path = NodePath("ColorRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
@@ -134,14 +136,14 @@ tracks/2/path = NodePath("ColorRect/MarginContainer/Progress/ProgressBar:modulat
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.2, 0.35000002),
 "transitions": PackedFloat32Array(1, 2, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="7"]
-length = 0.3
+length = 0.4
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -150,7 +152,7 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
+"times": PackedFloat32Array(0, 0.099999994, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -162,7 +164,7 @@ tracks/1/path = NodePath("ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
+"times": PackedFloat32Array(0, 0.099999994, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.0862745, 0.0862745, 0.0862745, 1), Color(0.0862745, 0.0862745, 0.0862745, 1), Color(0.0862745, 0.0862745, 0.0862745, 0)]
@@ -174,7 +176,7 @@ tracks/2/path = NodePath("ColorRect/MarginContainer/Progress/ProgressBar:modulat
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -216,12 +218,12 @@ _data = {
 &"transparent": SubResource("8")
 }
 
-[node name="GGT_Transitions" type="CanvasLayer" unique_id=609645120]
+[node name="GGT_Transitions" type="CanvasLayer" unique_id=1557939900]
 process_mode = 3
-layer = 100
+layer = 120
 script = ExtResource("4")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1519555919]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1588696685]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,7 +231,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0.0862745, 0.0862745, 0.0862745, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect" unique_id=1612492626]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect" unique_id=623669308]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -238,12 +240,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Progress" type="Control" parent="ColorRect/MarginContainer" unique_id=1675857705]
+[node name="Progress" type="Control" parent="ColorRect/MarginContainer" unique_id=593055584]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("3")
 
-[node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer/Progress" unique_id=1558238280]
+[node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer/Progress" unique_id=1425160252]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
@@ -260,9 +262,36 @@ theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 16
 max_value = 1.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1410845397]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=355425568]
 libraries/ = SubResource("AnimationLibrary_y1dc8")
 autoplay = &"transparent"
+
+[node name="Version" type="VBoxContainer" parent="." unique_id=1501255691]
+modulate = Color(1, 1, 1, 0.3137255)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -66.0
+offset_right = 146.0
+offset_bottom = -16.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="GameVersion" type="Label" parent="Version" unique_id=228762829]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_font_sizes/font_size = 14
+text = "<x.y.z>"
+script = ExtResource("4_mcnah")
+
+[node name="GodotVersion" type="Label" parent="Version" unique_id=678420259]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
+theme_override_font_sizes/font_size = 14
+text = "<GodotVersion>"
+script = ExtResource("5_03rgt")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
