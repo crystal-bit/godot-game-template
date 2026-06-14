@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwudswealbjw5"]
+[gd_scene format=3 uid="uid://dwudswealbjw5"]
 
 [ext_resource type="Script" uid="uid://cwg070drxkjf2" path="res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.gd" id="1_h8jbq"]
 
-[node name="DebugShortcuts" type="Node"]
+[node name="DebugShortcuts" type="Node" unique_id=1359821396]
 process_mode = 3
 process_priority = -1
 process_physics_priority = -1
 editor_description = "Node automatically removed on release builds."
 script = ExtResource("1_h8jbq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=655851140]
 layer = 4096
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=967555332]
 unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0

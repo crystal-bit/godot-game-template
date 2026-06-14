@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2gocuhw2o7py"]
+[gd_scene format=3 uid="uid://c2gocuhw2o7py"]
 
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
 [ext_resource type="Script" uid="uid://dfnwymtygg1to" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
 [ext_resource type="Script" uid="uid://cvc42inud8fxx" path="res://scenes/menu/menu.gd" id="5"]
 [ext_resource type="Script" uid="uid://baky6bgu7psf2" path="res://scenes/menu/godot_version.gd" id="5_fdyjp"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=1641158152]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1540281165]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.176471, 0.682353, 0.647059, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=494167775]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,10 +31,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="MarginContainer"]
+[node name="Control" type="Control" parent="MarginContainer" unique_id=2015180303]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Control"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Control" unique_id=1435400836]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,14 +45,14 @@ offset_bottom = -339.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="MarginContainer/Control/CenterContainer"]
+[node name="Title" type="Label" parent="MarginContainer/Control/CenterContainer" unique_id=1695717094]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4")
 theme_override_font_sizes/font_size = 60
 text = "Godot Game Template"
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control" unique_id=737419068]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,21 +67,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=282119598]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "START"
 
-[node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=1212985906]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
 text = "EXIT"
 
-[node name="Version" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="Version" type="VBoxContainer" parent="MarginContainer/Control" unique_id=299361195]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -90,20 +90,20 @@ offset_top = -50.0
 offset_right = 122.0
 grow_vertical = 0
 
-[node name="GameVersion" type="Label" parent="MarginContainer/Control/Version"]
+[node name="GameVersion" type="Label" parent="MarginContainer/Control/Version" unique_id=236930421]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 text = "<x.y.z>"
 script = ExtResource("4_3hod2")
 
-[node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version"]
+[node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version" unique_id=667189368]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
 text = "<GodotVersion>"
 script = ExtResource("5_fdyjp")
 
-[node name="Credits" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="Credits" type="VBoxContainer" parent="MarginContainer/Control" unique_id=1729305012]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -115,26 +115,26 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="MadeByLabel" type="Label" parent="MarginContainer/Control/Credits"]
+[node name="MadeByLabel" type="Label" parent="MarginContainer/Control/Credits" unique_id=704108959]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "made by: ..."
 
-[node name="Developer1" type="Label" parent="MarginContainer/Control/Credits"]
+[node name="Developer1" type="Label" parent="MarginContainer/Control/Credits" unique_id=2143049063]
 visible = false
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
 
-[node name="Developer2" type="Label" parent="MarginContainer/Control/Credits"]
+[node name="Developer2" type="Label" parent="MarginContainer/Control/Credits" unique_id=1123998025]
 visible = false
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
 text = "Developer 2"
 
-[node name="Developer3" type="Label" parent="MarginContainer/Control/Credits"]
+[node name="Developer3" type="Label" parent="MarginContainer/Control/Credits" unique_id=867376137]
 visible = false
 layout_mode = 2
 theme_type_variation = &"LabelSmall"

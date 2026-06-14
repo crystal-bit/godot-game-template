@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://barl4q1kugrmm"]
+[gd_scene format=3 uid="uid://barl4q1kugrmm"]
 
 [ext_resource type="Script" uid="uid://do7kkb4ijqk5p" path="res://scenes/gameplay/pause-layer/pause-layer.gd" id="2"]
 [ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://resources/theme/theme-main.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://byniue2cdd2yv" path="res://scenes/gameplay/pause-layer/pause_button.png" id="4"]
 
-[node name="PauseLayer" type="CanvasLayer"]
+[node name="PauseLayer" type="CanvasLayer" unique_id=2102314706]
 process_mode = 3
 script = ExtResource("2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1775438163]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0.243137, 0.211765, 0.290196, 0.717647)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2041003766]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,11 +24,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="MarginContainer"]
+[node name="Control" type="Control" parent="MarginContainer" unique_id=678704751]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PauseButton" type="TextureButton" parent="MarginContainer/Control"]
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/Control" unique_id=740067792]
 layout_mode = 1
 offset_right = 42.0
 offset_bottom = 42.0
@@ -38,7 +38,7 @@ texture_normal = ExtResource("4")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="VBoxOptions" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="VBoxOptions" type="VBoxContainer" parent="MarginContainer/Control" unique_id=1084727180]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -55,19 +55,19 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
-[node name="Resume" type="LinkButton" parent="MarginContainer/Control/VBoxOptions"]
+[node name="Resume" type="LinkButton" parent="MarginContainer/Control/VBoxOptions" unique_id=179583248]
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 1
 text = "RESUME"
 
-[node name="MainMenu" type="LinkButton" parent="MarginContainer/Control/VBoxOptions"]
+[node name="MainMenu" type="LinkButton" parent="MarginContainer/Control/VBoxOptions" unique_id=2093393243]
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 1
 text = "MAIN MENU"
 
-[node name="Label" type="Label" parent="MarginContainer/Control"]
+[node name="Label" type="Label" parent="MarginContainer/Control" unique_id=1542338084]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

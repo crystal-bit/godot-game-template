@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://82fiitkfc6wn"]
+[gd_scene format=3 uid="uid://82fiitkfc6wn"]
 
 [ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="1"]
 [ext_resource type="Script" uid="uid://c8ru70vkpmvyy" path="res://addons/ggt-core/transitions/progress.gd" id="3"]
@@ -9,6 +9,15 @@ fallbacks = Array[Font]([ExtResource("1")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -207,12 +216,12 @@ _data = {
 &"transparent": SubResource("8")
 }
 
-[node name="GGT_Transitions" type="CanvasLayer"]
+[node name="GGT_Transitions" type="CanvasLayer" unique_id=609645120]
 process_mode = 3
 layer = 100
 script = ExtResource("4")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1519555919]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,7 +229,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0.0862745, 0.0862745, 0.0862745, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect" unique_id=1612492626]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,12 +238,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Progress" type="Control" parent="ColorRect/MarginContainer"]
+[node name="Progress" type="Control" parent="ColorRect/MarginContainer" unique_id=1675857705]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("3")
 
-[node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer/Progress"]
+[node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer/Progress" unique_id=1558238280]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
@@ -251,11 +260,9 @@ theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 16
 max_value = 1.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_y1dc8")
-}
-autoplay = "transparent"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1410845397]
+libraries/ = SubResource("AnimationLibrary_y1dc8")
+autoplay = &"transparent"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
