@@ -26,6 +26,8 @@ func _load_resource_threaded(path):
 	if state != OK:
 		push_error("Error while starting thread: " + str(state))
 
+var progress_arr := []
+
 
 func _handle_load(path, runs_on_main_thread: bool):
 	var status = ResourceLoader.load_threaded_request(path)
@@ -34,21 +36,21 @@ func _handle_load(path, runs_on_main_thread: bool):
 		return
 
 	var res = null
-	var progress_arr = []
 
 	while true:
-		var loading_status = ResourceLoader.load_threaded_get_status(path, progress_arr)
-
-		if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
-			call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
-			res = ResourceLoader.load_threaded_get(path)
-			break
-		elif loading_status == ResourceLoader.THREAD_LOAD_FAILED:
-			push_error("Load failed for: {0}".format([path]))
-			return
-		elif loading_status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-			push_error("Invalid resource: {0}".format([path]))
-			return
+		match ResourceLoader.load_threaded_get_status(path, progress_arr):
+			ResourceLoader.THREAD_LOAD_LOADED:
+				call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
+				res = ResourceLoader.load_threaded_get(path)
+				break
+			ResourceLoader.THREAD_LOAD_FAILED:
+				push_error("Load failed for: {0}".format([path]))
+				return
+			ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+				push_error("Invalid resource: {0}".format([path]))
+				return
+			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				call_deferred("emit_signal", "resource_stage_loaded", float(progress_arr[0]))
 
 		if runs_on_main_thread:
 			await Engine.get_main_loop().create_timer(SIMULATED_DELAY_MS / 1000.0).timeout
