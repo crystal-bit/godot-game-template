@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.176471, 0.682353, 0.647059, 1)
+color = Color(0.224, 0.2709333, 0.4, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=494167775]
 layout_mode = 1
@@ -146,6 +146,34 @@ offset_right = 488.0
 offset_bottom = 385.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Help" type="PanelContainer" parent="." unique_id=891782893]
+auto_translate_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -186.0
+offset_right = 504.0
+offset_bottom = 186.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Help" unique_id=2052955873]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Help/MarginContainer" unique_id=1170172205]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Welcome to the [b]Godot Game Template[/b], [color=GREEN]GGT[/color] in short!
+
+Some shortcuts that you can use are:
+
+- [bgcolor=#333]F3[/bgcolor]: Show stats
+- [bgcolor=#333]F4[/bgcolor]: Increase stats size
+
+Press start to enter in gameplay scene and discover more shortcuts!"
 
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

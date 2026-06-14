@@ -2,4 +2,7 @@ extends Label
 
 
 func _ready():
-	text = "Godot %s" % Engine.get_version_info().string
+	if OS.has_feature('release'):
+		queue_free()
+	else:
+		text = "Godot %s" % Engine.get_version_info().string

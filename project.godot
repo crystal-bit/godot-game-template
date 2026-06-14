@@ -21,6 +21,7 @@ config/icon="res://assets/sprites/icon.png"
 GGT_DebugShortcuts="*res://addons/ggt-debug-shortcuts/autoload/debug_shortcuts.tscn"
 GGT="*uid://cg0wu8g5j7s4w"
 GGT_GameConfig="*uid://16licpbm1tux"
+DebugMenu="*uid://cggqb75a8w8r"
 
 [category]
 
@@ -35,7 +36,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/ggt-core/plugin.cfg", "res://addons/ggt-debug-shortcuts/plugin.cfg")
 
 [gui]
 
