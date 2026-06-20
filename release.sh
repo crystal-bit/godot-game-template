@@ -65,3 +65,4 @@ export_game() {
 export_game "Linux/X11" "builds/$EXPORT_NAME/linux" "$EXPORT_NAME.x86_64"
 export_game "Windows Desktop" "builds/$EXPORT_NAME/windows" "$EXPORT_NAME.exe"
 export_game "macOS" "builds/$EXPORT_NAME/osx" "$EXPORT_NAME.dmg"
+export_game "Web" "builds/$EXPORT_NAME/web" "$EXPORT_NAME.html"
