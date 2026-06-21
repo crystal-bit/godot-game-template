@@ -15,7 +15,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.7
+      image: davcri/godot-game-template-ci:4.7
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -52,7 +52,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.7
+      image: davcri/godot-game-template-ci:4.7
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -89,7 +89,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.7
+      image: davcri/godot-game-template-ci:4.7
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -135,7 +135,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.7
+      image: davcri/godot-game-template-ci:4.7
     steps:
       - name: Checkout
         uses: actions/checkout@v1
