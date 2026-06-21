@@ -92,10 +92,11 @@ layout_mode = 2
 bbcode_enabled = true
 text = "All shortcuts (available only in debug mode):
 
-- [bgcolor=#333]F3[/bgcolor]: cycle FPS modes
-- [bgcolor=#333]F4[/bgcolor]: Increase stats size
-- [bgcolor=#333]Q[/bgcolor]: Quit
-- [bgcolor=#333]R[/bgcolor]: Restart current scene
-- [bgcolor=#333]P[/bgcolor]: Pause at current frame
-- [bgcolor=#333] . [/bgcolor]: Advance 1 frame (when paused)"
+- [bgcolor=#333]F3[/bgcolor]: [color=gray]Cycle stats modes [/color]
+- [bgcolor=#333]F4[/bgcolor]: [color=gray]Increase stats size[/color]
+- [bgcolor=#333] . [/bgcolor]: [color=gray]Advance 1 frame (when paused)[/color]
+- [bgcolor=#333] SHIFT [/bgcolor]: [color=gray] Speed 2x[/color]
+- [bgcolor=#333]P[/bgcolor]: [color=gray]Pause at current frame[/color]
+- [bgcolor=#333]R[/bgcolor]: [color=gray]Restart current scene[/color]
+- [bgcolor=#333]Q[/bgcolor]: [color=gray]Quit[/color]"
 fit_content = true

@@ -169,7 +169,7 @@ text = "Welcome to the [b]Godot Game Template[/b], [color=#7af]GGT[/color] in sh
 
 Some debug shortcuts that you can use are:
 
-- [bgcolor=#333]F3[/bgcolor]: [color=gray]Cycle FPS modes[/color]
+- [bgcolor=#333]F3[/bgcolor]: [color=gray]Cycle stats modes[/color]
 - [bgcolor=#333]F4[/bgcolor]: [color=gray]Increase stats size[/color]
 
 [color=#ffa]These are automatically removed in release builds.[/color]
