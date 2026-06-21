@@ -79,8 +79,8 @@ msgstr "GRAFICA"
 
 #: addons/ggt-core/settings/settings_menu.tscn
 msgctxt "menu"
-msgid "Resolution scale"
-msgstr "Scala Risoluzione"
+msgid "Resolution scale 3D"
+msgstr "Scala Risoluzione 3D"
 
 #: addons/ggt-core/settings/settings_menu.tscn
 msgctxt "menu"
@@ -91,11 +91,6 @@ msgstr "Schermo intero"
 msgctxt "menu"
 msgid "VSync"
 msgstr ""
-
-#: addons/ggt-core/settings/settings_menu.tscn
-msgctxt "menu"
-msgid "FPS Limit Active"
-msgstr "Limite FPS Attivo"
 
 #: addons/ggt-core/settings/settings_menu.tscn
 msgctxt "menu"
@@ -127,7 +122,11 @@ msgstr "MENÙ PRINCIPALE"
 
 #: scenes/gameplay/pause-layer/pause-layer.tscn
 msgid "Pause: ESC (keyboard) or START button (joypad)"
-msgstr "Pausa: ESC (tastiera) oppure pulsante START (joypad) "
+msgstr "Pausa: ESC (tastiera) oppure pulsante START (joypad)"
 
 msgid "godot-game-template"
 msgstr ""
+
+#~ msgctxt "menu"
+#~ msgid "FPS Limit Active"
+#~ msgstr "Limite FPS Attivo"

@@ -76,7 +76,7 @@ msgstr ""
 
 #: addons/ggt-core/settings/settings_menu.tscn
 msgctxt "menu"
-msgid "Resolution scale"
+msgid "Resolution scale 3D"
 msgstr ""
 
 #: addons/ggt-core/settings/settings_menu.tscn
@@ -87,11 +87,6 @@ msgstr ""
 #: addons/ggt-core/settings/settings_menu.tscn
 msgctxt "menu"
 msgid "VSync"
-msgstr ""
-
-#: addons/ggt-core/settings/settings_menu.tscn
-msgctxt "menu"
-msgid "FPS Limit Active"
 msgstr ""
 
 #: addons/ggt-core/settings/settings_menu.tscn

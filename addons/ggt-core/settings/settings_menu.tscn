@@ -149,7 +149,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 translation_context = &"menu"
-text = "Resolution scale"
+text = "Resolution scale 3D"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox/GfxRes" unique_id=1761079247]
 layout_mode = 2

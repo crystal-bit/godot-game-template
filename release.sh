@@ -39,6 +39,7 @@ export_game() {
   local export_preset="$1"
   local output_dir="$2"
   local build_name="$3"
+  local build_type="${4:---export-release}"
   local logfile="$output_dir/build.log"
   
   # Get the current date and time
@@ -57,12 +58,29 @@ export_game() {
   touch $logfile
   echo "$log_entry" > "$logfile"
   
-  $GODOT_BIN --headless --export-release "$export_preset" "$output_dir/$build_name" >> $logfile 2>&1
+  $GODOT_BIN --headless "$build_type" "$export_preset" "$output_dir/$build_name" >> $logfile 2>&1
   
   echo "Done.\n"
 }
 
+pack_web_build() {
+  local output_dir="$1"
+  local build_name="$2"
+
+  mv "$output_dir/$build_name" "$output_dir/index.html"
+  rm -f "$output_dir/build.log"
+
+  local zip_path="${output_dir}.zip"
+  (cd "$output_dir" && zip -r "../$(basename "$zip_path")" .)
+  echo "Web build packed: $zip_path\n"
+}
+
+# release builds
 export_game "Linux/X11" "builds/$EXPORT_NAME/linux" "$EXPORT_NAME.x86_64"
 export_game "Windows Desktop" "builds/$EXPORT_NAME/windows" "$EXPORT_NAME.exe"
-export_game "macOS" "builds/$EXPORT_NAME/osx" "$EXPORT_NAME.dmg"
-export_game "Web" "builds/$EXPORT_NAME/web" "$EXPORT_NAME.html"
+export_game "Web" "builds/$EXPORT_NAME/web" "$EXPORT_NAME.html" 
+pack_web_build "builds/$EXPORT_NAME/web" "$EXPORT_NAME.html"
+#export_game "macOS" "builds/$EXPORT_NAME/osx" "$EXPORT_NAME.dmg"
+
+# if you want debug exports:
+#export_game "Web" "builds/$EXPORT_NAME/web" "$EXPORT_NAME.html" "--export-debug"

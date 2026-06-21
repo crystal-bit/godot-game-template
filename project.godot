@@ -8,6 +8,10 @@
 
 config_version=5
 
+[DebugMenu]
+
+settings/font_size=16
+
 [application]
 
 config/name="godot-game-template"

@@ -43,10 +43,10 @@ const GRAPH_MAX_FRAMETIME = 1.0 / GRAPH_MAX_FPS
 
 ## Debug menu display style.
 enum Style {
-	HIDDEN,  ## Debug menu is hidden.
-	VISIBLE_COMPACT,  ## Debug menu is visible, with only the FPS, FPS cap (if any) and time taken to render the last frame.
-	VISIBLE_DETAILED,  ## Debug menu is visible with full information, including graphs.
-	MAX,  ## Represents the size of the Style enum.
+	HIDDEN, ## Debug menu is hidden.
+	VISIBLE_COMPACT, ## Debug menu is visible, with only the FPS, FPS cap (if any) and time taken to render the last frame.
+	VISIBLE_DETAILED, ## Debug menu is visible with full information, including graphs.
+	MAX, ## Represents the size of the Style enum.
 }
 
 ## The style to use when drawing the debug menu.
@@ -72,14 +72,14 @@ var _custom_font_size: int = DEFAULT_FONT_SIZE * 3 # 3x
 
 ## Debug menu display size.
 enum Display_Size {
-	SIZE_3, ## 0.25x the default scale
+	#SIZE_3, ## 0.25x the default scale
 	SIZE_6, ## 0.5x the default scale
 	SIZE_12_DEFAULT, ## 1.0x, the default display size
 	SIZE_18, ## 1.5x the default scale
-	SIZE_24, ## 2.0x the default scale
-	SIZE_30, ## 2.5x the default scale
+	#SIZE_24, ## 2.0x the default scale
+	#SIZE_30, ## 2.5x the default scale
 	SIZE_CUSTOM, ## Initially 3.0x the default scale, but overwritten with set_font_size()
-	MAX,  ## Represents the size of the Display_Size enum.
+	MAX, ## Represents the size of the Display_Size enum.
 }
 
 ## The size to use when drawing the debug menu.
@@ -87,14 +87,14 @@ var display_size := Display_Size.SIZE_12_DEFAULT:
 	set(value):
 		display_size = value
 		match display_size:
-			Display_Size.SIZE_3: # 0.25x
-				_resize_overlay(DEFAULT_FONT_SIZE * 0.25,
-				0, # no outline, makes small font look better
-				DEFAULT_HEADER_WIDTH* 0.25)
+			#Display_Size.SIZE_3: # 0.25x
+				#_resize_overlay(DEFAULT_FONT_SIZE * 0.25,
+				#0, # no outline, makes small font look better
+				#DEFAULT_HEADER_WIDTH * 0.25)
 			Display_Size.SIZE_6: # 0.5x
-				_resize_overlay(DEFAULT_FONT_SIZE* 0.5,
+				_resize_overlay(DEFAULT_FONT_SIZE * 0.5,
 				DEFAULT_FONT_OUTLINE_SIZE * 0.5,
-				DEFAULT_HEADER_WIDTH* 0.5)
+				DEFAULT_HEADER_WIDTH * 0.5)
 			Display_Size.SIZE_12_DEFAULT: # 1.0x
 				_resize_overlay(DEFAULT_FONT_SIZE,
 				DEFAULT_FONT_OUTLINE_SIZE,
@@ -103,14 +103,14 @@ var display_size := Display_Size.SIZE_12_DEFAULT:
 				_resize_overlay(DEFAULT_FONT_SIZE * 1.5,
 				 DEFAULT_FONT_OUTLINE_SIZE * 1.5,
 				 DEFAULT_HEADER_WIDTH * 1.5)
-			Display_Size.SIZE_24: # 2.0x
-				_resize_overlay(DEFAULT_FONT_SIZE * 2.0,
-				 DEFAULT_FONT_OUTLINE_SIZE * 2.0,
-				 DEFAULT_HEADER_WIDTH * 2.0)
-			Display_Size.SIZE_30: # 2.5x
-				_resize_overlay(DEFAULT_FONT_SIZE * 2.5,
-				 DEFAULT_FONT_OUTLINE_SIZE * 2.5,
-				 DEFAULT_HEADER_WIDTH * 2.5)
+			#Display_Size.SIZE_24: # 2.0x
+				#_resize_overlay(DEFAULT_FONT_SIZE * 2.0,
+				 #DEFAULT_FONT_OUTLINE_SIZE * 2.0,
+				 #DEFAULT_HEADER_WIDTH * 2.0)
+			#Display_Size.SIZE_30: # 2.5x
+				#_resize_overlay(DEFAULT_FONT_SIZE * 2.5,
+				 #DEFAULT_FONT_OUTLINE_SIZE * 2.5,
+				 #DEFAULT_HEADER_WIDTH * 2.5)
 			Display_Size.SIZE_CUSTOM: # initially is 3.0x, replaced when set_font_size() is called
 				var new_scale: float = float(_custom_font_size / DEFAULT_FONT_SIZE)
 				_resize_overlay(DEFAULT_FONT_SIZE * new_scale,
@@ -129,7 +129,7 @@ var sum_func := func avg(accum: float, number: float) -> float: return accum + n
 var frame_history_total: Array[float] = []
 var frame_history_cpu: Array[float] = []
 var frame_history_gpu: Array[float] = []
-var fps_history: Array[float] = []  # Only used for graphs.
+var fps_history: Array[float] = [] # Only used for graphs.
 
 var frametime_avg := GRAPH_MIN_FRAMETIME
 var frametime_cpu_avg := GRAPH_MAX_FRAMETIME
@@ -137,7 +137,10 @@ var frametime_gpu_avg := GRAPH_MIN_FRAMETIME
 var frames_per_second := float(GRAPH_MIN_FPS)
 var frame_time_gradient := Gradient.new()
 
-func _init() -> void:
+func _init() -> void: #
+	if OS.is_debug_build() == false:
+		return
+
 	# This must be done here instead of `_ready()` to avoid having `visibility_changed` be emitted immediately.
 	visible = false
 
@@ -158,6 +161,9 @@ func _init() -> void:
 		InputMap.action_add_event("cycle_debug_menu_size", event)
 
 func _ready() -> void:
+	if OS.is_debug_build() == false:
+		queue_free()
+		return
 	# start visibility from project settings
 	if ProjectSettings.has_setting("DebugMenu/settings/startup_visibility"):
 		style = ProjectSettings.get_setting("DebugMenu/settings/startup_visibility")
@@ -180,10 +186,10 @@ func _ready() -> void:
 	# (red = 10 FPS, yellow = 60 FPS, green = 110 FPS, cyan = 160 FPS).
 	# This makes the color gradient non-linear.
 	# Colors are taken from <https://tailwindcolor.com/>.
-	frame_time_gradient.set_color(0, Color.from_rgba8(239, 68, 68))   # red-500
-	frame_time_gradient.set_color(1, Color.from_rgba8(56, 189, 248))  # light-blue-400
-	frame_time_gradient.add_point(0.3333, Color.from_rgba8(250, 204, 21))  # yellow-400
-	frame_time_gradient.add_point(0.6667, Color.from_rgba8(128, 226, 95))  # 50-50 mix of lime-400 and green-400
+	frame_time_gradient.set_color(0, Color.from_rgba8(239, 68, 68)) # red-500
+	frame_time_gradient.set_color(1, Color.from_rgba8(56, 189, 248)) # light-blue-400
+	frame_time_gradient.add_point(0.3333, Color.from_rgba8(250, 204, 21)) # yellow-400
+	frame_time_gradient.add_point(0.6667, Color.from_rgba8(128, 226, 95)) # 50-50 mix of lime-400 and green-400
 
 	get_viewport().size_changed.connect(update_settings_label)
 
@@ -222,7 +228,7 @@ func _input(event: InputEvent) -> void:
 func _resize_overlay(font_size_in: int, outline_size: int, header_width: float):
 	# change font size and outline for all labels
 	for l in get_tree().get_nodes_in_group("debug_menu_label"):
-		var label : Label = l as Label
+		var label: Label = l as Label
 		label.add_theme_font_size_override("font_size", font_size_in)
 		# no outline for very small fonts sizes
 		if font_size_in < 6:
@@ -232,17 +238,17 @@ func _resize_overlay(font_size_in: int, outline_size: int, header_width: float):
 
 	# change header widths
 	for l in get_tree().get_nodes_in_group("debug_menu_header"):
-		var label : Label = l as Label
+		var label: Label = l as Label
 		label.custom_minimum_size.x = header_width
 
 	# main FPS label size is 50% bigger
-	fps.add_theme_font_size_override("font_size", font_size_in*1.5)
+	fps.add_theme_font_size_override("font_size", font_size_in * 1.5)
 
 	# no outline for very small fonts sizes
 	if font_size_in < 6:
 		fps.add_theme_constant_override("outline_size", 0)
 	else:
-		fps.add_theme_constant_override("outline_size", outline_size*1.5)
+		fps.add_theme_constant_override("outline_size", outline_size * 1.5)
 
 	var new_scale: float = font_size_in / DEFAULT_FONT_SIZE
 
@@ -263,7 +269,7 @@ func _resize_overlay(font_size_in: int, outline_size: int, header_width: float):
 ## recalculates all GUI elements
 func set_font_size(font_size_in: int):
 	if font_size_in < MIN_FONT_SIZE or font_size_in > MAX_FONT_SIZE:
-		printerr(str("Font size range for DebugMenu is [", MIN_FONT_SIZE," to ", MAX_FONT_SIZE ,"]"))
+		printerr(str("Font size range for DebugMenu is [", MIN_FONT_SIZE, " to ", MAX_FONT_SIZE, "]"))
 		return
 
 	_custom_font_size = font_size_in
@@ -281,6 +287,7 @@ func _exit_tree() -> void:
 ## To update when graphics settings are changed, the function must be called manually
 ## using `DebugMenu.update_settings_label()`.
 func update_settings_label() -> void:
+	print("label updated")
 	settings.text = ""
 	if ProjectSettings.has_setting("application/config/version"):
 		settings.text += "Project Version: %s\n" % ProjectSettings.get_setting("application/config/version")
@@ -423,8 +430,8 @@ func update_information_label() -> void:
 
 	information.text = (
 			"%s, %d threads\n" % [OS.get_processor_name().replace("(R)", "").replace("(TM)", ""), OS.get_processor_count()]
-			+ "%s %s (%s %s), %s %s\n" % [OS.get_name(), "64-bit" if OS.has_feature("64") else "32-bit", release_string, "double" if OS.has_feature("double") else "single", graphics_api_string, RenderingServer.get_video_adapter_api_version()]
-			+ "%s, %s" % [adapter_string, driver_info_string]
+			+"%s %s (%s %s), %s %s\n" % [OS.get_name(), "64-bit" if OS.has_feature("64") else "32-bit", release_string, "double" if OS.has_feature("double") else "single", graphics_api_string, RenderingServer.get_video_adapter_api_version()]
+			+"%s, %s" % [adapter_string, driver_info_string]
 	)
 
 

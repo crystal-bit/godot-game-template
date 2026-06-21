@@ -281,7 +281,7 @@ theme_override_constants/separation = 0
 [node name="GameVersion" type="Label" parent="Version" unique_id=228762829]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 18
 text = "<x.y.z>"
 script = ExtResource("4_mcnah")
 
@@ -289,7 +289,7 @@ script = ExtResource("4_mcnah")
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 18
 text = "<GodotVersion>"
 script = ExtResource("5_03rgt")
 

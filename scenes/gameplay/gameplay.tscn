@@ -4,11 +4,71 @@
 [ext_resource type="PackedScene" uid="uid://barl4q1kugrmm" path="res://scenes/gameplay/pause-layer/pause-layer.tscn" id="2"]
 [ext_resource type="Script" uid="uid://b83omkj4aqsph" path="res://scenes/gameplay/gameplay.gd" id="5"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2p25t"]
+sky_horizon_color = Color(0.11339744, 0.2085123, 0.33653283, 1)
+sky_curve = 5.144508
+ground_bottom_color = Color(0.49069476, 0.32229814, 0.4133781, 1)
+ground_horizon_color = Color(0.11372549, 0.20784314, 0.3372549, 1)
+ground_curve = 1.1536005
+sun_curve = 0.0012132
+
+[sub_resource type="Sky" id="Sky_m3hu3"]
+sky_material = SubResource("ProceduralSkyMaterial_2p25t")
+
+[sub_resource type="Environment" id="Environment_q64rj"]
+background_mode = 2
+sky = SubResource("Sky_m3hu3")
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_2p25t"]
+script/source = "extends Sprite2D
+
+var t = 0
+
+func _ready() -> void:
+	move_sprite(0.)
+
+func _process(delta: float) -> void:
+	move_sprite(delta)
+
+func move_sprite(delta: float):
+	var size = get_viewport().get_visible_rect().size
+	t += delta * 1.5
+	position.x = size.x * 0.7 + 100.0 * sin(t)
+	position.y = size.y / 2.0 + 70.0 * sin(t*1.5)
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_ifoly"]
+
+[sub_resource type="GDScript" id="GDScript_mgt4u"]
+script/source = "extends MeshInstance3D
+
+
+func _process(delta: float) -> void:
+	rotation.x += delta
+	rotation.y += delta
+"
+
 [node name="Gameplay" type="Node" unique_id=83045517]
 script = ExtResource("5")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=517046279]
+environment = SubResource("Environment_q64rj")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1580368169]
 texture = ExtResource("1")
+script = SubResource("GDScript_2p25t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=176493869]
+mesh = SubResource("BoxMesh_ifoly")
+script = SubResource("GDScript_mgt4u")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2103806869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.914027)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=840472749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3741119, 1.3649533, 1.100213)
+light_color = Color(0.9413759, 0.8180285, 0.88570255, 1)
 
 [node name="PauseLayer" parent="." unique_id=911028332 instance=ExtResource("2")]
 
@@ -30,7 +90,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "All shortcuts:
+text = "All shortcuts (available only in debug mode):
 
 - [bgcolor=#333]F3[/bgcolor]: Show stats
 - [bgcolor=#333]F4[/bgcolor]: Increase stats size

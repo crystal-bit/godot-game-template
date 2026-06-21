@@ -156,7 +156,7 @@ anchor_bottom = 0.5
 offset_left = 40.0
 offset_top = -186.0
 offset_right = 464.0
-offset_bottom = 186.0
+offset_bottom = 276.0
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Help" unique_id=2052955873]
@@ -165,14 +165,16 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Help/MarginContainer" unique_id=1170172205]
 layout_mode = 2
 bbcode_enabled = true
-text = "Welcome to the [b]Godot Game Template[/b], [color=GREEN]GGT[/color] in short!
+text = "Welcome to the [b]Godot Game Template[/b], [color=#7af]GGT[/color] in short!
 
-Some shortcuts that you can use are:
+Some debug shortcuts that you can use are:
 
-- [bgcolor=#333]F3[/bgcolor]: Show stats
-- [bgcolor=#333]F4[/bgcolor]: Increase stats size
+- [bgcolor=#333]F3[/bgcolor]: [color=gray]Show stats[/color]
+- [bgcolor=#333]F4[/bgcolor]: [color=gray]Increase stats size[/color]
 
-Press start to enter in gameplay scene and discover more shortcuts!"
+[color=#ffa]These are automatically removed in release builds.[/color]
+
+You can check the release type in the bottom left corner."
 
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

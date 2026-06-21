@@ -73,7 +73,7 @@ func _apply_settings() -> void:
 	AudioServer.set_bus_volume_db(AudioBus.SFX, config.get_value("audio", "sfx", AudioServer.get_bus_volume_db(AudioBus.SFX)))
 	AudioServer.set_bus_volume_db(AudioBus.BGM, config.get_value("audio", "music", AudioServer.get_bus_volume_db(AudioBus.BGM)))
 
-	get_tree().root.scaling_3d_scale = config.get_value("gfx", "resolution_scale", 1.0)
+	set_resolution_scale(config.get_value("gfx", "resolution_scale", 1.0))
 
 	var fps_limit: int = config.get_value("gfx", "fps_limit", 60)
 	Engine.max_fps = fps_limit if fps_limit > 0 else FPS_MAX_HARD_CAP
@@ -108,6 +108,8 @@ func set_music_volume(v: float) -> void:
 func set_resolution_scale(v: float) -> void:
 	config.set_value("gfx", "resolution_scale", v)
 	get_tree().root.scaling_3d_scale = v
+	if get_node_or_null("/root/DebugMenu"):
+		get_node_or_null("/root/DebugMenu").call_deferred("update_settings_label")
 	resolution_scale_changed.emit()
 
 
