@@ -49,4 +49,3 @@ func _on_settings_menu_visibility_changed() -> void:
 
 func _on_settings_menu_confirm_button_clicked() -> void:
 	settings_menu.hide()
-	print("clicke")

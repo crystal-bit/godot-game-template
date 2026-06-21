@@ -9,7 +9,7 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_y1o0p"]
 font_size = 32
 
-[node name="SettingsMenu" type="PanelContainer" unique_id=190195239 node_paths=PackedStringArray("sound_master_slider", "sound_sfx_slider", "sound_music_slider", "resolution_scale_slider", "resolution_scale_value", "v_sync_checkbox", "fps_limit_enabled_checkbox", "fps_limit_2", "fps_limit_slider", "fps_limit_label", "fullscreen_checkbox", "locale_option_button", "reset_confirmation_dialog", "cancel_confirmation_dialog", "cancel_button")]
+[node name="SettingsMenu" type="PanelContainer" unique_id=190195239 node_paths=PackedStringArray("sound_master_slider", "sound_sfx_slider", "sound_music_slider", "resolution_scale_slider", "resolution_scale_value", "v_sync_checkbox", "fps_limit_option_button", "fullscreen_checkbox", "locale_option_button", "reset_confirmation_dialog", "cancel_confirmation_dialog", "cancel_button")]
 offset_right = 353.0
 offset_bottom = 707.0
 script = ExtResource("1_25law")
@@ -19,10 +19,7 @@ sound_music_slider = NodePath("MarginContainer/VBox/Volume3/SoundMusicSlider")
 resolution_scale_slider = NodePath("MarginContainer/VBox/GfxRes/HBoxContainer/ResolutionScaleSlider")
 resolution_scale_value = NodePath("MarginContainer/VBox/GfxRes/HBoxContainer/ResolutionScaleValue")
 v_sync_checkbox = NodePath("MarginContainer/VBox/GfxVSync/VSyncCheckbox")
-fps_limit_enabled_checkbox = NodePath("MarginContainer/VBox/FPSLimit/FPSLimitEnabledCheckbox")
-fps_limit_2 = NodePath("MarginContainer/VBox/FPSLimit2")
-fps_limit_slider = NodePath("MarginContainer/VBox/FPSLimit2/HBoxContainer/FPSLimitSlider")
-fps_limit_label = NodePath("MarginContainer/VBox/FPSLimit2/HBoxContainer/FPSLimitLabel")
+fps_limit_option_button = NodePath("MarginContainer/VBox/FPSLimit/FPSLimitOptionButton")
 fullscreen_checkbox = NodePath("MarginContainer/VBox/Fullscreen/FullscreenCheckbox")
 locale_option_button = NodePath("MarginContainer/VBox/Language/LocaleOptionButton")
 reset_confirmation_dialog = NodePath("MarginContainer/VBox/ResetConfirmationDialog")
@@ -201,39 +198,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 translation_context = &"menu"
-text = "FPS Limit Active"
-
-[node name="FPSLimitEnabledCheckbox" type="CheckButton" parent="MarginContainer/VBox/FPSLimit" unique_id=1815907446]
-layout_mode = 2
-
-[node name="FPSLimit2" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1397360736]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBox/FPSLimit2" unique_id=750606493]
-layout_mode = 2
-size_flags_horizontal = 3
-translation_context = &"menu"
 text = "FPS Limit"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox/FPSLimit2" unique_id=1832437780]
+[node name="FPSLimitOptionButton" type="OptionButton" parent="MarginContainer/VBox/FPSLimit" unique_id=685382274]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
-
-[node name="FPSLimitSlider" type="HSlider" parent="MarginContainer/VBox/FPSLimit2/HBoxContainer" unique_id=248185798]
-layout_mode = 2
-size_flags_horizontal = 3
-min_value = 60.0
-max_value = 240.0
-value = 60.0
-tick_count = 10
-
-[node name="FPSLimitLabel" type="Label" parent="MarginContainer/VBox/FPSLimit2/HBoxContainer" unique_id=386372384]
-auto_translate_mode = 2
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-translation_context = &"menu"
-text = "60"
 
 [node name="Expand" type="Control" parent="MarginContainer/VBox" unique_id=1065938865]
 layout_mode = 2

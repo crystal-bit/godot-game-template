@@ -42,8 +42,7 @@ GGT is composed of multiple parts:
 - Parameter passing between scenes
 - Multithreaded scene loading
   - single threaded loading fallback for web exports
-- Settings for audio volume for Master/SFX/BGM buses, language selection, resolution scale, vsync and other things
-  - settings menu accessible via menu and gameplay pause screen
+- Settings for audio volume for Master/SFX/BGM buses, language selection, resolution scale, FPS limit, vsync. 
   - settings persisted via Godot's ConfigFile
 - gettext (.pot) localization setup with 2 languages (English, Italian). Feel free to add new languages via PR
   - bash script to sync all .po files with a single command 

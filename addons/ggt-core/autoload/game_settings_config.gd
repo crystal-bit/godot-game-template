@@ -16,9 +16,15 @@ const SUPPORTED_LOCALES = {
 	#"ru": "Русский",
 }
 
+enum AudioBus {
+	MASTER,
+	SFX,
+	BGM
+}
+
+const FPS_MAX_HARD_CAP = 400
 
 func _ready() -> void:
-	# load config file
 	if FileAccess.file_exists(CONFIG_FILE_PATH):
 		var err = config.load(CONFIG_FILE_PATH)
 		if err != OK:
@@ -36,12 +42,20 @@ func reset() -> void:
 	_apply_settings()
 
 
-func initialize_default_file():
+func persist() -> void:
+	config.save(CONFIG_FILE_PATH)
+
+
+func revert_to(cfg: ConfigFile) -> void:
+	config.parse(cfg.encode_to_text())
+	_apply_settings()
+
+
+func initialize_default_file() -> void:
 	config.set_value("audio", "master", 0.0)
 	config.set_value("audio", "sfx", 0.0)
 	config.set_value("audio", "music", 0.0)
 	config.set_value("gfx", "resolution_scale", 1.0)
-	config.set_value("gfx", "fps_limit_enabled", true)
 	config.set_value("gfx", "fps_limit", 60)
 	if not OS.has_feature('web'):
 		config.set_value("gfx", "fullscreen", true)
@@ -55,26 +69,65 @@ func initialize_default_file():
 
 
 func _apply_settings() -> void:
-	var locale = config.get_value("game", "locale", "en")
-	TranslationServer.set_locale(locale)
-	Engine.max_fps = config.get_value("gfx", "fps_limit", 60)
+	AudioServer.set_bus_volume_db(AudioBus.MASTER, config.get_value("audio", "master", AudioServer.get_bus_volume_db(AudioBus.MASTER)))
+	AudioServer.set_bus_volume_db(AudioBus.SFX, config.get_value("audio", "sfx", AudioServer.get_bus_volume_db(AudioBus.SFX)))
+	AudioServer.set_bus_volume_db(AudioBus.BGM, config.get_value("audio", "music", AudioServer.get_bus_volume_db(AudioBus.BGM)))
 
-	# TODO: check what happens on monitor change?
+	get_tree().root.scaling_3d_scale = config.get_value("gfx", "resolution_scale", 1.0)
+
+	var fps_limit: int = config.get_value("gfx", "fps_limit", 60)
+	Engine.max_fps = fps_limit if fps_limit > 0 else FPS_MAX_HARD_CAP
+
+	TranslationServer.set_locale(config.get_value("game", "locale", "en"))
+
+	if not OS.has_feature('web'):
+		var window_id = get_window().get_window_id()
+		DisplayServer.window_set_vsync_mode(
+			DisplayServer.VSYNC_ENABLED if config.get_value("gfx", "vsync", true) else DisplayServer.VSYNC_DISABLED,
+			window_id
+		)
+		get_window().mode = Window.MODE_FULLSCREEN if config.get_value("gfx", "fullscreen", true) else Window.MODE_WINDOWED
+
+
+#region setters
+func set_master_volume(v: float) -> void:
+	config.set_value("audio", "master", v)
+	AudioServer.set_bus_volume_db(AudioBus.MASTER, v)
+
+
+func set_sfx_volume(v: float) -> void:
+	config.set_value("audio", "sfx", v)
+	AudioServer.set_bus_volume_db(AudioBus.SFX, v)
+
+
+func set_music_volume(v: float) -> void:
+	config.set_value("audio", "music", v)
+	AudioServer.set_bus_volume_db(AudioBus.BGM, v)
+
+
+func set_resolution_scale(v: float) -> void:
+	config.set_value("gfx", "resolution_scale", v)
+	get_tree().root.scaling_3d_scale = v
+	resolution_scale_changed.emit()
+
+
+func set_vsync(v: bool) -> void:
+	config.set_value("gfx", "vsync", v)
 	var window_id = get_window().get_window_id()
 	DisplayServer.window_set_vsync_mode(
-		DisplayServer.VSYNC_ENABLED if config.get_value("gfx", "vsync") else DisplayServer.VSYNC_DISABLED,
+		DisplayServer.VSYNC_ENABLED if v else DisplayServer.VSYNC_DISABLED,
 		window_id
 	)
 
 
-#region setters
-func set_resolution_scale(v: float) -> void:
-	config.set_value("gfx", "resolution_scale", v)
-	get_tree().root.scaling_3d_scale = v
-	#for vp: Viewport in get_tree().get_nodes_in_group("viewports"):
-		#vp.scaling_3d_scale = value
-	#DebugMenu.update_settings_label() # update debug view
-	resolution_scale_changed.emit()
+func set_fps_limit(v: int) -> void:
+	config.set_value("gfx", "fps_limit", v)
+	Engine.max_fps = v if v > 0 else FPS_MAX_HARD_CAP
+
+
+func set_fullscreen(v: bool) -> void:
+	config.set_value("gfx", "fullscreen", v)
+	get_window().mode = Window.MODE_FULLSCREEN if v else Window.MODE_WINDOWED
 
 
 func set_locale(locale: String) -> void:
@@ -84,7 +137,6 @@ func set_locale(locale: String) -> void:
 
 
 #region getters
-
 func get_resolution_scale() -> float:
 	return float(config.get_value("gfx", "resolution_scale"))
 
