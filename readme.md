@@ -19,6 +19,11 @@ Provides a solid base for quick iterations.
 It worked well when used by small teams in game jams, but it should be generic
 enough to work for mid sized teams as well.
 
+Online demo available on → https://crystalbit.itch.io/godot-game-template
+
+https://github.com/user-attachments/assets/1f647a5d-5047-40eb-b3c2-7142312459c3
+
+
 ## Used by
 
 | Logo                                                                                                                                        | Godot | Title                      | Platforms                                                                                                         |
