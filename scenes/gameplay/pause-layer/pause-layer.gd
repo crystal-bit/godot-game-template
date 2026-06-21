@@ -29,14 +29,16 @@ func pause_hide():
 	for n in nodes_grp1:
 		if n:
 			n.show()
-
 	for n in nodes_grp2:
 		if n:
 			n.hide()
+	settings_menu.hide()
 
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
+		if settings_menu.visible:
+			return
 		if get_tree().paused:
 			resume()
 		else:
@@ -73,6 +75,8 @@ func _on_settings_pressed() -> void:
 
 func _on_settings_menu_visibility_changed() -> void:
 	margin_container.visible = !settings_menu.visible
+	if !settings_menu.visible:
+		resume_option.grab_focus() # restore focus
 
 
 func _on_settings_menu_confirm_button_clicked() -> void:

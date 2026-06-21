@@ -20,7 +20,8 @@ signal confirm_button_clicked
 
 const FPS_OPTIONS = [0, 30, 45, 60, 75, 90, 120, 144, 165, 240]
 
-var previous_config: ConfigFile
+var previous_config: ConfigFile # null if no value changed since last visit to the settings page.
+var _focus_before_modal: Control
 
 
 func _ready() -> void:
@@ -35,6 +36,8 @@ func _ready() -> void:
 	locale_option_button.item_selected.connect(on_locale_option_button_item_selected)
 	reset_confirmation_dialog.confirmed.connect(_on_reset_confirmed)
 	cancel_confirmation_dialog.confirmed.connect(_on_cancel_confirmed)
+	reset_confirmation_dialog.cancelled.connect(_on_modal_canceled)
+	cancel_confirmation_dialog.cancelled.connect(_on_modal_canceled)
 
 	sound_master_slider.value_changed.connect(_on_setting_changed)
 	sound_sfx_slider.value_changed.connect(_on_setting_changed)
@@ -53,7 +56,20 @@ func _ready() -> void:
 	visibility_changed.connect(on_visibility_changed)
 
 
-func _on_setting_changed(_v = null) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	if !visible: return
+	if event is InputEventJoypadButton:
+		if event.is_action_released("pause"):
+			_on_settings_confirm_button_pressed()
+			get_viewport().set_input_as_handled()
+		elif event.is_action_released("ui_cancel"):
+			if cancel_button.disabled:
+				_on_settings_confirm_button_pressed() # just close the settings menu, no edits were made
+			else:
+				_on_settings_cancel_button_pressed() # asks confirmation before closing the settings menu
+
+
+func _on_setting_changed(_v=null) -> void:
 	cancel_button.disabled = false
 
 
@@ -62,6 +78,7 @@ func on_visibility_changed() -> void:
 		previous_config = ConfigFile.new()
 		previous_config.parse(GGT_GameConfig.config.encode_to_text())
 		cancel_button.disabled = true
+		locale_option_button.grab_focus()
 	else:
 		previous_config = null
 
@@ -136,6 +153,8 @@ func on_locale_option_button_item_selected(index: int) -> void:
 
 
 func _on_settings_cancel_button_pressed() -> void:
+	_focus_before_modal = get_viewport().gui_get_focus_owner()
+	cancel_button_clicked.emit()
 	cancel_confirmation_dialog.show_with_text(tr("Are you sure you want to discard your changes?", "settings"))
 
 
@@ -145,7 +164,13 @@ func _on_cancel_confirmed() -> void:
 		initialize(previous_config)
 	else:
 		initialize()
-	cancel_button_clicked.emit()
+	if _focus_before_modal:
+		_focus_before_modal.grab_focus()
+
+
+func _on_modal_canceled() -> void:
+	if _focus_before_modal:
+		_focus_before_modal.grab_focus()
 
 
 func _on_settings_confirm_button_pressed() -> void:
@@ -154,6 +179,7 @@ func _on_settings_confirm_button_pressed() -> void:
 
 
 func _on_settings_reset_button_pressed() -> void:
+	_focus_before_modal = get_viewport().gui_get_focus_owner()
 	reset_confirmation_dialog.show_with_text(tr("Are you sure you want to reset all settings to their default values?", "settings"))
 
 
@@ -161,3 +187,5 @@ func _on_reset_confirmed() -> void:
 	GGT_GameConfig.reset()
 	initialize(GGT_GameConfig.config)
 	cancel_button.disabled = false
+	if _focus_before_modal:
+		_focus_before_modal.grab_focus()

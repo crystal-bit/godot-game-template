@@ -1,6 +1,7 @@
 extends Control
 
 @export var play_button: Button
+@export var settings_button: Button
 @export var exit_button: Button
 @export var settings_menu: Control
 @export var margin_container: MarginContainer
@@ -45,6 +46,8 @@ func _on_settings_button_pressed() -> void:
 
 func _on_settings_menu_visibility_changed() -> void:
 	margin_container.visible = !settings_menu.visible
+	if !settings_menu.visible:
+		settings_button.grab_focus()
 
 
 func _on_settings_menu_confirm_button_clicked() -> void:

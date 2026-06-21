@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
 [ext_resource type="Script" uid="uid://cvc42inud8fxx" path="res://scenes/menu/menu.gd" id="5"]
 
-[node name="Menu" type="Control" unique_id=1641158152 node_paths=PackedStringArray("play_button", "exit_button", "settings_menu", "margin_container")]
+[node name="Menu" type="Control" unique_id=1641158152 node_paths=PackedStringArray("play_button", "settings_button", "exit_button", "settings_menu", "margin_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5")
 play_button = NodePath("MarginContainer/Control/VBoxContainer/PlayButton")
+settings_button = NodePath("MarginContainer/Control/VBoxContainer/SettingsButton")
 exit_button = NodePath("MarginContainer/Control/VBoxContainer/ExitButton")
 settings_menu = NodePath("SettingsMenu")
 margin_container = NodePath("MarginContainer")
@@ -73,13 +74,14 @@ theme_override_constants/separation = 16
 [node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=282119598]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ExitButton")
-focus_next = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
 text = "START"
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=879990348]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "SETTINGS"
@@ -87,7 +89,7 @@ text = "SETTINGS"
 [node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=1212985906]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
-focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_top = NodePath("../SettingsButton")
 focus_previous = NodePath("../PlayButton")
 text = "EXIT"
 

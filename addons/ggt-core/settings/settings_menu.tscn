@@ -204,6 +204,8 @@ text = "FPS Limit"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+focus_neighbor_bottom = NodePath("../../HBoxContainer/HBoxContainer/SettingsConfirmButton")
+focus_next = NodePath("../../HBoxContainer/HBoxContainer/SettingsConfirmButton")
 
 [node name="Expand" type="Control" parent="MarginContainer/VBox" unique_id=1065938865]
 layout_mode = 2
@@ -223,16 +225,20 @@ theme_override_constants/separation = 32
 [node name="SettingsCancelButton" type="Button" parent="MarginContainer/VBox/HBoxContainer/HBoxContainer" unique_id=991942150]
 layout_mode = 2
 translation_context = &"menu"
+focus_next = NodePath("../SettingsResetButton")
 text = "Cancel"
 
 [node name="SettingsResetButton" type="Button" parent="MarginContainer/VBox/HBoxContainer/HBoxContainer" unique_id=2067842246]
 layout_mode = 2
 translation_context = &"menu"
+focus_neighbor_left = NodePath("../SettingsCancelButton")
+focus_neighbor_right = NodePath("../SettingsConfirmButton")
 text = "Reset default"
 
 [node name="SettingsConfirmButton" type="Button" parent="MarginContainer/VBox/HBoxContainer/HBoxContainer" unique_id=99809660]
 layout_mode = 2
 translation_context = &"menu"
+focus_neighbor_left = NodePath("../SettingsResetButton")
 text = "Confirm"
 
 [node name="ResetConfirmationDialog" parent="MarginContainer/VBox" unique_id=2067842247 instance=ExtResource("3_modal")]

@@ -287,7 +287,6 @@ func _exit_tree() -> void:
 ## To update when graphics settings are changed, the function must be called manually
 ## using `DebugMenu.update_settings_label()`.
 func update_settings_label() -> void:
-	print("label updated")
 	settings.text = ""
 	if ProjectSettings.has_setting("application/config/version"):
 		settings.text += "Project Version: %s\n" % ProjectSettings.get_setting("application/config/version")
