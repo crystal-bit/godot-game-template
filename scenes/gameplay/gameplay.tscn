@@ -92,7 +92,7 @@ layout_mode = 2
 bbcode_enabled = true
 text = "All shortcuts (available only in debug mode):
 
-- [bgcolor=#333]F3[/bgcolor]: Show stats
+- [bgcolor=#333]F3[/bgcolor]: cycle FPS modes
 - [bgcolor=#333]F4[/bgcolor]: Increase stats size
 - [bgcolor=#333]Q[/bgcolor]: Quit
 - [bgcolor=#333]R[/bgcolor]: Restart current scene
